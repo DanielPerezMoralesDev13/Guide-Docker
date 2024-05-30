@@ -1,3 +1,6 @@
+<!-- Autor: Daniel Benjamin Perez Morales -->
+<!-- GitHub: https://github.com/DanielPerezMoralesDev13 -->
+<!-- Correo electrónico: danielperezdev@proton.me  -->
 # ***Formas de Detener Contenedores en Docker***
 
 - *Para detener contenedores en Docker, es importante conocer las diferentes opciones y comandos disponibles. Aquí te mostramos varias formas de hacerlo, basándonos en la [documentación oficial](https://docs.docker.com/reference/cli/docker/container/ls/ "https://docs.docker.com/reference/cli/docker/container/ls/").*
