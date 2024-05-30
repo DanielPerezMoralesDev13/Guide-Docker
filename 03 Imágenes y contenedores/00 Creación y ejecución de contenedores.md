@@ -18,7 +18,7 @@ docker image pull debian
 ```
 
 > [!NOTE]
-> *Este comando descarga la imagen oficial de Debian desde Docker Hub.*
+> *Este comando descarga la imagen oficial de Debian especificamente la **latest** desde Docker Hub.*
 
 ### ***Listar imágenes descargadas***
 
