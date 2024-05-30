@@ -97,15 +97,15 @@ CONTAINER ID   IMAGE         COMMAND   CREATED         STATUS                   
   - *`Paused`: El contenedor está en pausa.*
   - *`Restarting`: El contenedor se está reiniciando.*
   
-  En este caso, `Created` indica que el contenedor ha sido creado pero aún no ha sido iniciado.
+  *En este caso, `Created` indica que el contenedor ha sido creado pero aún no ha sido iniciado.*
 
 - **PORTS:**  
-  Los puertos que están expuestos por el contenedor y mapeados a puertos en el host. En el ejemplo proporcionado, esta columna está vacía, lo que indica que no se han mapeado puertos.
+  *Los puertos que están expuestos por el contenedor y mapeados a puertos en el host. En el ejemplo proporcionado, esta columna está vacía, lo que indica que no se han mapeado puertos.*
 
 - **NAMES:**  
-  El nombre asignado al contenedor. En este caso, `debian-test` es el nombre del contenedor.
+  *El nombre asignado al contenedor. En este caso, `debian-test` es el nombre del contenedor.*
 
-### Ejemplo de Salida con Múltiples Contenedores
+### ***Ejemplo de Salida con Múltiples Contenedores***
 
 ```plaintext
 CONTAINER ID   IMAGE         COMMAND   CREATED         STATUS                     PORTS     NAMES
