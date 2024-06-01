@@ -401,7 +401,7 @@ docker rmi debian:latest
 
 - *Las "dangling images" (imágenes colgantes o imágenes huérfanas) son imágenes de Docker que no están asociadas a ningún contenedor en ejecución ni a ninguna otra imagen. Estas imágenes suelen generarse cuando se construyen nuevas imágenes o se eliminan contenedores, dejando atrás capas de imágenes que ya no están en uso por ningún contenedor existente.*
 
-- *Cuando construyes una nueva imagen en Docker, cada paso de la construcción, definido en tu archivo Dockerfile, genera una nueva capa de imagen. Si cambias el archivo Dockerfile y vuelves a construir la imagen, las capas anteriores que ya no se necesitan pueden convertirse en imágenes colgantes.*
+- *Cuando construyes una nueva imagen en Docker, cada paso de la construcción, definido en tu fichero Dockerfile, genera una nueva capa de imagen. Si cambias el fichero Dockerfile y vuelves a construir la imagen, las capas anteriores que ya no se necesitan pueden convertirse en imágenes colgantes.*
 
 - *Del mismo modo, cuando eliminas un contenedor que está basado en una imagen específica, Docker no elimina automáticamente esa imagen, especialmente si otras imágenes o contenedores dependen de ella. Esto puede llevar a la existencia de imágenes colgantes.*
 
@@ -470,14 +470,14 @@ REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
 
 - *Este comportamiento es peculiar y es importante tener en cuenta que las imágenes "dangling" no se generan cuando la imagen está siendo utilizada por un contenedor en estado "Exited" o "Created". Esto contrasta con la situación donde la imagen está siendo utilizada por un contenedor en estado "Running", donde sí se genera una imagen "dangling" al eliminarla. Esto puede ayudarte a comprender mejor cómo funcionan las imágenes "dangling" en Docker y cómo evitar su generación en ciertas situaciones.*
 
----
+- *Aprovechando la situación anterior, surge la pregunta: ¿qué pasa con el contenedor que usaba la imagen de Fedora? Docker crea una especie de copia local en el sistema para que el contenedor pueda seguir funcionando. Esto se puede ver con más detalle al inspeccionar el contenedor.*
 
-<!-- todo continue -->
+**Primero, inspeccionamos el contenedor `fedora-1` y guardamos la salida en un fichero JSON para una revisión más detallada:**
 
-aprovechando la situacion anterior que pasa con el contenedor que usaba la imagen de fedora pues docker crea su especie de copia local en el sistema esto lo podemo ver con mas detalle
-
+```bash
 docker container inspect fedora-1
 docker container inspect fedora-1 > ./fichero.json
+```
 
 ```json
 [
@@ -683,7 +683,7 @@ docker container inspect fedora-1 > ./fichero.json
 ]
 ```
 
-buscamos
+**En el fichero JSON, buscamos la sección `"GraphDriver"`:**
 
 ```json
 "GraphDriver": {
@@ -697,15 +697,27 @@ buscamos
 }
 ```
 
-vemos que hay en ese directorio de LowerDir luego de los : puntos `/var/lib/docker/overlay2/fcd0486309a610bb40090d2b4d958ddd4d63c7f871e931bc4f6d506958c50704/diff`
+**Vemos que hay un directorio en `LowerDir`, el cual exploramos este `/var/lib/docker/overlay2/fcd0486309a610bb40090d2b4d958ddd4d63c7f871e931bc4f6d506958c50704/diff` para ver su contenido:**
 
 ```bash
-➜  d4nitrix13 03 Imágenes y contenedores git:(master U:1 ?:1 ✗) sudo ls --color=auto /var/lib/docker/overlay2/fcd0486309a610bb40090d2b4d958ddd4d63c7f871e931bc4f6d506958c50704/diff
+sudo ls --color=auto /var/lib/docker/overlay2/fcd0486309a610bb40090d2b4d958ddd4d63c7f871e931bc4f6d506958c50704/diff
+```
+
+**El resultado muestra la estructura de ficheros típica de un sistema de ficheros de Linux:**
+
+```bash
 afs  bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
 ```
 
-si funciona obviamente podremos iniciar el contenedor
-➜  d4nitrix13 03 Imágenes y contenedores git:(master U:1 ?:1 ✗) docker start -i fedora-1
+**Podemos verificar que el contenedor sigue funcionando correctamente iniciándolo nuevamente:**
+
+```bash
+docker start -i fedora-1
+```
+
+**Dentro del contenedor, listamos los ficheros para confirmar que todo está en su lugar:**
+
+```bash
 [root@d7f145f83d44 /]# ls --color=auto -al
 total 60
 drwxr-xr-x   1 root root 4096 Jun  1 04:45 .
@@ -731,28 +743,41 @@ dr-xr-xr-x  13 root root    0 Jun  1 04:45 sys
 drwxrwxrwt   2 root root 4096 Jan 24 00:00 tmp
 drwxr-xr-x  12 root root 4096 Apr 14 22:54 usr
 drwxr-xr-x  18 root root 4096 Apr 14 22:54 var
-[root@d7f145f83d44 /]#
+```
 
-entonces si vemos el contenido de la siguiente ruta
+**El contenido confirma que el contenedor está utilizando la copia local creada por Docker.**
 
-➜  d4nitrix13 03 Imágenes y contenedores git:(master U:1 ?:1 ✗) sudo ls --color=auto /var/lib/docker/overlay2/
+**Para profundizar más, listamos los directorios en `/var/lib/docker/overlay2/`:**
+
+```bash
+sudo ls --color=auto /var/lib/docker/overlay2/
+```
+
+**Podemos observar que el directorio correspondiente al contenedor `fedora-1` que es `/var/lib/docker/overlay2/fcd0486309a610bb40090d2b4d958ddd4d63c7f871e931bc4f6d506958c50704/diff` existe:**
+
+```bash
 1350b04fc20756dd75919f2530b377155d9aea28a545fee567240e68273bb9d4
 1350b04fc20756dd75919f2530b377155d9aea28a545fee567240e68273bb9d4-init
 13b1b76e5d79cdae2e792cb585026410e6672bb3d01383de5bd6c8020b56cd09
 13b1b76e5d79cdae2e792cb585026410e6672bb3d01383de5bd6c8020b56cd09-init
 fcd0486309a610bb40090d2b4d958ddd4d63c7f871e931bc4f6d506958c50704
 l
+```
 
-vemos que ahi esta el directorio del contenedor esto se debe a que docker ha creado una copia de la imagen de fedora para que ese contenedor sigua funcionando
-fcd0486309a610bb40090d2b4d958ddd4d63c7f871e931bc4f6d506958c50704
+**Esto muestra que Docker ha creado una copia de la imagen de Fedora para que el contenedor pueda seguir funcionando. Si eliminamos el contenedor y revisamos la ruta nuevamente, veremos que el directorio correspondiente ha desaparecido:**
 
-y si borramos el contenedor y luego volvemo a inspeccionar la ruta
-➜  d4nitrix13 03 Imágenes y contenedores git:(master U:1 ?:1 ✗) docker container remove fedora-1
-fedora-1
-➜  d4nitrix13 03 Imágenes y contenedores git:(master U:1 ?:1 ✗) sudo ls --color=auto /var/lib/docker/overlay2/
+```bash
+docker container remove fedora-1
+sudo ls --color=auto /var/lib/docker/overlay2/
+```
+
+**La salida confirmará que el directorio ya no está presente:**
+
+```bash
 13b1b76e5d79cdae2e792cb585026410e6672bb3d01383de5bd6c8020b56cd09
 13b1b76e5d79cdae2e792cb585026410e6672bb3d01383de5bd6c8020b56cd09-init
 fcd0486309a610bb40090d2b4d958ddd4d63c7f871e931bc4f6d506958c50704
 l
+```
 
-despareciero el directorio esto es por que el contenedor ha sido borrado y por lo tanto la copia de la imagen de fedora ha sido borrada tambien esta imagen no es reutilizable es como una especie de copia para el contenedor
+- *Esto ocurre porque el contenedor ha sido eliminado y, por lo tanto, la copia de la imagen de Fedora también ha sido eliminada. Esta copia no es reutilizable; es una especie de copia temporal para el contenedor.*

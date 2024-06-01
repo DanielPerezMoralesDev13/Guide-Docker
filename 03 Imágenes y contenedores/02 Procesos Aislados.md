@@ -48,13 +48,13 @@ docker run -ti --name <nombre-contenedor> <image>
 docker run -it --name fedora-container fedora
 ```
 
-- *Este comando creará un nuevo contenedor a partir de la imagen `fedora` y lo iniciará en modo interactivo. Puede realizar cambios dentro del contenedor, como crear archivos o instalar paquetes, sin afectar al sistema host.*
+- *Este comando creará un nuevo contenedor a partir de la imagen `fedora` y lo iniciará en modo interactivo. Puede realizar cambios dentro del contenedor, como crear ficheros o instalar paquetes, sin afectar al sistema host.*
 
 ---
 
 ## ***Aislamiento entre Contenedores***
 
-- *Los contenedores están completamente aislados entre sí. Por ejemplo, si crea un archivo dentro de un contenedor, este archivo no estará presente en otros contenedores. Además, cada contenedor debe tener un nombre único.*
+- *Los contenedores están completamente aislados entre sí. Por ejemplo, si crea un fichero dentro de un contenedor, este fichero no estará presente en otros contenedores. Además, cada contenedor debe tener un nombre único.*
 
 ---
 
@@ -342,7 +342,7 @@ docker container exec arch cat /etc/passwd | grep -iF "neymar"
 
 ## ***Conclusiones***
 
-- *Los contenedores en Docker ofrecen un entorno aislado y seguro para ejecutar aplicaciones. El aislamiento se extiende a los usuarios, archivos y configuraciones dentro de los contenedores. Esto permite ejecutar múltiples contenedores simultáneamente sin interferencias entre ellos ni con el sistema host.*
+- *Los contenedores en Docker ofrecen un entorno aislado y seguro para ejecutar aplicaciones. El aislamiento se extiende a los usuarios, ficheros y configuraciones dentro de los contenedores. Esto permite ejecutar múltiples contenedores simultáneamente sin interferencias entre ellos ni con el sistema host.*
 
 ```txt
 ➜  user Directory git:(master U:1 ?:1 ✗) docker container exec fedora-container dnf list installed

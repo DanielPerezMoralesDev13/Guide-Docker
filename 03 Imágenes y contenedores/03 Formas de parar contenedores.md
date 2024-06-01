@@ -54,7 +54,7 @@ docker container stop 385
 
 - *En Linux, un "graceful shutdown" se refiere a un proceso de apagado del sistema o cierre de un servicio que se lleva a cabo de manera ordenada y controlada. En contraste con un apagado brusco o forzado, un "graceful shutdown" permite que los servicios o procesos finalicen correctamente y que los recursos se liberen adecuadamente antes de que el sistema o el servicio se detengan por completo.*
 
-- *Cuando se realiza un "graceful shutdown", los procesos y servicios activos reciben una señal para detenerse de manera ordenada. Estos procesos tienen la oportunidad de guardar su estado, cerrar archivos abiertos, liberar recursos y realizar cualquier otra tarea necesaria para asegurar una terminación adecuada.*
+- *Cuando se realiza un "graceful shutdown", los procesos y servicios activos reciben una señal para detenerse de manera ordenada. Estos procesos tienen la oportunidad de guardar su estado, cerrar ficheros abiertos, liberar recursos y realizar cualquier otra tarea necesaria para asegurar una terminación adecuada.*
 
 - *Un "graceful shutdown" es importante porque ayuda a evitar la corrupción de datos y otros problemas que pueden surgir cuando los procesos o servicios se detienen abruptamente. Además, permite que el sistema o el servicio mantenga la integridad de sus datos y pueda reanudar sus operaciones de manera más eficiente cuando se reinicie.*
 
@@ -70,7 +70,7 @@ docker container stop 385
 
 - *SIGTERM es una señal en los sistemas operativos basados en Unix, incluido Linux, que se utiliza para solicitar que un proceso se termine de manera controlada. SIGTERM, que es el acrónimo de "signal termination" (señal de terminación), es una señal de finalización suave que indica al proceso que debe finalizar sus operaciones y cerrarse de manera ordenada.*
 
-- *Cuando un proceso recibe la señal SIGTERM, tiene la oportunidad de realizar tareas de limpieza y liberar recursos antes de finalizar. Por ejemplo, puede guardar archivos, cerrar conexiones de red, liberar memoria y realizar otras acciones necesarias para asegurar una terminación adecuada.*
+- *Cuando un proceso recibe la señal SIGTERM, tiene la oportunidad de realizar tareas de limpieza y liberar recursos antes de finalizar. Por ejemplo, puede guardar ficheros, cerrar conexiones de red, liberar memoria y realizar otras acciones necesarias para asegurar una terminación adecuada.*
 
 - *Es importante destacar que SIGTERM es una señal de terminación suave. A diferencia de señales más fuertes como SIGKILL, que termina un proceso de manera inmediata sin permitirle realizar ninguna tarea de limpieza, SIGTERM brinda al proceso la oportunidad de cerrarse correctamente.*
 
@@ -94,7 +94,7 @@ docker container kill 385
 
 - *Cuando un proceso recibe la señal SIGKILL, se termina de inmediato y no tiene la oportunidad de realizar tareas de limpieza o liberar recursos. Esto puede provocar la pérdida de datos o dejar recursos del sistema en un estado inconsistente, por lo que el uso de SIGKILL debe hacerse con precaución.*
 
-- *Los usuarios y administradores del sistema a menudo recurren a SIGKILL cuando un proceso se ha vuelto no respondiente o está consumiendo demasiados recursos y no responde a las señales de terminación suave, como SIGTERM. Al enviar la señal SIGKILL a un proceso, se garantiza que se detendrá de inmediato, pero puede dejar archivos temporales sin eliminar o bases de datos en un estado no consistente.*
+- *Los usuarios y administradores del sistema a menudo recurren a SIGKILL cuando un proceso se ha vuelto no respondiente o está consumiendo demasiados recursos y no responde a las señales de terminación suave, como SIGTERM. Al enviar la señal SIGKILL a un proceso, se garantiza que se detendrá de inmediato, pero puede dejar ficheros temporales sin eliminar o bases de datos en un estado no consistente.*
 
 - *Es importante tener en cuenta que SIGKILL es una medida extrema y no debe ser la primera opción para detener un proceso, ya que puede provocar pérdida de datos o corrupción del sistema. Se recomienda intentar primero una terminación suave utilizando la señal SIGTERM antes de recurrir a SIGKILL.*
 

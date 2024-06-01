@@ -274,7 +274,7 @@ root@bd601214bedd:/#
 ls --color=auto
 ```
 
-*Muestra archivos con color en una terminal. Si redirigimos la salida a un archivo, el color se omite.*
+*Muestra ficheros con color en una terminal. Si redirigimos la salida a un fichero, el color se omite.*
 
 ```bash
 /usr/bin/ls --color=auto > ./fichero.txt
@@ -300,7 +300,7 @@ snap
 Vídeos
 ```
 
-**Buscar un archivo específico:**
+**Buscar un fichero específico:**
 
 ```bash
 /usr/bin/ls --color=auto ./ | grep Desktop

@@ -36,7 +36,7 @@ boot  etc  home              lib32  libx32  media       opt  root  sbin  srv   s
 
 ---
 
-## ***Copiar Archivos del Host al Contenedor***
+## ***Copiar ficheros del Host al Contenedor***
 
 ```bash
 docker cp ./fichero_host.txt debian-console:/
@@ -49,7 +49,7 @@ boot  etc  fichero_host.txt        lib   media  opt  root  sbin  sys  usr
 
 ---
 
-## ***Copiar Archivos del Contenedor al Host***
+## ***Copiar ficheros del Contenedor al Host***
 
 ```bash
 Perez / docker cp debian-console:/fichero_contenedor.txt /home/Perez/
@@ -341,7 +341,7 @@ fc9c74a8947c33f98c49bba68aee83c85de51c8e6f97160f20c747eee5874685-init
 
 ### ***Ejemplo con Git***
 
-- *Al crear un commit y añadir un archivo:*
+- *Al crear un commit y añadir un fichero:*
 
 ```plaintext
 Commit 1:
@@ -349,7 +349,7 @@ directorio1
   ├── fichero1
 ```
 
-**Al crear otro commit y añadir un archivo más:**
+**Al crear otro commit y añadir un fichero más:**
 
 ```plaintext
 Commit 2:
@@ -373,7 +373,7 @@ directorio1               + fichero2              directorio1
 
 ### ***Capas en Docker***
 
-- *Las capas funcionan de la misma manera. Las imágenes están definidas por capas, y cada capa es como un commit. La capa final de una imagen representa el sistema de ficheros completo definido por esa imagen. Por ejemplo, la imagen de Debian tendría su última capa como un commit con todo su contenido. Al trabajar con nuestro contenedor, generamos una diferencia respecto al sistema de ficheros base de la imagen, añadiendo archivos, binarios, directorios, configuraciones, etc. Si combinamos la diferencia generada con el sistema base de la imagen, obtenemos el sistema completo del contenedor.*
+- *Las capas funcionan de la misma manera. Las imágenes están definidas por capas, y cada capa es como un commit. La capa final de una imagen representa el sistema de ficheros completo definido por esa imagen. Por ejemplo, la imagen de Debian tendría su última capa como un commit con todo su contenido. Al trabajar con nuestro contenedor, generamos una diferencia respecto al sistema de ficheros base de la imagen, añadiendo ficheros, binarios, directorios, configuraciones, etc. Si combinamos la diferencia generada con el sistema base de la imagen, obtenemos el sistema completo del contenedor.*
 
 ![*imagen de referencia de capas de docker*]("")
 
@@ -411,7 +411,7 @@ sudo ls --color=auto /var/lib/docker/overlay2/cc109319a5c88e90713cff9890a0a7ae15
 bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
 ```
 
-*Esto es lo que había en el contenedor cuando se arrancó por primera vez. Si creamos archivos o directorios, aparecerán en el directorio `"UpperDir"`:*
+*Esto es lo que había en el contenedor cuando se arrancó por primera vez. Si creamos ficheros o directorios, aparecerán en el directorio `"UpperDir"`:*
 
 ```bash
 sudo ls --color=auto /var/lib/docker/overlay2/fc9c74a8947c33f98c49bba68aee83c85de51c8e6f97160f20c747eee5874685/diff
@@ -423,7 +423,7 @@ sudo ls --color=auto /var/lib/docker/overlay2/fc9c74a8947c33f98c49bba68aee83c85d
 user.txt  fichero_contenedor.txt  fichero_host.txt  root  tmp  var
 ```
 
-*Aquí encontrarás cualquier archivo, directorio, binario modificado o creado. Por ejemplo, es probable que veas el directorio `home` del `root` porque se habrá editado un archivo oculto o algo similar. Además, como hicimos un `apt-get update`, se habrá modificado algo en los directorios `tmp` y `var`.*
+*Aquí encontrarás cualquier fichero, directorio, binario modificado o creado. Por ejemplo, es probable que veas el directorio `home` del `root` porque se habrá editado un fichero oculto o algo similar. Además, como hicimos un `apt-get update`, se habrá modificado algo en los directorios `tmp` y `var`.*
 
 *El contenido de este `diff` es la diferencia con respecto al sistema base de la imagen. Estas diferencias se han generado dentro del contenedor.*
 
@@ -484,7 +484,7 @@ bin   dev  home  lib64  mnt  proc  run   srv  tmp  var
 boot  etc  lib   media  opt  root  sbin  sys  usr
 ```
 
-*Como vemos, los archivos creados en el contenedor anterior no están presentes porque los contenedores están aislados entre sí. Podemos comprobarlo con:*
+*Como vemos, los ficheros creados en el contenedor anterior no están presentes porque los contenedores están aislados entre sí. Podemos comprobarlo con:*
 
 ```bash
 docker inspect debian-3
@@ -692,13 +692,13 @@ docker inspect debian-3 > "./metadatos_del_nuevo_contenedor.json"
 
 ---
 
-## ***Aislamiento de Sistemas de Archivos en Docker***
+## ***Aislamiento de Sistemas de ficheros en Docker***
 
 ---
 
 ### ***`GraphDriver` y sus Directorios***
 
-- *El `GraphDriver` en Docker maneja los sistemas de archivos de imágenes y contenedores. En el ejemplo siguiente, observamos que el controlador utilizado es `overlay2`:*
+- *El `GraphDriver` en Docker maneja los sistemas de ficheros de imágenes y contenedores. En el ejemplo siguiente, observamos que el controlador utilizado es `overlay2`:*
 
 ```json
 "GraphDriver": {
@@ -725,7 +725,7 @@ docker inspect debian-3 > "./metadatos_del_nuevo_contenedor.json"
 
 ### ***Explorando los Directorios***
 
-*El directorio `LowerDir` se especifica con varias rutas separadas por `:`. Al listar su contenido, se observa la estructura de archivos y directorios del contenedor:*
+*El directorio `LowerDir` se especifica con varias rutas separadas por `:`. Al listar su contenido, se observa la estructura de ficheros y directorios del contenedor:*
 
 ```bash
 sudo ls --color=auto /var/lib/docker/overlay2/cc109319a5c88e90713cff9890a0a7ae15c13670de189da85ecde4a28e1294e8/diff
@@ -755,7 +755,7 @@ sudo ls --color=auto /var/lib/docker/overlay2/142ae4e1f3ac5b885b6e1d49bd64c72c47
 user.txt  fichero_contenedor.txt  fichero_host.txt  root  tmp  var
 ```
 
-**Este directorio contiene los archivos y directorios modificados o creados en el contenedor.**
+**Este directorio contiene los ficheros y directorios modificados o creados en el contenedor.**
 
 ---
 
@@ -781,7 +781,7 @@ dev        fichero_host.txt                                                     
 
 ### ***Aislamiento de Contenedores***
 
-- *Cada contenedor tiene un sistema de archivos aislado, lo que significa que los cambios en un contenedor no afectan a otros. Esto se refleja en los distintos hashes de los directorios:*
+- *Cada contenedor tiene un sistema de ficheros aislado, lo que significa que los cambios en un contenedor no afectan a otros. Esto se refleja en los distintos hashes de los directorios:*
 
 ```bash
 ➜  root ~ ls /var/lib/docker/overlay2/
@@ -798,7 +798,7 @@ fc9c74a8947c33f98c49bba68aee83c85de51c8e6f97160f20c747eee5874685-init
 
 ### ***Creación y Aislamiento de Contenedores***
 
-**Cada contenedor nuevo tiene su propio sistema de archivos:**
+**Cada contenedor nuevo tiene su propio sistema de ficheros:**
 
 ```bash
 docker container create --interactive --tty --name debian-3 debian
@@ -808,7 +808,7 @@ bin   dev  home  lib64  mnt  proc  run   srv  tmp  var
 boot  etc  lib   media  opt  root  sbin  sys  usr
 ```
 
-**Estos archivos son diferentes de los de otros contenedores, como se puede verificar con:**
+**Estos ficheros son diferentes de los de otros contenedores, como se puede verificar con:**
 
 ```bash
 docker inspect debian-3
