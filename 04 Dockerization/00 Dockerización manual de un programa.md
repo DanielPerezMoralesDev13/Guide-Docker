@@ -1,16 +1,36 @@
-# Dockerización manual de un programa
+<!-- Autor: Daniel Benjamin Perez Morales -->
+<!-- GitHub: https://github.com/DanielPerezMoralesDev13 -->
+<!-- Correo electrónico: danielperezdev@proton.me  -->
+# ***Dockerización Manual de un Programa***
 
-para dockerizar un programa debe saber muy bien el entorno de trabajo (tecnologias) como instalarlo, configurarlas y programarlas para que funciones, osea todo lo que usas para el desarrolo
+- *Para dockerizar un programa, es fundamental conocer bien el entorno de trabajo (tecnologías), saber cómo instalarlo, configurarlo y programarlo para que funcione. Es decir, debes comprender todos los componentes que utilizas para el desarrollo.*
 
-[Guía NodeJs](https://nodejs.org/en/learn/getting-started/introduction-to-nodejs "https://nodejs.org/en/learn/getting-started/introduction-to-nodejs")
+---
 
-[Visual Studio Code](https://code.visualstudio.com/ "https://code.visualstudio.com/")
+## ***Recursos***
 
-[NodeJs v20.14.01](https://nodejs.org/en "https://nodejs.org/en")
+- *[Guía NodeJs](https://nodejs.org/en/learn/getting-started/introduction-to-nodejs "Introducción a NodeJs")*
+- *[Visual Studio Code](https://code.visualstudio.com/ "Descargar Visual Studio Code")*
+- *[NodeJs v20.14.01](https://nodejs.org/en "Descargar NodeJs")*
+- *[Node Installation Instructions](https://github.com/nodesource/distributions "Instrucciones para la instalación de Node")*
 
-[Node Installation instructions](https://github.com/nodesource/distributions "https://github.com/nodesource/distributions")
+---
 
-posible error al instalarlo
+## ***Instalacion***
+
+```bash
+sudo apt-get install -y curl
+curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
+sudo -E bash nodesource_setup.sh
+sudo apt-get install -y nodejs
+node -v && npm -v
+```
+
+---
+
+## ***Posible Error al Instalar NodeJs***
+
+**Al instalar NodeJs, podrías encontrarte con el siguiente error:**
 
 ```bash
 sudo apt-get install -y nodejs
@@ -20,9 +40,13 @@ Se encontraron errores al procesar:
 E: Sub-process /usr/bin/dpkg returned an error code (1)
 ```
 
-El error que estás viendo indica que hubo un problema al instalar el paquete `nodejs` debido a un error con el subproceso de `dpkg-deb`, específicamente un "Broken pipe". Esto usualmente significa que hubo un problema al descomprimir o copiar los archivos del paquete.
+- *El error indica un problema al instalar el paquete `nodejs` debido a un error con el subproceso de `dpkg-deb`, específicamente un "Broken pipe". Esto usualmente significa que hubo un problema al descomprimir o copiar los archivos del paquete.*
 
-Aquí hay algunos pasos que puedes seguir para intentar resolver este problema:
+---
+
+### ***Solución***
+
+**Aquí hay algunos pasos que puedes seguir para intentar resolver este problema:**
 
 1. **Actualizar la lista de paquetes y limpiar la caché:**
 
@@ -34,15 +58,11 @@ Aquí hay algunos pasos que puedes seguir para intentar resolver este problema:
 
 2. **Eliminar el archivo de paquete problemático:**
 
-   El mensaje de error menciona un archivo específico (`/var/cache/apt/archives/nodejs_22.2.0-1nodesource1_amd64.deb`). Puedes intentar eliminar este archivo manualmente:
-
    ```bash
    sudo rm /var/cache/apt/archives/nodejs_22.2.0-1nodesource1_amd64.deb
    ```
 
 3. **Reinstalar el paquete:**
-
-   Intenta instalar el paquete nuevamente después de haber limpiado y eliminado el archivo problemático:
 
    ```bash
    sudo apt-get install -y nodejs
@@ -50,36 +70,111 @@ Aquí hay algunos pasos que puedes seguir para intentar resolver este problema:
 
 4. **Forzar la reconfiguración de `dpkg`:**
 
-   Si el problema persiste, podrías intentar forzar una reconfiguración de `dpkg`:
-
    ```bash
    sudo dpkg --configure -a
    ```
 
 5. **Instalar `nodejs` desde un repositorio diferente:**
 
-   Si sigue habiendo problemas, considera instalar `nodejs` desde un repositorio diferente. Por ejemplo, puedes usar el script de NodeSource para instalar la última versión de Node.js:
-
    ```bash
    curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
    sudo apt-get install -y nodejs
    ```
 
-Si después de estos pasos sigues teniendo problemas, por favor proporciona más detalles sobre el error que estás viendo y cualquier salida adicional del terminal. Esto ayudará a diagnosticar el problema con mayor precisión.
+## ***Poner en Marcha el Programa en el Host***
 
-poner en marcha el programa en el host
+**Ejecuta tu aplicación Node.js en el host:**
 
 ```bash
 ➜  d4nitrix13 00 App Node Javascript git:(master U:5 ?:2 ✗) node index.js 
 Server running at http://127.0.0.1:3000/
 ```
 
+**Para verificar que está funcionando, usa `curl`:**
+
 ```bash
 curl localhost:3000
 Hello World
 ```
 
+**O escribe esto en tu navegador:**
+
 ```txt
 127.0.0.1:3000
 localhost:3000
+```
+
+---
+
+## ***Dockerización del Programa***
+
+- *El directorio de trabajo en el contenedor será `-w`,`--workdir` `/App` aunque comunmente es `/code`. Los puntos después de `ubuntu` indican la versión.*
+
+```bash
+docker run -it --workdir /code --name App-00-Nodejs ubuntu:22.04
+docker run -itw /App --name App-00-Nodejs ubuntu:22.04
+```
+
+---
+
+### ***Salida Esperada***
+
+```bash
+docker run -itw /App --name App-00-Nodejs ubuntu:22.04
+Unable to find image 'ubuntu:22.04' locally
+22.04: Pulling from library/ubuntu
+a8b1c5f80c2d: Pull complete 
+Digest: sha256:a6d2b38300ce017add71440577d5b0a90460d0e57fd7aec21dd0d1b0761bbfb2
+Status: Downloaded newer image for ubuntu:22.04
+
+root@a2e5334b6474:/App# pwd
+/App
+
+root@a2e5334b6474:/App# cd ..
+root@a2e5334b6474:/# ls -a
+.   .dockerenv  bin   dev  home  lib32  libx32  mnt  proc  run   srv  tmp  var
+..  App         boot  etc  lib   lib64  media   opt  root  sbin  sys  usr
+```
+
+---
+
+### ***Copiar el Fichero***
+
+**Copia tu archivo `index.js` al contenedor:**
+
+```bash
+docker cp ./index.js App-00-Nodejs:/App
+```
+
+---
+
+### ***Instalar Dependencias***
+
+**Instala las dependencias necesarias para ejecutar Node.js dentro del contenedor:**
+
+```bash
+root@a2e5334b6474:/App# apt-get update && apt-get -y upgrade && apt-get clean && apt-get autoremove && apt-get install -y curl
+```
+
+```bash
+curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
+```
+
+```bash
+bash nodesource_setup.sh
+```
+
+```bash
+apt-get install -y nodejs
+```
+
+```bash
+node -v && npm -v
+```
+
+**Ponemos en marcha el programa en el contenedor:**
+
+```bash
+root@a2e5334b6474:/App# node index.js 
+Server running at http://127.0.0.1:3000/
 ```
