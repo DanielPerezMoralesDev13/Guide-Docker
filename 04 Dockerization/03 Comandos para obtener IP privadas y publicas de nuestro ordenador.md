@@ -71,13 +71,17 @@ dig +short myip.opendns.com @resolver1.opendns.com
 
 ---
 
-### ***Usando `hostname -I`***
+### ***Usando `hostname -I` o `hostname -i`***
 
 1. **Abre una terminal.**
 2. **Escribe el siguiente comando y presiona Enter:**
 
    ```bash
    hostname -I
+   ```
+
+   ```bash
+   hostname -i
    ```
 
    **Este comando te mostrará directamente las direcciones IP asignadas a tu dispositivo.**
@@ -152,12 +156,16 @@ ifconfig
 
 ---
 
-### ***4. Usar `hostname -I` (opción directa)***
+### ***4. Usar `hostname -I` o  `hostname -i`(opción directa)***
 
 **Este comando generalmente no requiere instalación adicional:**
 
 ```bash
 hostname -I
+```
+
+```bash
+hostname -i
 ```
 
 ---

@@ -3,7 +3,7 @@
 // Correo electrónico: danielperezdev@proton.me
 const { createServer } = require('node:http');
 
-const hostname = '172.17.0.2';
+const hostname = '0.0.0.0';
 const port = 3000;
 
 const server = createServer((req, res) => {
