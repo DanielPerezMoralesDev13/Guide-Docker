@@ -1,6 +1,0 @@
-3: wlp6s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
-    link/ether e4:02:9b:1d:40:ac brd ff:ff:ff:ff:ff:ff
-    inet 192.168.1.9/24 brd 192.168.1.255 scope global dynamic noprefixroute wlp6s0
-       valid_lft 73010sec preferred_lft 73010sec
-    inet6 fe80::9419:8468:6306:a88d/64 scope link noprefixroute 
-       valid_lft forever preferred_lft forever
