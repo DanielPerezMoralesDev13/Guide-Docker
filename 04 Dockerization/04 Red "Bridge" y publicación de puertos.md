@@ -120,6 +120,13 @@ server.listen(port, hostname, () => {
 docker cp ./index.js App-00-Nodejs:/App
 ```
 
+**hacer peticion:**
+
+```bash
+curl localhost:5000
+Hello World
+```
+
 **Para ver los puertos publicados de los contenedores, usamos `docker ps -a`.**
 
 ```bash
