@@ -522,7 +522,114 @@ docker container exec -it fedora-container bash
 
 - *Por ejemplo, los comandos ejecutados dentro del contenedor Fedora no serán visibles desde otro contenedor. Cada contenedor mantiene su propio espacio de nombres de procesos y recursos, lo que garantiza un alto grado de aislamiento y seguridad.*
 
+---
+
 ## ***Conclusiones Aislamiento de Procesos***
+
+- *El comando `docker container top` es utilizado para mostrar información sobre los procesos que se están ejecutando dentro de un contenedor Docker. En este caso, cuando se ejecuta `docker container top fedora-container`, se obtiene una lista de los procesos que están corriendo dentro del contenedor llamado `fedora-container`.*
+
+**Para entender en detalle lo que hace este comando, es importante desglosarlo en varias partes:**
+
+1. **Identificación del Contenedor:**
+   - *`docker container top` necesita identificar el contenedor `fedora-container`. Docker hace esto utilizando el nombre del contenedor o su ID. Docker mantiene un mapeo entre nombres de contenedores y sus IDs en su metadatos internos.*
+   - *Docker invoca la API Docker Engine para obtener la información necesaria del contenedor específico.*
+
+2. **Acceso a los Procesos:**
+   - *Una vez identificado el contenedor, Docker necesita acceder a la información de los procesos que están corriendo dentro del espacio de nombres de procesos (PID namespace) del contenedor.*
+   - *Los contenedores Docker, por defecto, comparten el mismo kernel del sistema operativo anfitrión, pero tienen su propio espacio de nombres para procesos. Esto significa que los procesos dentro de un contenedor están aislados de los procesos de otros contenedores y del host.*
+
+3. **Obtención de Datos de Procesos:**
+   - *Docker interactúa con el kernel del sistema operativo utilizando llamadas al sistema (syscalls) para obtener información sobre los procesos. Esto se logra mediante la lectura de los archivos en el pseudo-sistema de archivos `/proc` del host, que contiene información sobre todos los procesos en el sistema.*
+   - *Por ejemplo, Docker puede leer `/proc/[pid]/stat`, `/proc/[pid]/status` y otros archivos en el directorio `/proc` para obtener detalles específicos de cada proceso.*
+
+    ```bash
+    ➜  user Directory git:(master U:1 ✗) docker exec -it 00-App-nodejs-v4 ps aux
+    USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+    root           1  0.0  0.0   2892  1664 pts/0    Ss+  19:59   0:00 /bin/sh -c node ./index.js
+    root           7  0.0  0.5 736804 45440 pts/0    Sl+  19:59   0:00 node ./index.js
+    root         103  0.0  0.0   7064  2816 pts/1    Rs+  20:06   0:00 ps aux
+
+    ➜  user Directory git:(master U:1 ✗) docker exec -it 00-App-nodejs-v4 cat /proc/1/stat
+    1 (sh) S 0 1 1 34816 1 4194560 1079 0 0 0 2 1 0 0 20 0 1 0 121773 2961408 416 18446744073709551615 96810629902336 96810629982613 140730297134176 0 0 0 0 0 65538 1 0 0 17 0 0 0 0 0 0 96810630008560 96810630013472 96810645286912 140730297134951 140730297134978 140730297134978 140730297135088 0
+    ```
+
+4. **Formato y Presentación de Datos:**
+   - *La información obtenida de `/proc` es procesada y formateada por Docker para que sea legible y útil para el usuario.*
+   - *Por defecto, `docker container top` mostrará una salida similar al comando `ps` de Unix/Linux, que incluye columnas como PID (Process ID), USER (el usuario que ejecuta el proceso), TIME (el tiempo de CPU consumido), COMMAND (el comando que se está ejecutando), entre otras.*
+
+---
+
+### ***Ejemplo de Uso***
+
+**Supongamos que tenemos un contenedor en ejecución llamado `fedora-container`. Al ejecutar:**
+
+```bash
+docker container top fedora-container
+```
+
+**La salida puede parecerse a esto:**
+
+```bash
+UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
+root                22485               22470               0                   13:57               ?                   00:00:00            /bin/bash
+root                22507               22485               0                   13:57               ?                   00:00:00            ps -ef
+```
+
+---
+
+### ***Explicación Técnica de la Salida***
+
+- **UID:** *El ID del usuario que está ejecutando el proceso. En muchos casos, dentro de un contenedor, los procesos son ejecutados por el usuario `root`.*
+- **PID:** *El ID del proceso. Este es un identificador único dentro del espacio de nombres de procesos del contenedor.*
+- **PPID:** *El ID del proceso padre. Esto muestra qué proceso inició el proceso actual.*
+- **C:** *La utilización de CPU (no siempre es detallada en todas las implementaciones de `ps`).*
+- **STIME:** *La hora de inicio del proceso.*
+- **TTY:** *El terminal asociado con el proceso.*
+- **TIME:** *El tiempo total de CPU consumido por el proceso.*
+- **CMD:** *El comando que se está ejecutando.*
+
+### ***Bajo el Capó***
+
+**Internamente, cuando `docker container top` se ejecuta, Docker realiza los siguientes pasos:**
+
+1. **Llamada a la API Docker:**
+   - *Docker CLI se comunica con el Docker daemon (dockerd) a través de una API RESTful. La CLI envía una solicitud para obtener la lista de procesos de un contenedor específico.*
+   - *Ejemplo de endpoint: `GET /containers/{id}/top`.*
+
+2. **Recopilación de Información de Procesos:**
+   - *Docker daemon utiliza las herramientas del sistema operativo, principalmente accediendo a `/proc` y utilizando herramientas como `ps`, para recolectar la información requerida.*
+   - *Docker puede utilizar comandos internos o subprocesos que ejecutan comandos del sistema operativo como `ps -ef` dentro del contexto del contenedor.*
+
+3. **Formateo y Devolución de Resultados:**
+   - *La información es recopilada y formateada en un formato estructurado, generalmente JSON, y devuelta a la CLI.*
+   - *La CLI, a su vez, formatea esta información para su presentación en la terminal.*
+
+---
+
+### ***Ejemplo con Detalles Adicionales***
+
+**Consideremos un contenedor que ejecuta varios servicios. Al ejecutar:**
+
+```bash
+docker container top multi-service-container
+```
+
+**La salida puede incluir varias líneas, por ejemplo:**
+
+```bash
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 13:57 ?        00:00:00 /bin/sh -c /usr/sbin/apache2ctl -D FOREGROUND
+www-data   34     1  0 13:57 ?        00:00:00 /usr/sbin/apache2 -D FOREGROUND
+www-data   35    34  0 13:57 ?        00:00:00 /usr/sbin/apache2 -D FOREGROUND
+www-data   36    34  0 13:57 ?        00:00:00 /usr/sbin/apache2 -D FOREGROUND
+```
+
+### ***Descripción***
+
+- **Procesos Primarios y Secundarios:** *El proceso con `PID 1` es típicamente el proceso principal en un contenedor, usualmente el proceso que inició el contenedor. En este caso, es un shell que ejecuta Apache.*
+- **Procesos del Servidor Web:** *Los procesos con `PID` 34, 35, y 36 son procesos del servidor web Apache ejecutándose en modo foreground (`-D FOREGROUND`).*
+
+- *En resumen, `docker container top fedora-container` es una herramienta poderosa para inspeccionar y gestionar los procesos que corren dentro de un contenedor, proporcionando una visión detallada de la actividad interna del mismo.*
 
 - *Los contenedores en Docker ofrecen un entorno aislado para ejecutar procesos de forma eficiente y segura. El aislamiento de procesos garantiza que los contenedores sean independientes entre sí y no afecten al sistema host ni a otros contenedores. Esto facilita la gestión de aplicaciones y servicios en entornos de producción y desarrollo.*
 
@@ -557,7 +664,7 @@ root                170592              164793              0                   
 
 ### ***Información sobre procesos en contenedores***
 
-- **Los procesos de un contenedor no los podrás ver desde otro contenedor**. Esto se debe a que están aislados entre sí.
+- **Los procesos de un contenedor no los podrás ver desde otro contenedor**. *Esto se debe a que están aislados entre sí.*
 
 **Por ejemplo, para ver los procesos dentro de un contenedor:**
 
