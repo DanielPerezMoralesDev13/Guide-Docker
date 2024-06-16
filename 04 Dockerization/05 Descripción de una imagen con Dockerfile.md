@@ -1,6 +1,6 @@
 <!-- Autor: Daniel Benjamin Perez Morales -->
 <!-- GitHub: https://github.com/DanielPerezMoralesDev13 -->
-<!-- Correo electrónico: danielperezdev@proton.me  -->
+<!-- Correo electrónico: danielperezdev@proton.me -->
 # ***Descripción de una imagen con Dockerfile***
 
 - **Vamos a crear un fichero llamado `Dockerfile` para definir la configuración de nuestra imagen Docker.**
@@ -8,7 +8,7 @@
 ```Dockerfile
 # Autor: Daniel Benjamin Perez Morales -->
 # GitHub: https://github.com/DanielPerezMoralesDev13 -->
-# Correo electrónico: danielperezdev@proton.me  -->
+# Correo electrónico: danielperezdev@proton.me -->
 
 # Las imágenes oficiales suelen venir actualizadas, por lo que no es necesario usar `apt upgrade`
 FROM ubuntu:22.04
@@ -206,7 +206,7 @@ docker image build ./
 ```Dockerfile
 # Autor: Daniel Benjamin Perez Morales -->
 # GitHub: https://github.com/DanielPerezMoralesDev13 -->
-# Correo electrónico: danielperezdev@proton.me  -->
+# Correo electrónico: danielperezdev@proton.me -->
 
 # las imagenes ya vienen actualizadas normalmente por eso no es necesario poner `apt upgrade`
 FROM ubuntu:22.04
@@ -413,7 +413,7 @@ ubuntu            22.04     52882761a72a   5 weeks ago      77.9MB
 ```Dockerfile
 # Autor: Daniel Benjamin Perez Morales -->
 # GitHub: https://github.com/DanielPerezMoralesDev13 -->
-# Correo electrónico: danielperezdev@proton.me  -->
+# Correo electrónico: danielperezdev@proton.me -->
 
 # Las imágenes oficiales suelen venir actualizadas, por lo que no es necesario usar `apt upgrade`
 FROM ubuntu:22.04
@@ -451,7 +451,7 @@ CMD ["node", "./index.js"]
 ```Dockerfile
 # Autor: Daniel Benjamin Perez Morales -->
 # GitHub: https://github.com/DanielPerezMoralesDev13 -->
-# Correo electrónico: danielperezdev@proton.me  -->
+# Correo electrónico: danielperezdev@proton.me -->
 
 # Las imágenes oficiales suelen venir actualizadas, por lo que no es necesario usar `apt upgrade`
 FROM ubuntu:22.04
@@ -631,7 +631,7 @@ Hello World
 ```Dockerfile
 # Autor: Daniel Benjamin Perez Morales -->
 # GitHub: https://github.com/DanielPerezMoralesDev13 -->
-# Correo electrónico: danielperezdev@proton.me  -->
+# Correo electrónico: danielperezdev@proton.me -->
 
 # las imagenes ya vienen actualizadas normalmente por eso no es necesario poner `apt upgrade`
 FROM ubuntu:22.04

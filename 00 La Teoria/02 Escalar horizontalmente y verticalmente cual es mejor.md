@@ -1,6 +1,6 @@
 <!-- Autor: Daniel Benjamin Perez Morales -->
 <!-- GitHub: https://github.com/DanielPerezMoralesDev13 -->
-<!-- Correo electrónico: danielperezdev@proton.me  -->
+<!-- Correo electrónico: danielperezdev@proton.me -->
 # ***Escalar horizontalmente y verticalmente***
 
 - *Escalar una aplicación se refiere a aumentar su capacidad para manejar una mayor carga de trabajo. Hay dos formas principales de escalar: horizontalmente y verticalmente. Cada una tiene sus ventajas y desventajas, y la mejor opción depende de la naturaleza de la aplicación, los recursos disponibles y los objetivos a largo plazo. A continuación, se explican ambos métodos y se dan recomendaciones sobre cuándo usar cada uno.*

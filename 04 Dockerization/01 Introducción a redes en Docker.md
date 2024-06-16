@@ -1,6 +1,6 @@
 <!-- Autor: Daniel Benjamin Perez Morales -->
 <!-- GitHub: https://github.com/DanielPerezMoralesDev13 -->
-<!-- Correo electrónico: danielperezdev@proton.me  -->
+<!-- Correo electrónico: danielperezdev@proton.me -->
 # ***Introducción a Redes en Docker***
 
 - *En Docker, los contenedores están aislados entre sí, lo que significa que también los puertos están aislados. Si ejecutamos `index.js` en el contenedor App-00-Nodejs, el programa se pone a escuchar en el puerto 3000 (`localhost:3000`, `127.0.0.1:3000`).*

@@ -1,6 +1,6 @@
 <!-- Autor: Daniel Benjamin Perez Morales -->
 <!-- GitHub: https://github.com/DanielPerezMoralesDev13 -->
-<!-- Correo electrónico: danielperezdev@proton.me  -->
+<!-- Correo electrónico: danielperezdev@proton.me -->
 # ***Guía Docker***
 
 *Esta guía proporciona una descripción general del uso de Docker con la imagen de Debian. Incluye ejemplos y explicaciones detalladas de comandos y opciones para ayudar a entender su funcionalidad.*

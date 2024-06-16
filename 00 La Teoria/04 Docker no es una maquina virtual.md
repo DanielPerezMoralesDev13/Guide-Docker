@@ -1,6 +1,6 @@
 <!-- Autor: Daniel Benjamin Perez Morales -->
 <!-- GitHub: https://github.com/DanielPerezMoralesDev13 -->
-<!-- Correo electrónico: danielperezdev@proton.me  -->
+<!-- Correo electrónico: danielperezdev@proton.me -->
 # ***Docker no es una maquina virtual***
 
 - *Docker y las máquinas virtuales (VMs) son tecnologías que permiten aislar aplicaciones, pero funcionan de manera fundamentalmente diferente. Aquí te explico por qué Docker no es una máquina virtual y cuáles son las principales diferencias entre ambas tecnologías.*

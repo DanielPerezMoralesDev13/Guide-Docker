@@ -1,6 +1,6 @@
 <!-- Autor: Daniel Benjamin Perez Morales -->
 <!-- GitHub: https://github.com/DanielPerezMoralesDev13 -->
-<!-- Correo electrónico: danielperezdev@proton.me  -->
+<!-- Correo electrónico: danielperezdev@proton.me -->
 # ***Activar la virtualización en tu computadora implica habilitar la tecnología de virtualización en el BIOS/UEFI de tu sistema. A continuación, te proporciono una guía general para hacerlo, ya que los pasos pueden variar ligeramente dependiendo del fabricante de tu placa base o laptop.***
 
 ## ***Pasos para habilitar la virtualización en BIOS/UEFI***

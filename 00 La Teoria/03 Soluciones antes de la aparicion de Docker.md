@@ -1,6 +1,6 @@
 <!-- Autor: Daniel Benjamin Perez Morales -->
 <!-- GitHub: https://github.com/DanielPerezMoralesDev13 -->
-<!-- Correo electrónico: danielperezdev@proton.me  -->
+<!-- Correo electrónico: danielperezdev@proton.me -->
 # ***Solucion antes de la aparicion de Docker***
 
 - *Antes de la aparición de Docker y la popularización de los contenedores, el envío y despliegue de software (software shipping) se realizaba de varias maneras tradicionales, cada una con sus propias ventajas y desventajas. A continuación, se describen las principales metodologías utilizadas, así como sus respectivas ventajas y desventajas:*

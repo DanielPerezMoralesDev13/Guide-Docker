@@ -1,6 +1,6 @@
 <!-- Author: Daniel Benjamin Perez Morales -->
 <!-- GitHub: https://github.com/DanielPerezMoralesDev13 -->
-<!-- Email: danielperezdev@proton.me  -->
+<!-- Email: danielperezdev@proton.me -->
 # Docker Guide for Beginners: Basic and Advanced Networking Concepts
 
 - *Welcome to our Docker guide focused on networking concepts, from basic to advanced! This repository is designed to help you understand how Docker manages networks, from the simplest configuration to advanced setups and best practices. Here you will find a series of resources, examples, and exercises to strengthen your understanding and skills in using Docker in network environments.*

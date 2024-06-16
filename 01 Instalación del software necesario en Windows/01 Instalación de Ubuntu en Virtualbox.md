@@ -1,6 +1,6 @@
 <!-- Autor: Daniel Benjamin Perez Morales -->
 <!-- GitHub: https://github.com/DanielPerezMoralesDev13 -->
-<!-- Correo electrónico: danielperezdev@proton.me  -->
+<!-- Correo electrónico: danielperezdev@proton.me -->
 # ***Para instalar VirtualBox, Balena Etcher, y Ubuntu en una computadora con Windows, sigue estos pasos detallados***
 
 ## ***1. Instalar VirtualBox en Windows***

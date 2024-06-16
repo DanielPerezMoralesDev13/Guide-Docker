@@ -1,6 +1,6 @@
 <!-- Autor: Daniel Benjamin Perez Morales -->
 <!-- GitHub: https://github.com/DanielPerezMoralesDev13 -->
-<!-- Correo electrónico: danielperezdev@proton.me  -->
+<!-- Correo electrónico: danielperezdev@proton.me -->
 # ***Dockerización Manual de un Programa***
 
 - *Para dockerizar un programa, es fundamental conocer bien el entorno de trabajo (tecnologías), saber cómo instalarlo, configurarlo y programarlo para que funcione. Es decir, debes comprender todos los componentes que utilizas para el desarrollo.*

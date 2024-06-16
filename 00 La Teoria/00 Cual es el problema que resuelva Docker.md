@@ -1,6 +1,6 @@
 <!-- Autor: Daniel Benjamin Perez Morales -->
 <!-- GitHub: https://github.com/DanielPerezMoralesDev13 -->
-<!-- Correo electrónico: danielperezdev@proton.me  -->
+<!-- Correo electrónico: danielperezdev@proton.me -->
 # ***Docker***
 
 > *Docker es una plataforma de código abierto que permite automatizar el despliegue, la escalabilidad y la gestión de aplicaciones dentro de contenedores. Los contenedores son unidades estandarizadas de software que empaquetan el código de una aplicación y todas sus dependencias (como bibliotecas, herramientas del sistema, y configuraciones) para que se ejecuten de manera consistente en cualquier entorno.*

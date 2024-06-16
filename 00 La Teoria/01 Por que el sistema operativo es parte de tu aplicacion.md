@@ -1,6 +1,6 @@
 <!-- Autor: Daniel Benjamin Perez Morales -->
 <!-- GitHub: https://github.com/DanielPerezMoralesDev13 -->
-<!-- Correo electrónico: danielperezdev@proton.me  -->
+<!-- Correo electrónico: danielperezdev@proton.me -->
 # ***El sistema operativo (SO) es parte de tu aplicacion***
 
 - *El sistema operativo (SO) no es literalmente parte de tu aplicación, pero en el contexto de contenedores y Docker, se incluyen ciertos componentes del sistema operativo dentro de cada contenedor. Esto es necesario para garantizar que la aplicación se ejecute de manera consistente en cualquier entorno. A continuación, se explican las razones y la lógica detrás de esto:*

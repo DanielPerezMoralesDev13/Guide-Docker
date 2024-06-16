@@ -1,6 +1,6 @@
-# Autor: Daniel Benjamin Perez Morales -->
-# GitHub: https://github.com/DanielPerezMoralesDev13 -->
-# Correo electrónico: danielperezdev@proton.me  -->
+# Autor: Daniel Benjamin Perez Morales
+# GitHub: https://github.com/DanielPerezMoralesDev13
+# Correo electrónico: danielperezdev@proton.me
 
 # las imagenes ya vienen actualizadas normalmente por eso no es necesario poner `apt upgrade`
 FROM ubuntu:22.04

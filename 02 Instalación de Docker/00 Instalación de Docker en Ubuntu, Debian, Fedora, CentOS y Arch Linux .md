@@ -1,6 +1,6 @@
 <!-- Autor: Daniel Benjamin Perez Morales -->
 <!-- GitHub: https://github.com/DanielPerezMoralesDev13 -->
-<!-- Correo electrónico: danielperezdev@proton.me  -->
+<!-- Correo electrónico: danielperezdev@proton.me -->
 # ***Instalación de Docker***
 
 *Este documento proporciona instrucciones paso a paso para instalar Docker en diferentes distribuciones de Linux, incluyendo Ubuntu, Debian, Fedora y CentOS.*

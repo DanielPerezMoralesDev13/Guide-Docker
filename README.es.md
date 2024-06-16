@@ -1,6 +1,6 @@
 <!-- Autor: Daniel Benjamin Perez Morales -->
 <!-- GitHub: https://github.com/DanielPerezMoralesDev13 -->
-<!-- Correo electrónico: danielperezdev@proton.me  -->
+<!-- Correo electrónico: danielperezdev@proton.me -->
 # ***Guía de Docker para Principiantes: Conceptos Básicos y Avanzados de Redes***
 
 - *¡Bienvenido a nuestra guía de Docker centrada en los conceptos de redes, desde lo básico hasta lo avanzado! Este repositorio está diseñado para ayudarte a comprender cómo Docker gestiona las redes, desde la configuración más simple hasta las configuraciones avanzadas y las mejores prácticas. Aquí encontrarás una serie de recursos, ejemplos y ejercicios para fortalecer tu comprensión y habilidades en el uso de Docker en entornos de red.*
