@@ -86,7 +86,7 @@ E: Sub-process /usr/bin/dpkg returned an error code (1)
 **Ejecuta tu aplicación Node.js en el host:**
 
 ```bash
-➜  d4nitrix13 00 App Node Javascript git:(master U:5 ?:2 ✗) node index.js 
+node index.js 
 Server running at http://127.0.0.1:3000/
 ```
 
