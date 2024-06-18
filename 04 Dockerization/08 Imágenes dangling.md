@@ -65,6 +65,12 @@ COPY ./index.js ./
 EXPOSE 3000
 
 CMD node ./index.js
+
+# Shell form
+# CMD node ./index.js $HOME
+
+# Exec form
+# CMD [ "node", "./index.js", "$HOME" ]
 ```
 
 **Para construir la imagen y ejecutar el contenedor :**
