@@ -717,7 +717,7 @@ docker inspect debian-3 > "./metadatos_del_nuevo_contenedor.json"
 ### ***Función de los Directorios***
 
 - **LowerDir:** *Contiene las capas de imagen base.*
-- **MergedDir:** *Directorio donde se montan todas las capas combinadas, **sólo visible cuando el contenedor está en ejecución.***
+- **MergedDir:** *Directorio donde se montan todas las capas combinadas, sólo visible cuando el contenedor está en ejecución.*
 - **UpperDir:** *Contiene los cambios realizados en el contenedor (diferencias).*
 - **WorkDir:** *Directorio de trabajo usado internamente por el driver `overlay2`.*
 

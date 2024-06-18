@@ -539,8 +539,8 @@ docker container exec -it fedora-container bash
    - *Los contenedores Docker, por defecto, comparten el mismo kernel del sistema operativo anfitrión, pero tienen su propio espacio de nombres para procesos. Esto significa que los procesos dentro de un contenedor están aislados de los procesos de otros contenedores y del host.*
 
 3. **Obtención de Datos de Procesos:**
-   - *Docker interactúa con el kernel del sistema operativo utilizando llamadas al sistema (syscalls) para obtener información sobre los procesos. Esto se logra mediante la lectura de los archivos en el pseudo-sistema de archivos `/proc` del host, que contiene información sobre todos los procesos en el sistema.*
-   - *Por ejemplo, Docker puede leer `/proc/[pid]/stat`, `/proc/[pid]/status` y otros archivos en el directorio `/proc` para obtener detalles específicos de cada proceso.*
+   - *Docker interactúa con el kernel del sistema operativo utilizando llamadas al sistema (syscalls) para obtener información sobre los procesos. Esto se logra mediante la lectura de los ficheros en el pseudo-sistema de ficheros `/proc` del host, que contiene información sobre todos los procesos en el sistema.*
+   - *Por ejemplo, Docker puede leer `/proc/[pid]/stat`, `/proc/[pid]/status` y otros ficheros en el directorio `/proc` para obtener detalles específicos de cada proceso.*
 
     ```bash
     ➜  user Directory git:(master U:1 ✗) docker exec -it 00-App-nodejs-v4 ps aux

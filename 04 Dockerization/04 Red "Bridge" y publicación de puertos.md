@@ -93,7 +93,7 @@ docker inspect -f "{{.NetworkSettings.IPAddress}}" App-00-Nodejs
 
 - *Esto te dará la dirección IP del contenedor, que en tu caso es `172.17.0.2`. Si la dirección IP sigue siendo la misma, significa que el contenedor ha sido recreado correctamente y sigue teniendo la misma configuración de red.*
 
-**Copiamos el archivo index.js del host al contenedor:**
+**Copiamos el fichero index.js del host al contenedor:**
 
 ```javascript
 // Autor: Daniel Benjamin Perez Morales

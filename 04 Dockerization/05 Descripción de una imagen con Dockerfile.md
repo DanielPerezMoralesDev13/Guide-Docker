@@ -33,6 +33,8 @@ COPY ./index.js ./
 CMD ["node", "./index.js"]
 ```
 
+---
+
 ## ***Explicación de cada instrucción***
 
 1. **`FROM ubuntu:22.04`:** *Esta línea especifica la imagen base que se utilizará para construir nuestra imagen Docker. En este caso, estamos utilizando la imagen oficial de Ubuntu 22.04.*
@@ -43,7 +45,7 @@ CMD ["node", "./index.js"]
 
 4. **`WORKDIR /App`:** *Esta línea establece el directorio de trabajo dentro del contenedor a `/App`. Todos los comandos subsiguientes se ejecutarán en este directorio.*
 
-5. **`COPY ./index.js ./`:** *Esta línea copia el archivo `index.js` desde el directorio actual en el host al directorio de trabajo (`/App`) en el contenedor.*
+5. **`COPY ./index.js ./`:** *Esta línea copia el fichero `index.js` desde el directorio actual en el host al directorio de trabajo (`/App`) en el contenedor.*
 
 6. **`CMD ["node", "./index.js"]`:** *Esta línea especifica el comando que se ejecutará cuando se inicie un contenedor creado a partir de esta imagen. En este caso, inicia la aplicación Node.js utilizando `node ./index.js`.*
 
@@ -53,7 +55,9 @@ CMD ["node", "./index.js"]
 
 - *Los comandos `docker image build ./` y `docker build ./` son equivalentes. Ambos comandos se utilizan para construir una imagen Docker a partir de un `Dockerfile` en el directorio actual.*
 
-## Ejemplo de Uso de `docker image build ./`
+---
+
+## ***Ejemplo de Uso de `docker image build ./`***
 
 ```bash
 docker image build ./
@@ -137,7 +141,9 @@ Dockerfile:5
 ERROR: failed to solve: process "/bin/sh -c apt update && apt install curl" did not complete successfully: exit code: 1
 ```
 
-## Análisis del Error
+---
+
+## ***Análisis del Error***
 
 - *El error ocurre porque el proceso de instalación de `curl` requiere una confirmación para continuar con la descarga de paquetes y dependencias. Como este proceso es automático y no interactivo, no podemos responder "Sí" manualmente.*
 
@@ -353,7 +359,9 @@ docker build --tag d4nitrix13/node:0.1.0 ./
 
 - *Este comando asigna el nombre `d4nitrix13/node` y la etiqueta `0.1.0` a la imagen construida. Si la imagen ya existe y está en la caché, el proceso será rápido.*
 
-## Documentación
+---
+
+## ***Documentación***
 
 - *Para más información sobre la limpieza de imágenes dangling, puedes consultar la documentación oficial de Docker [aquí](https://docs.docker.com/reference/cli/docker/image/prune/ "https://docs.docker.com/reference/cli/docker/image/prune/").*
 
@@ -696,9 +704,9 @@ docker inspect d4nitrix13/node:0.1.2 > "informacion de la imagen d4nitrix13 de n
 
 ---
 
-### ***Contenido del Archivo JSON***
+### ***Contenido del fichero JSON***
 
-**El archivo JSON resultante proporciona información detallada sobre la imagen:**
+**El fichero JSON resultante proporciona información detallada sobre la imagen:**
 
 ```json
 [
@@ -793,9 +801,9 @@ docker inspect d4nitrix13/node:0.1.1 > "informacion de la imagen d4nitrix13 de n
 
 ---
 
-### ***Contenido del Archivo JSON `"informacion de la imagen d4nitrix13 de node version 0.1.1.json"`***
+### ***Contenido del fichero JSON `"informacion de la imagen d4nitrix13 de node version 0.1.1.json"`***
 
-**El archivo JSON para esta imagen es el siguiente:**
+**El fichero JSON para esta imagen es el siguiente:**
 
 ```json
 [

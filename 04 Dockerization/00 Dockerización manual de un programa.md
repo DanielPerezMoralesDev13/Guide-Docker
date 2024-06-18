@@ -40,7 +40,7 @@ Se encontraron errores al procesar:
 E: Sub-process /usr/bin/dpkg returned an error code (1)
 ```
 
-- *El error indica un problema al instalar el paquete `nodejs` debido a un error con el subproceso de `dpkg-deb`, específicamente un "Broken pipe". Esto usualmente significa que hubo un problema al descomprimir o copiar los archivos del paquete.*
+- *El error indica un problema al instalar el paquete `nodejs` debido a un error con el subproceso de `dpkg-deb`, específicamente un "Broken pipe". Esto usualmente significa que hubo un problema al descomprimir o copiar los ficheros del paquete.*
 
 ---
 
@@ -56,7 +56,7 @@ E: Sub-process /usr/bin/dpkg returned an error code (1)
    sudo apt-get autoremove
    ```
 
-2. **Eliminar el archivo de paquete problemático:**
+2. **Eliminar el fichero de paquete problemático:**
 
    ```bash
    sudo rm /var/cache/apt/archives/nodejs_22.2.0-1nodesource1_amd64.deb
@@ -140,7 +140,7 @@ root@a2e5334b6474:/# ls -a
 
 ### ***Copiar el Fichero***
 
-**Copia tu archivo `index.js` al contenedor:**
+**Copia tu fichero `index.js` al contenedor:**
 
 ```bash
 docker cp ./index.js App-00-Nodejs:/App
