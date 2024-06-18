@@ -2,7 +2,7 @@
 <!-- GitHub: https://github.com/DanielPerezMoralesDev13 -->
 <!-- Correo electrónico: danielperezdev@proton.me -->
 
-# ***Imágenes de varias capas***
+# ***Imágenes de varias capas** a*
 
 - *Para entender cómo funcionan las imágenes de Docker con varias capas, es esencial analizar el Dockerfile proporcionado y el resultado obtenido al inspeccionar un contenedor específico.*
 
@@ -307,7 +307,7 @@ docker inspect -f "{{.GraphDriver.Data.LowerDir}}" 00-App-nodejs-v4
 /var/lib/docker/overlay2/1ebd3e876321c23d898bc4d71c8a8b9e5ce535c34ffeb8ee6d05f8a058039d99-init/diff:/var/lib/docker/overlay2/82xpaeggq61te9rdxufi9ckxy/diff:/var/lib/docker/overlay2/kr4i0c8ry4bsu7c6jsowwj1fr/diff:/var/lib/docker/overlay2/tqhoeimhf4l6n7zeo3pdini0n/diff:/var/lib/docker/overlay2/043387975c35001ef7b631d7ad09d104fcb9b7970b5b3a38042167dd0c65a764/diff
 ```
 
-## Interpretación de los Directorios LowerDir
+## **Interpretación de los Directorios LowerDir**
 
 - **Primer Directorio (última capa):** *`/var/lib/docker/overlay2/1ebd3e876321c23d898bc4d71c8a8b9e5ce535c34ffeb8ee6d05f8a058039d99-init/diff`*
 - **Segundo Directorio (penúltima capa):** *`/var/lib/docker/overlay2/82xpaeggq61te9rdxufi9ckxy/diff`*
