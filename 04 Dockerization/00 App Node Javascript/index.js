@@ -13,6 +13,15 @@ const server = createServer((req, res) => {
     res.end('Hello World');
 });
 
+// Ver si recibimos la señal SIGTERM
+process.on("SIGTERM", () => {
+    console.log("Received SIGTERM");
+    // Limpiar Sockets, Ficheros, Liberar memoria
+    process.exit(0);
+});
+
 server.listen(port, hostname, () => {
+    // Paramtros de consola es una lista
+    console.log(process.argv);
     console.log(`Server running at http://${hostname}:${port}/`);
 });

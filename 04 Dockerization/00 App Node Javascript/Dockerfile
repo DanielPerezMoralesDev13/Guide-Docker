@@ -23,3 +23,9 @@ EXPOSE 3000
 
 # para poner en marcha el servido http lo hacemos mediante `CMD` normalmente es bash pero en este caso ponemos `node ./index.js` recordar que ya estamos en el directorio /App
 CMD node ./index.js
+
+# Shell form
+# CMD node ./index.js $HOME
+
+# Exec form
+# CMD [ "node", "./index.js", "$HOME" ]
