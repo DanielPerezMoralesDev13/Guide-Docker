@@ -29,3 +29,7 @@ CMD node ./index.js
 
 # Exec form
 # CMD [ "node", "./index.js", "$HOME" ]
+
+
+# ENTRYPOINT [ "ls" ]
+# CMD [ "-l" ]
