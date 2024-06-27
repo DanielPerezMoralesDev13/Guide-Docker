@@ -374,7 +374,50 @@ b064df325976   user/node:0.1.1   "/bin/sh -c 'node ./…"   10 days ago   Exited
 
 - *Vemos que el COMMAND es "/bin/sh -c 'node ./…'" del contenedor `00-App-nodejs-v4` a diferencia de "/bin/bash" del contenedor `App-00-Nodejs`.*
 
-- *`/bin/sh` es shell como bash, de hecho, sh es un enlace simbólico a bash en algunos casos.*
+- *`/bin/sh` es shell como bash, de hecho, sh es un enlace simbólico a `bash` o `dash` en algunos casos.*
+
+- **En Linux, **Dash** es un intérprete de shell que se utiliza como un shell de inicio rápido y eficiente para sistemas Unix-like. A continuación, te explico qué es Dash y cómo se relaciona con tu consulta:**
+
+---
+
+### ***¿Qué es Dash?***
+
+- *`Dash`, abreviatura de `"Debian Almquist Shell"`, es un intérprete de comandos diseñado para ser compatible con el estándar POSIX y se considera más ligero y rápido en comparación con otros shells como Bash. Se usa comúnmente como el intérprete de shell predeterminado para scripts de inicio y otras tareas de administración en distribuciones Linux, como Debian y sus derivadas.*
+
+---
+
+### ***Extraer mas informacion con lsd***
+
+**En tu consulta específica:**
+
+```bash
+lsd -l /usr/bin/sh
+```
+
+**El resultado muestra que `/usr/bin/sh` está simbólicamente enlazado (`link simbólico`) a `Dash`:**
+
+```bash
+lrwxrwxrwx root root 4 B Fri Feb 16 12:25:17 2024  /usr/bin/sh ⇒ dash
+```
+
+- **`lrwxrwxrwx`:** *Indica que `/usr/bin/sh` es un enlace simbólico.*
+- **`root root`:** *Especifica que el enlace simbólico pertenece al usuario `root` y al grupo `root`.*
+- **`4 B`:** *Indica el tamaño del enlace simbólico en bytes.*
+- **`Fri Feb 16 12:25:17 2024`:** *Es la fecha y hora en que se creó el enlace simbólico.*
+- **``:** *Un carácter Unicode que indica un enlace simbólico.*
+- **`dash`:** *El destino del enlace simbólico es el ejecutable `dash`.*
+
+- *Este resultado indica que cuando se llama `/bin/sh` en tu sistema, en realidad se está ejecutando Dash. Esto es común en muchas distribuciones Linux donde `/bin/sh` apunta a un shell que cumple con el estándar POSIX para asegurar la compatibilidad y consistencia en los scripts y comandos del sistema.*
+
+---
+
+### ***Uso y Características de Dash***
+
+- **Eficiencia:** *Dash está diseñado para ser rápido en la ejecución de scripts y tareas básicas de shell.*
+- **Compatibilidad:** *Cumple con el estándar POSIX, lo que garantiza que los scripts escritos para Dash funcionen de manera consistente en diferentes sistemas Unix-like.*
+- **Shell por Defecto:** *Aunque es ligero, no es tan interactivo o versátil como Bash, que es más comúnmente utilizado como shell interactivo por su rica funcionalidad y características adicionales.*
+
+- *En resumen, Dash es un shell eficiente y ligero utilizado en muchos sistemas Linux, especialmente como el shell de inicio (`/bin/sh`) para scripts y tareas administrativas debido a su velocidad y conformidad con los estándares POSIX.*
 
 - *Entonces este shell tiene como opción `-c` de comando que le puedes pasar como parámetro el comando que quieres ejecutar sin necesidad de ejecutar una shell de bash y pasarle como entrada estándar (stdin) los comandos.*
 
