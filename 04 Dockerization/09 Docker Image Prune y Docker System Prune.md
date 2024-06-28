@@ -49,5 +49,5 @@ d4nitrix13/node   exec      ee87e1b066d0   5 days ago    344MB
 d4nitrix13/node   shell     287616143143   5 days ago    344MB
 d4nitrix13/node   latest    146b0b14c7a8   2 weeks ago   344MB
 d4nitrix13/node   0.1.1     93755b038008   2 weeks ago   344MB
-ubuntu            22.04     52882761a72a   8 weeks ago   77.
+ubuntu            22.04     52882761a72a   8 weeks ago   77.44MB
 ```
