@@ -12,22 +12,22 @@
 
 ### ***1. Crear y configurar el proyecto***
 
-- *Primero, vamos a crear una nueva carpeta para nuestro proyecto y dentro de ella una subcarpeta llamada `src` para nuestro código fuente.*
+- *Primero, vamos a crear una nueva directorio para nuestro proyecto y dentro de ella una subdirectorio llamada `src` para nuestro código fuente.*
 
 ```bash
-# Crear la carpeta del proyecto
+# Crear la directorio del proyecto
 mkdir "01 App Node ExpressJS"
 
 # Cambiar al directorio del proyecto
 cd "01 App Node ExpressJS"
 
-# Crear una subcarpeta para el código fuente
+# Crear una subdirectorio para el código fuente
 mkdir src
 
 # Cambiar al directorio 'src'
 cd src
 
-# Crear el archivo 'index.js'
+# Crear el fichero 'index.js'
 touch index.js
 ```
 
@@ -35,7 +35,7 @@ touch index.js
 
 ### ***2. Inicializar el proyecto con npm***
 
-- *Ahora, inicializamos el proyecto con npm para crear un archivo `package.json` que manejará las dependencias y scripts del proyecto.*
+- *Ahora, inicializamos el proyecto con npm para crear un fichero `package.json` que manejará las dependencias y scripts del proyecto.*
 
 ```bash
 # Volver al directorio raíz del proyecto
@@ -45,7 +45,7 @@ cd ..
 npm init -y
 ```
 
-**Este comando generará automáticamente un archivo `package.json` con la siguiente estructura:**
+**Este comando generará automáticamente un fichero `package.json` con la siguiente estructura:**
 
 ```json
 {
@@ -83,13 +83,13 @@ found 0 vulnerabilities
 
 ---
 
-### ***4. Crear el archivo de servidor***
+### ***4. Crear el fichero de servidor***
 
 - *[hello world](https://expressjs.com/en/starter/hello-world.html "https://expressjs.com/en/starter/hello-world.html")*
 
-**Finalmente, vamos a editar el archivo `index.js` para crear un servidor básico con Express.js. Abre el archivo `index.js` en tu editor de texto favorito y añade el siguiente código:**
+**Finalmente, vamos a editar el fichero `index.js` para crear un servidor básico con Express.js. Abre el fichero `index.js` en tu editor de texto favorito y añade el siguiente código:**
 
-### ***Archivo `index.js`***
+### ***Fichero `index.js`***
 
 ```javascript
 // Por defecto, Express escucha en todas las interfaces disponibles (0.0.0.0)
@@ -163,7 +163,7 @@ node src/index.js
 
 ---
 
-**Aquí está el archivo `package.json` actualizado con la dependencia de Express.js añadida:**
+**Aquí está el fichero `package.json` actualizado con la dependencia de Express.js añadida:**
 
 ```json
 {
@@ -183,9 +183,9 @@ node src/index.js
 }
 ```
 
-- *Este archivo ahora incluye la dependencia de Express.js con la versión específica `^4.19.2`, que permite que tu proyecto utilice Express.js para crear aplicaciones web en Node.js.*
+- *Este fichero ahora incluye la dependencia de Express.js con la versión específica `^4.19.2`, que permite que tu proyecto utilice Express.js para crear aplicaciones web en Node.js.*
 
-**Archivo `package.json`:**
+**Fichero `package.json`:**
 
 ```json
 {
@@ -208,8 +208,8 @@ node src/index.js
 
 **Los cambios realizados son:**
 
-- *Se ha actualizado la propiedad `"main"` para apuntar al archivo `index.js` dentro de la carpeta `src`: `"main": "./src/index.js"`.*
-- *Se ha actualizado el script `"start"` para ejecutar el archivo `index.js` ubicado en la carpeta `src`: `"start": "node ./src/index.js"`.*
+- *Se ha actualizado la propiedad `"main"` para apuntar al fichero `index.js` dentro de la directorio `src`: `"main": "./src/index.js"`.*
+- *Se ha actualizado el script `"start"` para ejecutar el fichero `index.js` ubicado en la directorio `src`: `"start": "node ./src/index.js"`.*
 
 **Explicar la ejecución con `npm start` y la petición con curl:**
 
@@ -264,7 +264,7 @@ FROM node:lts
 # Establecemos el directorio de trabajo dentro del contenedor
 WORKDIR /App
 
-# Copiamos todos los archivos del proyecto al directorio /App del contenedor
+# Copiamos todos los ficheros del proyecto al directorio /App del contenedor
 COPY ./ ./
 
 # Exponemos el puerto 3000 para que pueda ser accesible desde fuera del contenedor
@@ -282,7 +282,7 @@ CMD npm start
 
 - **El comando `docker build` se utiliza para construir una imagen Docker a partir de un Dockerfile y el contexto especificado. Aquí está la mejora del texto:**
 
-- *El comando `docker build -t d4nitrix13/express:latest .` y `docker build -t d4nitrix13/express .` son equivalentes en función. Ambos comandos construyen una imagen Docker con el nombre `d4nitrix13/express` y opcionalmente con el tag `latest`, utilizando el contexto actual (representado por `.`) que incluye el Dockerfile y todos los archivos necesarios para la construcción de la imagen.*
+- *El comando `docker build -t d4nitrix13/express:latest .` y `docker build -t d4nitrix13/express .` son equivalentes en función. Ambos comandos construyen una imagen Docker con el nombre `d4nitrix13/express` y opcionalmente con el tag `latest`, utilizando el contexto actual (representado por `.`) que incluye el Dockerfile y todos los ficheros necesarios para la construcción de la imagen.*
 
 - *Esto clarifica que ambos comandos tienen el mismo efecto de construir la imagen Docker con el nombre `d4nitrix13/express`, con o sin la especificación explícita del tag `latest`.*
 
@@ -340,7 +340,7 @@ Example app listening on port 3000
 docker exec -it $(docker ps -q) bash
 ```
 
-**Realizamos un listado detallado de archivos (`ls -la`):**
+**Realizamos un listado detallado de ficheros (`ls -la`):**
 
 ```bash
 root@256c5814351e:/App# ls -la
@@ -354,7 +354,7 @@ drwxrwxr-x 66 root root  4096 Jun 28 18:25 node_modules
 drwxrwxr-x  2 root root  4096 Jun 28 18:28 src
 ```
 
-**Observamos que se copiaron incluso archivos y directorios que no son necesarios, lo cual afecta el rendimiento:**
+**Observamos que se copiaron incluso ficheros y directorios que no son necesarios, lo cual afecta el rendimiento:**
 
 ```bash
 root@256c5814351e:/App# cat Dockerfile
@@ -378,7 +378,7 @@ CMD npm start
 
 ### ***Solución propuesta***
 
-**Para evitar estos problemas, primero creamos un archivo `.dockerignore` que funcione de manera similar a `.gitignore`:**
+**Para evitar estos problemas, primero creamos un fichero `.dockerignore` que funcione de manera similar a `.gitignore`:**
 
 ```bash
 touch ./.dockerignore
@@ -405,7 +405,7 @@ FROM node:lts
 # Establecemos el directorio de trabajo dentro del contenedor
 WORKDIR /App
 
-# Copiamos solo los archivos necesarios para la aplicación
+# Copiamos solo los ficheros necesarios para la aplicación
 COPY ./ ./
 
 # Instalamos las dependencias necesarias para nuestra aplicación web en este caso express
@@ -422,7 +422,7 @@ CMD npm start
 
 ### ***Explicación***
 
-1. **`.dockerignore`:** *Evita que Docker copie archivos y directorios innecesarios como `node_modules` y los propios archivos de configuración (`Dockerfile`, `.dockerignore`).*
+1. **`.dockerignore`:** *Evita que Docker copie ficheros y directorios innecesarios como `node_modules` y los propios ficheros de configuración (`Dockerfile`, `.dockerignore`).*
 
 2. **Dockerfile optimizado:** *Instala las dependencias necesarias (`express`) dentro de la imagen Docker durante la construcción (`RUN npm install`), en lugar de copiar `node_modules` desde el host. Esto asegura que la imagen sea independiente del entorno de desarrollo del host y está lista para ejecutarse de manera consistente en cualquier máquina Docker.*
 
@@ -485,7 +485,7 @@ Hello World!
 
 ### ***Evitando Reconstrucciones Innecesarias de Capas en Imágenes Docker***
 
-- *Cuando realizamos cambios simples en archivos como `./src/index.js`, como por ejemplo modificar un mensaje de registro, esto afecta directamente a la capa de copia en nuestro Dockerfile. Aquí está el archivo `./src/index.js` antes y después del cambio:*
+- *Cuando realizamos cambios simples en ficheros como `./src/index.js`, como por ejemplo modificar un mensaje de registro, esto afecta directamente a la capa de copia en nuestro Dockerfile. Aquí está el fichero `./src/index.js` antes y después del cambio:*
 
 **Antes:**
 
@@ -535,7 +535,7 @@ app.listen(port, () => {
 
 ### ***Problema en el Dockerfile***
 
-- *En el Dockerfile original, la instrucción `COPY ./ ./` copia todos los archivos y directorios cada vez que se realiza una reconstrucción, lo cual es ineficiente, especialmente cuando solo se han realizado cambios menores en archivos específicos como `./src/index.js`.*
+- *En el Dockerfile original, la instrucción `COPY ./ ./` copia todos los ficheros y directorios cada vez que se realiza una reconstrucción, lo cual es ineficiente, especialmente cuando solo se han realizado cambios menores en ficheros específicos como `./src/index.js`.*
 
 ```Dockerfile
 # Autor: Daniel Benjamin Perez Morales
@@ -569,7 +569,7 @@ CMD npm start
 
 ### ***Solución Propuesta***
 
-- *Para evitar la reconstrucción innecesaria de capas, podemos optimizar el Dockerfile. Primero, copiamos solo los archivos `package*.json` y ejecutamos `npm install` para instalar las dependencias. Luego, copiamos el resto de los archivos y directorios. Esto asegura que las capas de instalación de dependencias no se reconstruyan cada vez que se realicen cambios en archivos no relacionados con las dependencias.*
+- *Para evitar la reconstrucción innecesaria de capas, podemos optimizar el Dockerfile. Primero, copiamos solo los ficheros `package*.json` y ejecutamos `npm install` para instalar las dependencias. Luego, copiamos el resto de los ficheros y directorios. Esto asegura que las capas de instalación de dependencias no se reconstruyan cada vez que se realicen cambios en ficheros no relacionados con las dependencias.*
 
 ```Dockerfile
 # Autor: Daniel Benjamin Perez Morales
@@ -629,13 +629,13 @@ docker build -t d4nitrix13/express .
  - JSONArgsRecommended: JSON arguments recommended for CMD to prevent unintended behavior related to OS signals (line 25)
 ```
 
-- *Este enfoque garantiza una construcción eficiente de imágenes Docker, minimizando la sobrecarga causada por cambios mínimos en archivos no relacionados con las dependencias de la aplicación.*
+- *Este enfoque garantiza una construcción eficiente de imágenes Docker, minimizando la sobrecarga causada por cambios mínimos en ficheros no relacionados con las dependencias de la aplicación.*
 
 ---
 
 ### ***Optimización de Construcción de Imágenes Docker con Cambios Mínimos***
 
-- *Cuando realizamos cambios en archivos específicos como `src/index.js`, por ejemplo, modificando el mensaje de registro a `console.log(`Example App Listening on Port ${port}`);`, Docker optimiza la construcción de la imagen reutilizando capas previamente cachadas siempre que sea posible.*
+- *Cuando realizamos cambios en ficheros específicos como `src/index.js`, por ejemplo, modificando el mensaje de registro a `console.log(`Example App Listening on Port ${port}`);`, Docker optimiza la construcción de la imagen reutilizando capas previamente cachadas siempre que sea posible.*
 
 **Cambio en `src/index.js`:**
 
@@ -663,7 +663,7 @@ app.listen(port, () => {
 
 ### ***Comportamiento al Construir la Imagen Docker***
 
-- *Cuando construimos la imagen después de este cambio, Docker reconoce que no ha habido modificaciones en `package*.json`, por lo tanto, la fase de instalación de dependencias (`RUN npm install`) está cacheada y no se ejecuta nuevamente. La construcción de la imagen comienza desde la capa de copia de los archivos de la aplicación (`COPY ./ ./`), lo que acelera significativamente el proceso.*
+- *Cuando construimos la imagen después de este cambio, Docker reconoce que no ha habido modificaciones en `package*.json`, por lo tanto, la fase de instalación de dependencias (`RUN npm install`) está cacheada y no se ejecuta nuevamente. La construcción de la imagen comienza desde la capa de copia de los ficheros de la aplicación (`COPY ./ ./`), lo que acelera significativamente el proceso.*
 
 ---
 

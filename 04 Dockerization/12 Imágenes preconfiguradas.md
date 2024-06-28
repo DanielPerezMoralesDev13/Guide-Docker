@@ -79,7 +79,7 @@ CMD node ./index.js
 
 1. **FROM node:lts:** *Utiliza la imagen base de Node.js en su versión LTS.*
 2. **WORKDIR /App:** *Establece el directorio de trabajo a `/App`.*
-3. **COPY ./index.js ./:** *Copia el archivo `index.js` desde el contexto de construcción al directorio de trabajo en la imagen.*
+3. **COPY ./index.js ./:** *Copia el fichero `index.js` desde el contexto de construcción al directorio de trabajo en la imagen.*
 4. **EXPOSE 3000:** *Expone el puerto 3000 para que la aplicación sea accesible desde el exterior.*
 5. **CMD node ./index.js:** *Ejecuta la aplicación con Node.js utilizando la forma Shell.*
 
@@ -194,7 +194,7 @@ CMD node ./index.js
 
 1. **[internal] load build definition from Dockerfile:** *Carga la definición de construcción desde el Dockerfile.*
 2. **[internal] load metadata for docker.io/library/node:lts:** *Carga los metadatos de la imagen base `node:lts`.*
-3. **[internal] load .dockerignore:** *Carga el archivo `.dockerignore`.*
+3. **[internal] load .dockerignore:** *Carga el fichero `.dockerignore`.*
 4. **[1/3] FROM docker.io/library/node:lts@sha256::** *Descarga y resuelve la imagen base de `node:lts`.*
 5. **[2/3] WORKDIR /App:** *Establece el directorio de trabajo en `/App`.*
 6. **[3/3] COPY ./index.js ./:** *Copia `index.js` al directorio de trabajo en la imagen.*
@@ -385,7 +385,7 @@ FROM node:lts-slim
 # Establece el directorio de trabajo dentro del contenedor
 WORKDIR /App
 
-# Copia el archivo `index.js` desde el contexto de construcción al directorio de trabajo en la imagen
+# Copia el fichero `index.js` desde el contexto de construcción al directorio de trabajo en la imagen
 COPY ./index.js ./
 
 # Expone el puerto 3000 para que la aplicación sea accesible desde el exterior
@@ -582,7 +582,7 @@ FROM node:lts-alpine
 # Establecemos el directorio de trabajo dentro del contenedor
 WORKDIR /App
 
-# Copiamos el archivo index.js al directorio de trabajo en el contenedor
+# Copiamos el fichero index.js al directorio de trabajo en el contenedor
 COPY ./index.js ./
 
 # Exponemos el puerto 3000 para acceder a la aplicación
@@ -1069,7 +1069,7 @@ mysql> show databases;
 4 rows in set (0.01 sec)
 ```
 
-- *Este mensaje de advertencia indica que usar una contraseña en la línea de comandos puede ser inseguro, ya que otros usuarios en el mismo sistema pueden ver la contraseña usando herramientas como `ps`. Sin embargo, para fines de demostración o desarrollo local, esto es comúnmente aceptado. En producción, se recomienda usar métodos más seguros para proporcionar contraseñas, como archivos de configuración o variables de entorno seguras.*
+- *Este mensaje de advertencia indica que usar una contraseña en la línea de comandos puede ser inseguro, ya que otros usuarios en el mismo sistema pueden ver la contraseña usando herramientas como `ps`. Sin embargo, para fines de demostración o desarrollo local, esto es comúnmente aceptado. En producción, se recomienda usar métodos más seguros para proporcionar contraseñas, como ficheros de configuración o variables de entorno seguras.*
 
 ---
 

@@ -328,7 +328,7 @@ RUN apt update \
 # Indicar un directorio de trabajo
 WORKDIR /App
 
-# Copiar el archivo index.js al directorio de trabajo
+# Copiar el fichero index.js al directorio de trabajo
 COPY ./index.js ./
 
 # Exponer el puerto 3000
@@ -439,7 +439,7 @@ RUN apt update \
 # Indicar un directorio de trabajo
 WORKDIR /App
 
-# Copiar el archivo index.js al directorio de trabajo
+# Copiar el fichero index.js al directorio de trabajo
 COPY ./index.js ./
 
 # Exponer el puerto 3000
@@ -542,7 +542,7 @@ RUN apt update \
 # Indicar un directorio de trabajo
 WORKDIR /App
 
-# Copiar el archivo index.js al directorio de trabajo
+# Copiar el fichero index.js al directorio de trabajo
 COPY ./index.js ./
 
 # Exponer el puerto 3000

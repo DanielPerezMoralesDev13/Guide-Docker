@@ -4,7 +4,7 @@
 
 # ***Bind Mounts y Contenedores de Desarrollo***
 
-**Vamos a explorar cómo usar bind mounts para montar una carpeta del host en un contenedor Docker. Primero, creamos un directorio para nuestro proyecto de Python Flask y verificamos su ubicación:**
+**Vamos a explorar cómo usar bind mounts para montar una directorio del host en un contenedor Docker. Primero, creamos un directorio para nuestro proyecto de Python Flask y verificamos su ubicación:**
 
 ```bash
 mkdir "02 App Python Flask"
@@ -40,7 +40,7 @@ docker run -itw /App --name python-practicas --mount type=bind,source="$(pwd)",t
 
 ### ***Explicación Detallada de `--mount type=bind`***
 
-- *En Docker, `--mount` se utiliza para montar volúmenes en un contenedor. Cuando usamos `type=bind`, indicamos que queremos realizar un bind mount, que permite montar un directorio o archivo desde el host dentro del contenedor.*
+- *En Docker, `--mount` se utiliza para montar volúmenes en un contenedor. Cuando usamos `type=bind`, indicamos que queremos realizar un bind mount, que permite montar un directorio o fichero desde el host dentro del contenedor.*
 
 #### ***Componentes de `--mount type=bind`***
 
@@ -48,7 +48,7 @@ docker run -itw /App --name python-practicas --mount type=bind,source="$(pwd)",t
 
 - **`source="$(pwd)`":** *Especifica la ruta completa del directorio en el host que deseamos montar dentro del contenedor. En este ejemplo, `$(pwd)` se usa para obtener la ruta actual del directorio desde donde se ejecuta el comando `docker run`. Esto garantiza que siempre montamos el directorio actual del host, independientemente de dónde se encuentre el script o terminal desde donde se ejecuta Docker.*
 
-- **`target=/App`**: *Especifica la ruta dentro del contenedor donde se montará el directorio del host. En este caso, el directorio `/App` dentro del contenedor se utilizará para almacenar y trabajar con los archivos que compartimos desde el host.*
+- **`target=/App`**: *Especifica la ruta dentro del contenedor donde se montará el directorio del host. En este caso, el directorio `/App` dentro del contenedor se utilizará para almacenar y trabajar con los ficheros que compartimos desde el host.*
 
 ---
 
@@ -76,7 +76,7 @@ docker run -itw /App --name python-practicas --mount type=bind,source"$(pwd)",ta
 
 ### ***Uso y Ventajas***
 
-- *Este enfoque es útil en entornos de desarrollo donde deseamos trabajar con archivos locales en el host pero también dentro del contenedor Docker. Facilita el desarrollo al permitir que los cambios realizados en archivos locales se reflejen inmediatamente dentro del contenedor sin necesidad de reconstruir la imagen Docker.*
+- *Este enfoque es útil en entornos de desarrollo donde deseamos trabajar con ficheros locales en el host pero también dentro del contenedor Docker. Facilita el desarrollo al permitir que los cambios realizados en ficheros locales se reflejen inmediatamente dentro del contenedor sin necesidad de reconstruir la imagen Docker.*
 
 ---
 
@@ -93,9 +93,9 @@ drwxr-xr-x 1 root root 4096 Jun 28 20:49 ..
 
 ---
 
-### ***Creando un Archivo Dentro del Contenedor***
+### ***Creando un Fichero Dentro del Contenedor***
 
-**Creamos un archivo `fichero.txt` dentro del contenedor:**
+**Creamos un fichero `fichero.txt` dentro del contenedor:**
 
 ```bash
 root@76cb80da7238:/App# touch fichero.txt
@@ -110,7 +110,7 @@ drwxr-xr-x 1 root root 4096 Jun 28 20:49 ..
 
 ### ***Verificando en el Host***
 
-**De vuelta en el host, verificamos que el archivo `fichero.txt` se ha creado:**
+**De vuelta en el host, verificamos que el fichero `fichero.txt` se ha creado:**
 
 ```bash
 lsd -la
@@ -119,7 +119,7 @@ drwxrwxr-x d4nitrix13 d4nitrix13 4.0 KB Fri Jun 28 14:39:28 2024  ..
 .rw-r--r-- root       root         0 B  Fri Jun 28 14:51:04 2024  fichero.txt
 ```
 
-- *Este ejemplo muestra cómo usar bind mounts para desarrollar aplicaciones dentro de contenedores Docker mientras mantenemos sincronizados los cambios con el host. Es útil para entornos de desarrollo donde se requiere flexibilidad y compartición de archivos entre el host y el contenedor.*
+- *Este ejemplo muestra cómo usar bind mounts para desarrollar aplicaciones dentro de contenedores Docker mientras mantenemos sincronizados los cambios con el host. Es útil para entornos de desarrollo donde se requiere flexibilidad y compartición de ficheros entre el host y el contenedor.*
 
 ---
 
@@ -127,15 +127,15 @@ drwxrwxr-x d4nitrix13 d4nitrix13 4.0 KB Fri Jun 28 14:39:28 2024  ..
 
 ---
 
-#### ***Creación de un Archivo en el Host***
+#### ***Creación de un Fichero en el Host***
 
-**Primero, creamos un archivo `fichero2.txt` en el host:**
+**Primero, creamos un fichero `fichero2.txt` en el host:**
 
 ```bash
 touch fichero2.txt
 ```
 
-**Esto crea un archivo `fichero2.txt` en el directorio actual del host.**
+**Esto crea un fichero `fichero2.txt` en el directorio actual del host.**
 
 ---
 
@@ -162,15 +162,15 @@ drwxr-xr-x 1 root root 4096 Jun 28 20:49 ..
 -rw-rw-r-- 1 1000 1000    0 Jun 28 20:53 fichero2.txt
 ```
 
-**Aquí vemos que el archivo `fichero2.txt` creado en el host también está presente en el contenedor, debido al bind mount.**
+**Aquí vemos que el fichero `fichero2.txt` creado en el host también está presente en el contenedor, debido al bind mount.**
 
 ---
 
-#### ***Escritura en los Archivos desde el Host y el Contenedor***
+#### ***Escritura en los Ficheros desde el Host y el Contenedor***
 
 - **Desde el Contenedor:**
 
-- **Podemos ver y modificar el contenido del archivo `fichero2.txt` desde el contenedor:**
+- **Podemos ver y modificar el contenido del fichero `fichero2.txt` desde el contenedor:**
 
 - *Agregamos el siguiente texto al `fichero2.txt`*
 
@@ -185,7 +185,7 @@ Name: Daniel Benjamin Perez Morales
 
 **Desde el Host:**
 
-**Podemos editar el archivo `fichero.txt` desde el host, pero no podemos debido a los permisos del usuario root en el contenedor:**
+**Podemos editar el fichero `fichero.txt` desde el host, pero no podemos debido a los permisos del usuario root en el contenedor:**
 
 ```txt
 Error al guardar 'fichero.txt': Permisos insuficientes. Seleccione 'Reintentar como Sudo' para reintentarlo como superusuario.
@@ -195,7 +195,7 @@ Error al guardar 'fichero.txt': Permisos insuficientes. Seleccione 'Reintentar c
 
 #### ***Conclusión***
 
-- *El bind mount permite compartir archivos y directorios entre el host y el contenedor de Docker. Esto facilita el desarrollo y la colaboración, ya que los cambios realizados en el host se reflejan instantáneamente dentro del contenedor y viceversa, siempre y cuando los permisos lo permitan según el usuario que ejecuta las operaciones en cada extremo.*
+- *El bind mount permite compartir ficheros y directorios entre el host y el contenedor de Docker. Esto facilita el desarrollo y la colaboración, ya que los cambios realizados en el host se reflejan instantáneamente dentro del contenedor y viceversa, siempre y cuando los permisos lo permitan según el usuario que ejecuta las operaciones en cada extremo.*
 
 ---
 
@@ -203,9 +203,9 @@ Error al guardar 'fichero.txt': Permisos insuficientes. Seleccione 'Reintentar c
 
 ---
 
-#### ***Observación de Propietarios de Archivos***
+#### ***Observación de Propietarios de Ficheros***
 
-**Al listar los archivos en el directorio `/App` del contenedor, observamos lo siguiente:**
+**Al listar los ficheros en el directorio `/App` del contenedor, observamos lo siguiente:**
 
 ```bash
 root@76cb80da7238:/App# ls -la
@@ -246,7 +246,7 @@ drwxr-xr-x 1 root       root       4096 Jun 28 20:49 ..
 -rw-rw-r-- 1 d4nitrix13 d4nitrix13    0 Jun 28 21:12 fichero3.txt
 ```
 
-- *Ahora, el usuario `d4nitrix13` dentro del contenedor tiene los permisos correctos sobre los archivos `fichero2.txt` y `fichero3.txt`, lo que permite la escritura desde el host.*
+- *Ahora, el usuario `d4nitrix13` dentro del contenedor tiene los permisos correctos sobre los ficheros `fichero2.txt` y `fichero3.txt`, lo que permite la escritura desde el host.*
 
 ---
 
@@ -271,7 +271,7 @@ Musica
 
 ### ***Conclusiones***
 
-- *Al crear usuarios con identificadores consistentes tanto dentro como fuera del contenedor, podemos gestionar de manera efectiva los permisos de archivos compartidos a través de bind mounts en Docker. Esto facilita el desarrollo y la colaboración al permitir que los cambios en archivos se propaguen correctamente entre el host y el contenedor, sin conflictos de permisos.*
+- *Al crear usuarios con identificadores consistentes tanto dentro como fuera del contenedor, podemos gestionar de manera efectiva los permisos de ficheros compartidos a través de bind mounts en Docker. Esto facilita el desarrollo y la colaboración al permitir que los cambios en ficheros se propaguen correctamente entre el host y el contenedor, sin conflictos de permisos.*
 
 ---
 
@@ -281,7 +281,7 @@ Musica
 
 #### ***Asegurar Propiedad Recursiva con `chown`***
 
-**Para garantizar que todos los archivos y directorios dentro del punto de montaje pertenezcan al usuario `d4nitrix13` dentro del contenedor, ejecutamos el comando `chown -R d4nitrix13:d4nitrix13 ./` desde el usuario `root`:**
+**Para garantizar que todos los ficheros y directorios dentro del punto de montaje pertenezcan al usuario `d4nitrix13` dentro del contenedor, ejecutamos el comando `chown -R d4nitrix13:d4nitrix13 ./` desde el usuario `root`:**
 
 ```bash
 chown -R d4nitrix13:d4nitrix13 ./
@@ -294,13 +294,13 @@ drwxr-xr-x 1 root       root       4096 Jun 28 20:49 ..
 -rw-rw-r-- 1 d4nitrix13 d4nitrix13    6 Jun 28 21:14 fichero3.txt
 ```
 
-- *Ahora, todos los archivos en `/App` son propiedad del usuario `d4nitrix13`, lo que garantiza que podamos escribir en ellos desde el host sin problemas de permisos.*
+- *Ahora, todos los ficheros en `/App` son propiedad del usuario `d4nitrix13`, lo que garantiza que podamos escribir en ellos desde el host sin problemas de permisos.*
 
 ---
 
 #### ***Persistencia de Cambios en Bind Mounts***
 
-**Al detener y volver a iniciar el contenedor, los cambios realizados en los archivos dentro del punto de montaje persisten:**
+**Al detener y volver a iniciar el contenedor, los cambios realizados en los ficheros dentro del punto de montaje persisten:**
 
 ```bash
 docker stop -t3 python-practicas
@@ -321,7 +321,7 @@ drwxr-xr-x 1 root       root       4096 Jun 28 20:49 ..
 
 #### ***Verificación en el Host***
 
-**En el host, los archivos dentro del directorio de montaje también reflejan los cambios y las propiedades correctas:**
+**En el host, los ficheros dentro del directorio de montaje también reflejan los cambios y las propiedades correctas:**
 
 ```bash
 lsd -la
@@ -333,13 +333,13 @@ drwxrwxr-x d4nitrix13 d4nitrix13 4.0 KB Fri Jun 28 14:39:28 2024  ..
 .rw-r--r-- root       root         0 B  Fri Jun 28 15:23:51 2024  fichero4.txt
 ```
 
-**Todos los archivos tienen las propiedades correctas según los cambios realizados en el contenedor.**
+**Todos los ficheros tienen las propiedades correctas según los cambios realizados en el contenedor.**
 
 ---
 
 #### ***Limpieza***
 
-**Finalmente, limpiamos todos los archivos dentro del contenedor:**
+**Finalmente, limpiamos todos los ficheros dentro del contenedor:**
 
 ```bash
 root@76cb80da7238:/App# rm *.txt
@@ -353,12 +353,12 @@ drwxr-xr-x 1 root       root       4096 Jun 28 20:49 ..
 
 ### ***Conclusión:***
 
-- *El uso de `chown -R` nos permite asegurar que todos los archivos y directorios dentro del punto de montaje en el contenedor Docker sean accesibles y modificables por el usuario adecuado, facilitando así el desarrollo y la gestión de archivos compartidos entre el host y el contenedor.*
+- *El uso de `chown -R` nos permite asegurar que todos los ficheros y directorios dentro del punto de montaje en el contenedor Docker sean accesibles y modificables por el usuario adecuado, facilitando así el desarrollo y la gestión de ficheros compartidos entre el host y el contenedor.*
 
-- *Montar una carpeta del host al contenedor es similar a montar una carpeta de red en tu NAS en casa. Es como conectar un disco duro externo a tu computadora, donde el contenido del disco se refleja en un directorio de tu sistema. En el contexto de un contenedor, no es un disco o un NAS, sino una carpeta del host que se monta en una carpeta específica del contenedor.*
+- *Montar una directorio del host al contenedor es similar a montar una directorio de red en tu NAS en casa. Es como conectar un disco duro externo a tu computadora, donde el contenido del disco se refleja en un directorio de tu sistema. En el contexto de un contenedor, no es un disco o un NAS, sino una directorio del host que se monta en una directorio específica del contenedor.*
 
 > [!WARNING]
-> **Este proceso se conoce como utilizar volúmenes. Es importante tener en cuenta que si un hacker compromete el contenedor y accede a un volumen, que es una carpeta montada del host al contenedor, podría potencialmente obtener acceso al host desde el contenedor.**
+> **Este proceso se conoce como utilizar volúmenes. Es importante tener en cuenta que si un hacker compromete el contenedor y accede a un volumen, que es una directorio montada del host al contenedor, podría potencialmente obtener acceso al host desde el contenedor.**
 
 - ![Image de explicacion de montaje de directorio del host al contenedor]("")
 - ![Image de explicacion de montaje de directorio del host al contenedor segundo ejemplo]("")
