@@ -595,3 +595,47 @@ docker ps -af name=00-App-Node-Entrypoint-Cambiado
 CONTAINER ID   IMAGE                        COMMAND                  CREATED              STATUS                          PORTS     NAMES
 5ad3829a5b58   d4nitrix13/node:entrypoint   "ls -l -a --color=au…"   About a minute ago   Exited (0) About a minute ago             00-App-Node-Entrypoint-Cambiado
 ```
+
+- **El término "entrypoint" en Docker se refiere al punto de entrada principal de un contenedor Docker cuando se ejecuta. Especifica el comando o script que se ejecutará cuando el contenedor se inicie. Aquí te explico más sobre su significado y características:**
+
+---
+
+### ***Significado y Características del Entrypoint en Docker***
+
+---
+
+#### ***Concepto Básico***
+
+1. **Punto de Entrada:** *El entrypoint define qué comando se ejecutará dentro del contenedor cuando se inicie. Este comando puede ser un script, una aplicación, o cualquier ejecutable que sea relevante para la función del contenedor.*
+
+2. **Flexibilidad:** *Permite configurar cómo comienza el contenedor, lo que es fundamental para aplicaciones y servicios que necesitan arrancar con un estado específico o con configuraciones particulares.*
+
+3. **Sustitución y Combinación:** *El entrypoint puede ser reemplazado o complementado con un comando específico al ejecutar el contenedor, lo cual ofrece flexibilidad en la gestión de diferentes configuraciones de ejecución.*
+
+---
+
+#### ***Ejemplos de Uso***
+
+- **Configuración de Aplicaciones:** *Es útil para inicializar bases de datos, servidores web, o cualquier servicio que requiera configuración específica al iniciar.*
+
+- **Manejo de Configuraciones:** *Permite la configuración externa de variables o parámetros que afecten cómo se inicia y se ejecuta el contenedor.*
+
+---
+
+#### ***Características Clave***
+
+- **Configuración en Dockerfile:** *Se especifica en el Dockerfile con la directiva `ENTRYPOINT`. Por ejemplo:*
+
+  ```Dockerfile
+  ENTRYPOINT ["nginx", "-g", "daemon off;"]
+  ```
+
+  - *Aquí, `nginx` es el programa principal que se ejecutará, y `-g daemon off;` son argumentos pasados al comando principal.*
+
+- **Sustituible por CMD:** *Si se especifica tanto `ENTRYPOINT` como `CMD`, el comando `CMD` proporcionado al ejecutar el contenedor reemplaza los argumentos pasados al `ENTRYPOINT`, permitiendo una ejecución más dinámica.*
+
+- **Interacción con Docker Run:** *Al ejecutar `docker run`, puedes sobrescribir el entrypoint definido en el Dockerfile usando el parámetro `--entrypoint`, lo cual es útil para pruebas, depuración o configuraciones específicas.*
+
+### ***Resumen***
+
+- *En resumen, el entrypoint en Docker define el primer comando que se ejecuta cuando el contenedor se inicia. Proporciona flexibilidad, control y configuración específica para el inicio y la ejecución de aplicaciones dentro de entornos Docker, siendo fundamental para la gestión eficiente de contenedores en despliegues y operaciones de desarrollo.*
