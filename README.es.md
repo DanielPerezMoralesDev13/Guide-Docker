@@ -58,11 +58,11 @@
 
 ## ***Autor***
 
-- ***Autor:** Daniel Benjamin Perez Morales*
+- **Autor:** *Daniel Benjamin Perez Morales*
 
-- ***GitHub:** [DanielPerezMoralesDev13](https://github.com/DanielPerezMoralesDev13 "https://github.com/DanielPerezMoralesDev13")*
+- **GitHub:** *[DanielPerezMoralesDev13](https://github.com/DanielPerezMoralesDev13 "https://github.com/DanielPerezMoralesDev13")*
 
-- ***Correo electrónico:** <danielperezdev@proton.me>*
+- **Correo electrónico:** *`danielperezdev@proton.me`*
 
 ---
 
