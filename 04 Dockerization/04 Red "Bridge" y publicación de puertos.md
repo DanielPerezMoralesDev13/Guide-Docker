@@ -61,9 +61,9 @@ Server running at http://172.17.0.2:3000/
 
 - *Para permitir que los clientes se comuniquen con nuestra aplicación en el contenedor, debemos publicar un puerto del contenedor en un puerto del host del servidor. De esta manera, los clientes pueden comunicarse solo con el host del servidor, ya que no pueden comunicarse directamente con los contenedores. Esto se hace configurando correctamente la redirección de puertos o utilizando herramientas como Docker Compose para gestionar la conectividad de red.*
 
-![Images para entender como hacer para que otros ordenadores se comuniquen con nuestra aplicacion]("")
+*![Images para entender como hacer para que otros ordenadores se comuniquen con nuestra aplicacion](../images/Images%20para%20entender%20como%20hacer%20para%20que%20otros%20ordenadores%20se%20comuniquen%20con%20nuestra%20aplicacion.png "../images/Images para entender como hacer para que otros ordenadores se comuniquen con nuestra aplicacion.png")*
 
-![*Images para entender por que las ip de los contenedores son privadas*]("")
+*![Images para entender por que las ip de los contenedores son privadas](../images/Images%20para%20entender%20por%20que%20las%20ip%20de%20los%20contenedores%20son%20privadas.png "../images/Images para entender por que las ip de los contenedores son privadas.png")*
 
 - *Para permitir que otros dispositivos se comuniquen con la aplicación que se ejecuta en el puerto 3000 del contenedor, debemos publicar ese puerto en un puerto del host. Esto se puede hacer especificando el mapeo de puertos al crear el contenedor.*
 

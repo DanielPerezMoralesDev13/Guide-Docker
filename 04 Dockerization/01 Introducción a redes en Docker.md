@@ -664,7 +664,7 @@ docker network inspect bridge
 
 - *La red `bridge` en Docker es una herramienta fundamental para la comunicación y el aislamiento de contenedores. Permite a los desarrolladores configurar fácilmente entornos de contenedores que puedan comunicarse entre sí y con el host, sin necesidad de configuraciones complejas.*
 
-- ![Images docker bridge]("")
+- *![Images docker bridge](../images/images%20de%20red%20bridge.png "../images/images de red bridge.png")*
 
 - *Para entender mejor cómo funciona la red `bridge` en Docker, podemos compararla con un router. Cuando inicias un contenedor, por ejemplo, `App-00-Nodejs`, este se conecta a la red `bridge`, que actúa como un router, y la red `bridge` le asigna una dirección IP. Esto explica por qué los contenedores tienen direcciones IP propias.*
 

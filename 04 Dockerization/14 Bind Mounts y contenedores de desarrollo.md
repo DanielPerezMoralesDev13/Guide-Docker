@@ -10,7 +10,7 @@
 mkdir "02 App Python Flask"
 cd "02 App Python Flask"
 pwd
-/home/d4nitrix13/Desktop/Guide Docker/04 Dockerization/02 App Python Flask
+../04 Dockerization/02 App Python Flask
 ```
 
 **Al listar el contenido del directorio, vemos lo siguiente:**
@@ -360,5 +360,5 @@ drwxr-xr-x 1 root       root       4096 Jun 28 20:49 ..
 > [!WARNING]
 > **Este proceso se conoce como utilizar volúmenes. Es importante tener en cuenta que si un hacker compromete el contenedor y accede a un volumen, que es una directorio montada del host al contenedor, podría potencialmente obtener acceso al host desde el contenedor.**
 
-- ![Image de explicacion de montaje de directorio del host al contenedor]("")
-- ![Image de explicacion de montaje de directorio del host al contenedor segundo ejemplo]("")
+- *![Image de explicacion de montaje de directorio del host al contenedor](../images/Image%20de%20explicacion%20de%20montaje%20de%20directorio%20del%20host%20al%20contenedor.png "../images/Image de explicacion de montaje de directorio del host al contenedor.png")*
+- *![Image de explicacion de montaje de directorio del host al contenedor segundo ejemplo](../images/Image%20de%20explicacion%20de%20montaje%20de%20directorio%20del%20host%20al%20contenedor%20segundo%20ejemplo.png "../images/Image de explicacion de montaje de directorio del host al contenedor segundo ejemplo.png")*

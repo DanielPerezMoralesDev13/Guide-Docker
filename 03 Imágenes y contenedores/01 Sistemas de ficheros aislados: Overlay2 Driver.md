@@ -367,7 +367,7 @@ directorio1               + fichero2              directorio1
                                                   ├── fichero2
 ```
 
-![*imagen de referencia de commits de git*]("")
+*![imagen de referencia de commits de git](../images/images%20commits%20de%20git.png "../images/images commits de git.png")*
 
 ---
 
@@ -375,7 +375,7 @@ directorio1               + fichero2              directorio1
 
 - *Las capas funcionan de la misma manera. Las imágenes están definidas por capas, y cada capa es como un commit. La capa final de una imagen representa el sistema de ficheros completo definido por esa imagen. Por ejemplo, la imagen de Debian tendría su última capa como un commit con todo su contenido. Al trabajar con nuestro contenedor, generamos una diferencia respecto al sistema de ficheros base de la imagen, añadiendo ficheros, binarios, directorios, configuraciones, etc. Si combinamos la diferencia generada con el sistema base de la imagen, obtenemos el sistema completo del contenedor.*
 
-![*imagen de referencia de capas de docker*]("")
+*![imagen de referencia de capas de docker](../images/images%20capas%20de%20docker.png "../images/images capas de docker.png")*
 
 ---
 
