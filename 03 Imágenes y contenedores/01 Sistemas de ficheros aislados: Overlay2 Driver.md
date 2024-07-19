@@ -345,26 +345,26 @@ fc9c74a8947c33f98c49bba68aee83c85de51c8e6f97160f20c747eee5874685-init
 
 ```plaintext
 Commit 1:
-directorio1
-  ├── fichero1
+Directorio1
+  ├── Fichero1
 ```
 
 **Al crear otro commit y añadir un fichero más:**
 
 ```plaintext
 Commit 2:
-directorio1
-  ├── fichero1
-  ├── fichero2
+Directorio1
+  ├── Fichero1
+  ├── Fichero2
 ```
 
 **Estos dos commits tendrán una diferencia, conocida en Git como `diff`:**
 
 ```plaintext
 Commit 1                    Diff                    Commit 2
-directorio1               + fichero2              directorio1
-  ├── fichero1                                    ├── fichero1
-                                                  ├── fichero2
+Directorio1               + Fichero2              Directorio1
+  ├── Fichero1                                    ├── Fichero1
+                                                  ├── Fichero2
 ```
 
 *![imagen de referencia de commits de git](../images/images%20commits%20de%20git.png "../images/images commits de git.png")*
@@ -720,6 +720,38 @@ docker inspect debian-3 > "./metadatos_del_nuevo_contenedor.json"
 - **MergedDir:** *Directorio donde se montan todas las capas combinadas, sólo visible cuando el contenedor está en ejecución.*
 - **UpperDir:** *Contiene los cambios realizados en el contenedor (diferencias).*
 - **WorkDir:** *Directorio de trabajo usado internamente por el driver `overlay2`.*
+
+### ***Función de los Directorios en el Driver Overlay2***
+
+- *Docker utiliza un sistema de archivos en capas para gestionar las imágenes y contenedores. Este enfoque se realiza a través de drivers de almacenamiento, siendo `overlay2` uno de los más eficientes y comunes. A continuación, se detallan las funciones de los directorios clave utilizados por el driver `overlay2`:*
+
+- **LowerDir:**
+  - **Función:** *Contiene las capas de las imágenes base. Estas capas son de solo lectura y forman la base sobre la cual se construyen los contenedores. Cada capa contiene los archivos y directorios que fueron añadidos o modificados en cada paso de la construcción de la imagen.*
+  - **Detalles Técnicos:** *En `overlay2`, `LowerDir` puede contener múltiples capas, apiladas unas sobre otras. Estas capas son referenciadas por el sistema de archivos del contenedor pero no pueden ser modificadas directamente. Cuando se crea una imagen nueva, se añade una nueva capa a la parte superior de `LowerDir`.*
+
+- **MergedDir:**
+  - **Función:** *Este es el directorio donde se montan todas las capas combinadas. Aquí es donde se ve el sistema de archivos del contenedor como una única entidad unificada, combinando las capas de `LowerDir` y cualquier cambio en `UpperDir`.*
+  - **Detalles Técnicos:** *El `MergedDir` sólo es visible cuando el contenedor está en ejecución. El sistema de archivos del contenedor, visto por el usuario o las aplicaciones dentro del contenedor, es en realidad una vista de `MergedDir`, que es el resultado de la combinación de las capas inferiores y la capa superior.*
+
+- **UpperDir:**
+  - **Función:** *Este directorio contiene los cambios realizados en el contenedor, conocidos como diferencias (diffs). Cualquier modificación que se haga dentro del contenedor, como la creación, modificación o eliminación de archivos, se almacena aquí.*
+  - **Detalles Técnicos:** *`UpperDir` es una capa de lectura-escritura. Cuando un contenedor modifica un archivo que está en una capa inferior, el archivo se copia primero a `UpperDir` y luego se modifica. Este proceso se conoce como "copy-on-write". Los cambios son persistentes mientras el contenedor está en ejecución, pero pueden perderse si el contenedor se elimina sin realizar un commit a una nueva imagen.*
+
+- **WorkDir:**
+  - **Función:** *Este es un directorio de trabajo usado internamente por el driver `overlay2` durante operaciones de fusión y mantenimiento de capas.*
+  - **Detalles Técnicos:** *`WorkDir` es utilizado para tareas temporales y de gestión de capas. Por ejemplo, cuando se aplican cambios de `UpperDir` a `MergedDir`, `WorkDir` proporciona un espacio de trabajo temporal para estas operaciones. Aunque el usuario generalmente no interactúa directamente con este directorio, es crucial para el funcionamiento eficiente del sistema de archivos en capas.*
+
+### ***Consideraciones Adicionales***
+
+- **Eficiencia del Sistema de Archivos en Capas:**
+  - *El uso de un sistema de archivos en capas permite a Docker gestionar imágenes y contenedores de manera eficiente. Las capas pueden ser reutilizadas entre múltiples contenedores, ahorrando espacio y reduciendo tiempos de construcción.*
+  - *Las capas inferiores, al ser de solo lectura, proporcionan una base sólida y consistente sobre la cual se pueden construir múltiples contenedores, asegurando que las aplicaciones tengan una base común y confiable.*
+
+- **Persistencia de Datos:**
+  - *Los cambios en `UpperDir` son específicos del contenedor y no se persisten en la imagen base a menos que se realice un commit de los cambios. Esto permite mantener la integridad de la imagen base mientras se experimenta o se realizan desarrollos en los contenedores.*
+  - *Para asegurar la persistencia de datos críticos, se recomienda utilizar volúmenes de Docker, que son independientes del ciclo de vida de los contenedores y proporcionan almacenamiento persistente.*
+
+*Esta estructura de directorios y el manejo de capas subyacen al poder y flexibilidad de Docker, permitiendo una gestión eficiente y modular de aplicaciones en contenedores.*
 
 ---
 
