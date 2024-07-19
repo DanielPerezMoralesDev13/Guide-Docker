@@ -345,7 +345,7 @@ docker container exec arch cat /etc/passwd | grep -iF "neymar"
 - *Los contenedores en Docker ofrecen un entorno aislado y seguro para ejecutar aplicaciones. El aislamiento se extiende a los usuarios, ficheros y configuraciones dentro de los contenedores. Esto permite ejecutar múltiples contenedores simultáneamente sin interferencias entre ellos ni con el sistema host.*
 
 ```txt
-➜  user Directory git:(master U:1 ?:1 ✗) docker container exec fedora-container dnf list installed
+docker container exec fedora-container dnf list installed
 Installed Packages
 alternatives.x86_64                      1.26-3.fc40                @2c98ee0d5281429683938d93eb2a9aa4
 audit-libs.x86_64                        4.0.1-1.fc40               @2c98ee0d5281429683938d93eb2a9aa4
@@ -543,13 +543,13 @@ docker container exec -it fedora-container bash
    - *Por ejemplo, Docker puede leer `/proc/[pid]/stat`, `/proc/[pid]/status` y otros ficheros en el directorio `/proc` para obtener detalles específicos de cada proceso.*
 
     ```bash
-    ➜  user Directory git:(master U:1 ✗) docker exec -it 00-App-nodejs-v4 ps aux
+    docker exec -it 00-App-nodejs-v4 ps aux
     USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
     root           1  0.0  0.0   2892  1664 pts/0    Ss+  19:59   0:00 /bin/sh -c node ./index.js
     root           7  0.0  0.5 736804 45440 pts/0    Sl+  19:59   0:00 node ./index.js
     root         103  0.0  0.0   7064  2816 pts/1    Rs+  20:06   0:00 ps aux
 
-    ➜  user Directory git:(master U:1 ✗) docker exec -it 00-App-nodejs-v4 cat /proc/1/stat
+    docker exec -it 00-App-nodejs-v4 cat /proc/1/stat
     1 (sh) S 0 1 1 34816 1 4194560 1079 0 0 0 2 1 0 0 20 0 1 0 121773 2961408 416 18446744073709551615 96810629902336 96810629982613 140730297134176 0 0 0 0 0 65538 1 0 0 17 0 0 0 0 0 0 96810630008560 96810630013472 96810645286912 140730297134951 140730297134978 140730297134978 140730297135088 0
     ```
 
@@ -634,7 +634,7 @@ www-data   36    34  0 13:57 ?        00:00:00 /usr/sbin/apache2 -D FOREGROUND
 - *Los contenedores en Docker ofrecen un entorno aislado para ejecutar procesos de forma eficiente y segura. El aislamiento de procesos garantiza que los contenedores sean independientes entre sí y no afecten al sistema host ni a otros contenedores. Esto facilita la gestión de aplicaciones y servicios en entornos de producción y desarrollo.*
 
 ```bash
-➜  user Directory git:(master U:1 ?:2 ✗) docker container top fedora-container
+docker container top fedora-container
 UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
 root                159392              159370              0                   14:01               pts/0               00:00:00            /bin/bash
 root                164793              159370              0                   14:07               pts/1               00:00:00            bash
@@ -669,7 +669,7 @@ root                170592              164793              0                   
 **Por ejemplo, para ver los procesos dentro de un contenedor:**
 
 ```bash
-➜  user Directory git:(master U:1 ?:2 ✗) docker start -i debian-3
+docker start -i debian-3
 root@385d36137fef:/# apt-get update && apt-get upgrade && apt-get install procps
 
 Ahora ejecutamos `ps -aux` o `ps aux`:
@@ -683,10 +683,10 @@ root         205  0.0  0.0   8088  4096 pts/0    R+   20:22   0:00 ps aux
 **Pero también podemos ver los procesos fuera del contenedor:**
 
 ```bash
-➜  user Directory git:(master U:1 ?:2 ✗) docker top debian-3
+docker top debian-3
 UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
 root                174637              174614              0                   14:17               pts/0               00:00:00            bash
-➜  user Directory git:(master U:1 ?:2 ✗) docker top fedora-container
+docker top fedora-container
 UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
 root                159392              159370              0                   14:01               pts/0               00:00:00            /bin/bash
 root                164793              159370              0                   14:07               pts/1               00:00:00            bash

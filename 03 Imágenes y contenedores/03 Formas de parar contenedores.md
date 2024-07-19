@@ -123,7 +123,7 @@ exit
 - *No es posible iniciar y adjuntar múltiples contenedores en un solo comando usando la opcion -i de --interactive. Debes hacerlo individualmente:*
 
 ```bash
-➜  d4nitrix13 Guide Docker git:(master U:1 ?:1 ✗) docker container start -i debian-console debian-3 fedora-container fedora-2 arch 
+docker container start -i debian-console debian-3 fedora-container fedora-2 arch 
 you cannot start and attach multiple containers at once
 ```
 
@@ -132,31 +132,31 @@ you cannot start and attach multiple containers at once
 ### ***Iniciar y adjuntar contenedor Debian***
 
 ```bash
-➜  d4nitrix13 Guide Docker git:(master U:1 ?:1 ✗) docker container start -i debian-console
+docker container start -i debian-console
 ```
 
 ### ***Iniciar y adjuntar contenedor Fedora***
 
 ```bash
-➜  d4nitrix13 Guide Docker git:(master U:1 ?:1 ✗) docker container start -i fedora-container
+docker container start -i fedora-container
 ```
 
 ### ***Iniciar y adjuntar otro contenedor Debian***
 
 ```bash
-➜  d4nitrix13 Guide Docker git:(master U:1 ?:1 ✗) docker container start -i debian-3
+docker container start -i debian-3
 ```
 
 ### ***Iniciar y adjuntar otro contenedor Fedora***
 
 ```bash
-➜  d4nitrix13 Guide Docker git:(master U:1 ?:1 ✗) docker container start -i fedora-2
+docker container start -i fedora-2
 ```
 
 ### ***Iniciar y adjuntar contenedor Arch***
 
 ```bash
-➜  d4nitrix13 Guide Docker git:(master U:1 ?:1 ✗) docker container start -i arch
+docker container start -i arch
 ```
 
 ```bash
@@ -190,7 +190,7 @@ debian-console
 **Para detener todos los contenedores en ejecución:**
 
 ```bash
-➜  d4nitrix13 Guide Docker git:(master U:1 ?:1 ✗) docker ps --help
+docker ps --help
 
 Usage:  docker ps [OPTIONS]
 
