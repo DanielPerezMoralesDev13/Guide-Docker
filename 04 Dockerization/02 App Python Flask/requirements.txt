@@ -2,6 +2,4 @@
 # GitHub: https://github.com/DanielPerezMoralesDev13
 # Correo electrónico: danielperezdev@proton.me
 
-node_modules
-Dockerfile
-.dockerignore
+flask

@@ -31,6 +31,16 @@ drwxrwxr-x d4nitrix13 d4nitrix13 4.0 KB Fri Jun 28 14:39:28 2024 ..
 docker run -itw /App --name python-practicas --mount type=bind,source="$(pwd)",target=/App ubuntu:22.04
 ```
 
+```bash
+docker run -itw /App --name python-practicas --mount type=bind,source="$(pwd)",target=/App ubuntu:22.04
+Unable to find image 'ubuntu:22.04' locally
+22.04: Pulling from library/ubuntu
+857cc8cb19c0: Pull complete 
+Digest: sha256:adbb90115a21969d2fe6fa7f9af4253e16d45f8d4c1e930182610c4731962658
+Status: Downloaded newer image for ubuntu:22.04
+root@08b7c877e9f3:/App# 
+```
+
 **En este comando:**
 
 - *`--name python-practicas` asigna un nombre al contenedor.*
@@ -44,11 +54,11 @@ docker run -itw /App --name python-practicas --mount type=bind,source="$(pwd)",t
 
 #### ***Componentes de `--mount type=bind`***
 
-- **`type=bind`**: *Especifica el tipo de montaje que estamos realizando, en este caso, un bind mount.*
+- **`type=bind`:** *Especifica el tipo de montaje que estamos realizando, en este caso, un bind mount.*
 
 - **`source="$(pwd)`":** *Especifica la ruta completa del directorio en el host que deseamos montar dentro del contenedor. En este ejemplo, `$(pwd)` se usa para obtener la ruta actual del directorio desde donde se ejecuta el comando `docker run`. Esto garantiza que siempre montamos el directorio actual del host, independientemente de dónde se encuentre el script o terminal desde donde se ejecuta Docker.*
 
-- **`target=/App`**: *Especifica la ruta dentro del contenedor donde se montará el directorio del host. En este caso, el directorio `/App` dentro del contenedor se utilizará para almacenar y trabajar con los ficheros que compartimos desde el host.*
+- **`target=/App`:** *Especifica la ruta dentro del contenedor donde se montará el directorio del host. En este caso, el directorio `/App` dentro del contenedor se utilizará para almacenar y trabajar con los ficheros que compartimos desde el host.*
 
 ---
 
@@ -57,20 +67,20 @@ docker run -itw /App --name python-practicas --mount type=bind,source="$(pwd)",t
 **Veamos nuevamente el comando completo y cómo funciona:**
 
 ```bash
-docker run -itw /App --name python-practicas --mount type=bind,source"$(pwd)",target=/App ubuntu:22.04
+docker run -itw /App --name python-practicas --mount type=bind,source="$(pwd)",target=/App ubuntu:22.04
 ```
 
-- **`-itw /App`**: *Estas opciones tienen los siguientes significados:*
+- **`-itw /App`:** *Estas opciones tienen los siguientes significados:*
   - **`-i`:** *Mantiene abierta la sesión interactiva con el contenedor.*
   - **`-t`:** *Asigna un pseudo-TTY (terminal) para la interacción.*
   - **`-w /App`:** *Establece el directorio de trabajo dentro del contenedor como `/App`. Esto significa que cualquier comando que se ejecute dentro del contenedor comenzará en el directorio `/App`.*
 
-- **`--name python-practicas`**: *Asigna un nombre (`python-practicas`) al contenedor para facilitar su identificación y gestión posterior.*
+- **`--name python-practicas`:** *Asigna un nombre (`python-practicas`) al contenedor para facilitar su identificación y gestión posterior.*
 
-- **`--mount type=bind,source="$(pwd)",target=/App`**: *Define el bind mount:*
-  - **`type=bind`**: *Especifica que estamos utilizando un bind mount.*
-  - **`source="$(pwd)"`**: *La ruta completa del directorio actual del host.*
-  - **`target=/App`**: *La ruta dentro del contenedor donde se montará el directorio del host.*
+- **`--mount type=bind,source="$(pwd)",target=/App`:** *Define el bind mount:*
+  - **`type=bind`:** *Especifica que estamos utilizando un bind mount.*
+  - **`source="$(pwd)"`:** *La ruta completa del directorio actual del host.*
+  - **`target=/App`:** *La ruta dentro del contenedor donde se montará el directorio del host.*
 
 ---
 

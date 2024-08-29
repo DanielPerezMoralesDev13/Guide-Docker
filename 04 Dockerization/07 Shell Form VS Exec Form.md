@@ -898,3 +898,23 @@ Received SIGTERM
 ```
 
 - **Ahora, el proceso Node.js maneja correctamente la señal SIGTERM y termina de manera ordenada, limpiando los recursos necesarios antes de salir.**
+
+#### ***Resumen de la sección***
+
+---
+
+#### ***Images de cancelacion de programa de node en un shell sh***
+
+- *![images de cancelacion de programa de node en un shell sh](../images/images%20de%20cancelacion%20de%20programa%20de%20node%20en%20un%20shell%20sh.png "images de cancelacion de programa de node en un shell sh.png")*
+
+---
+
+#### ***images diferencias entre Shell Form y Exec Form***
+
+- *![images de caracterisitica de shell form](../images/images%20de%20caracterisitica%20de%20shell%20form.png "images de caracterisitica de shell form.png")*
+
+---
+
+#### ***Images diferencias entre Shell Form y Exec Form***
+
+- *![images diferencias entre Shell Form y Exec Form](../images/images%20diferencias%20entre%20Shell%20Form%20y%20Exec%20Form.png "images diferencias entre Shell Form y Exec Form.png")*
