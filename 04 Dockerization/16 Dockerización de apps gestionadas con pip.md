@@ -1605,3 +1605,45 @@ Press CTRL+C to quit
 
 - **Pruebas de Conexión:** *Las peticiones realizadas a `localhost:5000` y `192.168.1.17:5000` confirmaron que el servidor está funcionando correctamente y responde con el contenido esperado (`<p>Hello, World!</p>`).*
 - **Registros del Servidor:** *Los registros muestran que el servidor Flask está funcionando y manejando peticiones adecuadamente.*
+
+---
+
+### ***Evaluación de Imágenes Docker***
+
+**Al comparar las imágenes Docker construidas, se observa una diferencia significativa en el tamaño de la imagen `beta` en comparación con las versiones anteriores. Aquí están los detalles:**
+
+---
+
+#### ***Imágenes Docker***
+
+```bash
+docker images --all
+REPOSITORY         TAG       IMAGE ID       CREATED          SIZE
+d4nitrix13/flask   beta      5b87152169f2   19 minutes ago   1.03GB
+d4nitrix13/flask   alpha     6eb51e40034d   40 minutes ago   190MB
+d4nitrix13/flask   dev       31a3314b5881   2 hours ago      190MB
+d4nitrix13/flask   latest    114137beafdb   3 hours ago      190MB
+```
+
+---
+
+#### ***Análisis***
+
+- **Imagen `beta`:** *La imagen construida con el tag `beta` tiene un tamaño de **1.03GB**. Esta imagen incluye Python y todas las dependencias necesarias para la aplicación Flask, lo que resulta en un tamaño significativamente mayor comparado con las versiones anteriores.*
+- **Imágenes Anteriores (`alpha`, `dev`, `latest`):** *Estas imágenes pesan aproximadamente **190MB** cada una. Estas versiones son más ligeras porque están basadas en una configuración más simplificada.*
+
+---
+
+#### ***Costo y Beneficios***
+
+**Beneficios de la Imagen `beta`:**
+
+- **Configuración Simplificada:** *La imagen `beta` incluye todas las dependencias necesarias en un solo contenedor, lo que simplifica la configuración y evita la necesidad de configurar el entorno Python por separado.*
+
+**Costo Adicional:**
+
+- **Tamaño Mayor:** *La inclusión de Python y otras dependencias en la imagen `beta` aumenta su tamaño a **1.03GB**, lo que es considerablemente mayor que las imágenes anteriores.*
+
+- **Resumen:**
+
+*La imagen `beta` ofrece una configuración más sencilla al incluir todas las dependencias necesarias para la aplicación, pero a costa de un tamaño de imagen significativamente mayor. Esta elección puede ser preferible en entornos de desarrollo o pruebas donde la simplicidad de configuración es prioritaria. Sin embargo, para entornos de producción, puede ser beneficioso considerar el impacto del tamaño de la imagen en términos de almacenamiento y despliegue.*
