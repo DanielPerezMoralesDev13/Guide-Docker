@@ -1301,7 +1301,6 @@ docker exec -it $(docker ps -q) ls -lA
 
 ```bash
 total 24
--rw-rw-r-- 1 root root 3121 Aug 31 16:46 Dockerfile.pip
 -rw-r--r-- 1 root root  151 Aug 30 23:11 Pipfile
 -rw-r--r-- 1 root root 8114 Aug 30 22:50 Pipfile.lock
 -rw-rw-r-- 1 root root  147 Aug 29 01:40 requirements.txt
@@ -1451,7 +1450,6 @@ Press CTRL+C to quit
 docker exec -it $(docker ps -q) ls -lA
 total 28
 drwxr-xr-x 5 root root 4096 Aug 31 17:48 .venv
--rw-rw-r-- 1 root root 3121 Aug 31 16:46 Dockerfile.pip
 -rw-r--r-- 1 root root  151 Aug 30 23:11 Pipfile
 -rw-r--r-- 1 root root 8114 Aug 30 22:50 Pipfile.lock
 -rw-rw-r-- 1 root root  147 Aug 29 01:40 requirements.txt
