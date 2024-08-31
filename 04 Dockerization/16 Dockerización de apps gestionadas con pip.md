@@ -137,6 +137,42 @@ pip 22.0.2 from /App/.venv/lib/python3.10/site-packages/pip (python 3.10)
 
 **Cuando trabajamos con entornos virtuales en un `Dockerfile`, es importante entender que no podemos usar el comando `source` para activar el entorno virtual. Esto se debe a que cada instrucción `RUN` en un `Dockerfile` se ejecuta en su propia capa y proceso, lo que significa que cualquier cambio en el entorno, como la activación de un entorno virtual, no persiste más allá de esa capa. Por lo tanto, activar el entorno virtual con `source` no es una solución viable dentro de un `Dockerfile`.**
 
+> [!CAUTION]
+> *Para entender por qué no es recomendable hacer `RUN source .venv/bin/activate` en un Dockerfile, veamos a un nivel más bajo cómo funciona el proceso de construcción de una imagen Docker y qué ocurre cuando intentas activar un entorno virtual en este contexto.*
+
+### ***1. Capas en Docker***
+
+- *Docker construye imágenes en capas. Cada instrucción en un Dockerfile (como `RUN`, `COPY`, `ENV`) crea una nueva capa en la imagen. Estas capas son inmutables y se apilan una sobre otra. Una vez que una capa se ha construido, cualquier cambio realizado en ella se congela y no afecta a las capas posteriores.*
+
+---
+
+### ***2. Instrucciones `RUN` y subshells***
+
+- *Cada instrucción `RUN` en un Dockerfile se ejecuta en un subshell separado. Esto significa que cuando Docker procesa una instrucción `RUN`, crea un nuevo proceso de shell para ejecutar los comandos especificados en esa línea. Después de que los comandos se ejecutan, ese proceso de shell termina y cualquier modificación al entorno (como variables de entorno, alias, funciones, o en este caso, la activación de un entorno virtual) no se conserva en las capas siguientes.*
+
+---
+
+### ***3. Activación de un entorno virtual***
+
+**Cuando activas un entorno virtual en Python con `source .venv/bin/activate`, lo que realmente ocurre es que el script de activación modifica el entorno del shell actual. Específicamente:**
+
+- *Cambia la variable de entorno `PATH` para que los binarios del entorno virtual (como `python` y `pip`) se usen en lugar de los del sistema global.*
+- *Establece algunas otras variables de entorno, como `VIRTUAL_ENV`, que indica que el entorno virtual está activo.*
+
+- *Estos cambios solo afectan al proceso de shell que ejecutó el comando `source`. Una vez que ese proceso de shell termina (lo que ocurre al finalizar la instrucción `RUN`), esos cambios se pierden.*
+
+---
+
+### ***4. Efecto no persistente***
+
+- *Como cada instrucción `RUN` se ejecuta en un subshell independiente, cualquier cambio en el entorno que ocurra dentro de una instrucción `RUN` no se mantendrá en las instrucciones siguientes. Por lo tanto, si haces algo como `RUN source .venv/bin/activate`, la activación del entorno virtual solo será válida dentro de ese subshell específico, y una vez que el comando termine, el subshell se destruirá y el entorno virtual no estará activo para ninguna instrucción `RUN` posterior.*
+
+- **Resumiendo**
+- **Subshells:** *Cada `RUN` crea un nuevo subshell, y cualquier cambio de entorno (como la activación de un entorno virtual) se descarta cuando ese subshell termina.*
+- **Capas independientes:** *Las capas de Docker son inmutables y no comparten el entorno entre instrucciones `RUN`.*
+
+- *Por eso, en lugar de intentar activar el entorno virtual en un `RUN`, se suele modificar el `PATH` directamente con `ENV` para asegurarse de que el entorno virtual sea utilizado en todas las capas siguientes.*
+
 ### ***Solución: Uso de la Ruta Completa al Ejecutable***
 
 **Para garantizar que se utilicen las herramientas instaladas en el entorno virtual, como `pip` o `flask`, debemos especificar la ruta completa al ejecutable en el entorno virtual. Esto asegura que estamos usando las versiones correctas de estos programas.**
@@ -612,7 +648,7 @@ RUN echo $VIRTUAL_ENV_BIN
 **Ejemplo de Uso:**
 
 ```bash
-docker exec -it my_container /bin/bash -c 'echo $VIRTUAL_ENV_BIN'
+docker exec -it $(docker ps -q) /bin/bash -c 'echo $VIRTUAL_ENV_BIN'
 ```
 
 - **Comportamiento:** *Aquí, **`$VIRTUAL_ENV_BIN`** se expande dentro del contenedor y el comando **`echo`** imprime el valor `/App/.venv/bin`.*
