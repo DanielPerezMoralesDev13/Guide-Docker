@@ -723,28 +723,28 @@ docker inspect debian-3 > "./metadatos_del_nuevo_contenedor.json"
 
 ### ***Función de los Directorios en el Driver Overlay2***
 
-- *Docker utiliza un sistema de archivos en capas para gestionar las imágenes y contenedores. Este enfoque se realiza a través de drivers de almacenamiento, siendo `overlay2` uno de los más eficientes y comunes. A continuación, se detallan las funciones de los directorios clave utilizados por el driver `overlay2`:*
+- *Docker utiliza un sistema de ficheros en capas para gestionar las imágenes y contenedores. Este enfoque se realiza a través de drivers de almacenamiento, siendo `overlay2` uno de los más eficientes y comunes. A continuación, se detallan las funciones de los directorios clave utilizados por el driver `overlay2`:*
 
 - **LowerDir:**
-  - **Función:** *Contiene las capas de las imágenes base. Estas capas son de solo lectura y forman la base sobre la cual se construyen los contenedores. Cada capa contiene los archivos y directorios que fueron añadidos o modificados en cada paso de la construcción de la imagen.*
-  - **Detalles Técnicos:** *En `overlay2`, `LowerDir` puede contener múltiples capas, apiladas unas sobre otras. Estas capas son referenciadas por el sistema de archivos del contenedor pero no pueden ser modificadas directamente. Cuando se crea una imagen nueva, se añade una nueva capa a la parte superior de `LowerDir`.*
+  - **Función:** *Contiene las capas de las imágenes base. Estas capas son de solo lectura y forman la base sobre la cual se construyen los contenedores. Cada capa contiene los ficheros y directorios que fueron añadidos o modificados en cada paso de la construcción de la imagen.*
+  - **Detalles Técnicos:** *En `overlay2`, `LowerDir` puede contener múltiples capas, apiladas unas sobre otras. Estas capas son referenciadas por el sistema de ficheros del contenedor pero no pueden ser modificadas directamente. Cuando se crea una imagen nueva, se añade una nueva capa a la parte superior de `LowerDir`.*
 
 - **MergedDir:**
-  - **Función:** *Este es el directorio donde se montan todas las capas combinadas. Aquí es donde se ve el sistema de archivos del contenedor como una única entidad unificada, combinando las capas de `LowerDir` y cualquier cambio en `UpperDir`.*
-  - **Detalles Técnicos:** *El `MergedDir` sólo es visible cuando el contenedor está en ejecución. El sistema de archivos del contenedor, visto por el usuario o las aplicaciones dentro del contenedor, es en realidad una vista de `MergedDir`, que es el resultado de la combinación de las capas inferiores y la capa superior.*
+  - **Función:** *Este es el directorio donde se montan todas las capas combinadas. Aquí es donde se ve el sistema de ficheros del contenedor como una única entidad unificada, combinando las capas de `LowerDir` y cualquier cambio en `UpperDir`.*
+  - **Detalles Técnicos:** *El `MergedDir` sólo es visible cuando el contenedor está en ejecución. El sistema de ficheros del contenedor, visto por el usuario o las aplicaciones dentro del contenedor, es en realidad una vista de `MergedDir`, que es el resultado de la combinación de las capas inferiores y la capa superior.*
 
 - **UpperDir:**
-  - **Función:** *Este directorio contiene los cambios realizados en el contenedor, conocidos como diferencias (diffs). Cualquier modificación que se haga dentro del contenedor, como la creación, modificación o eliminación de archivos, se almacena aquí.*
-  - **Detalles Técnicos:** *`UpperDir` es una capa de lectura-escritura. Cuando un contenedor modifica un archivo que está en una capa inferior, el archivo se copia primero a `UpperDir` y luego se modifica. Este proceso se conoce como "copy-on-write". Los cambios son persistentes mientras el contenedor está en ejecución, pero pueden perderse si el contenedor se elimina sin realizar un commit a una nueva imagen.*
+  - **Función:** *Este directorio contiene los cambios realizados en el contenedor, conocidos como diferencias (diffs). Cualquier modificación que se haga dentro del contenedor, como la creación, modificación o eliminación de ficheros, se almacena aquí.*
+  - **Detalles Técnicos:** *`UpperDir` es una capa de lectura-escritura. Cuando un contenedor modifica un fichero que está en una capa inferior, el fichero se copia primero a `UpperDir` y luego se modifica. Este proceso se conoce como "copy-on-write". Los cambios son persistentes mientras el contenedor está en ejecución, pero pueden perderse si el contenedor se elimina sin realizar un commit a una nueva imagen.*
 
 - **WorkDir:**
   - **Función:** *Este es un directorio de trabajo usado internamente por el driver `overlay2` durante operaciones de fusión y mantenimiento de capas.*
-  - **Detalles Técnicos:** *`WorkDir` es utilizado para tareas temporales y de gestión de capas. Por ejemplo, cuando se aplican cambios de `UpperDir` a `MergedDir`, `WorkDir` proporciona un espacio de trabajo temporal para estas operaciones. Aunque el usuario generalmente no interactúa directamente con este directorio, es crucial para el funcionamiento eficiente del sistema de archivos en capas.*
+  - **Detalles Técnicos:** *`WorkDir` es utilizado para tareas temporales y de gestión de capas. Por ejemplo, cuando se aplican cambios de `UpperDir` a `MergedDir`, `WorkDir` proporciona un espacio de trabajo temporal para estas operaciones. Aunque el usuario generalmente no interactúa directamente con este directorio, es crucial para el funcionamiento eficiente del sistema de ficheros en capas.*
 
 ### ***Consideraciones Adicionales***
 
-- **Eficiencia del Sistema de Archivos en Capas:**
-  - *El uso de un sistema de archivos en capas permite a Docker gestionar imágenes y contenedores de manera eficiente. Las capas pueden ser reutilizadas entre múltiples contenedores, ahorrando espacio y reduciendo tiempos de construcción.*
+- **Eficiencia del Sistema de Ficheros en Capas:**
+  - *El uso de un sistema de ficheros en capas permite a Docker gestionar imágenes y contenedores de manera eficiente. Las capas pueden ser reutilizadas entre múltiples contenedores, ahorrando espacio y reduciendo tiempos de construcción.*
   - *Las capas inferiores, al ser de solo lectura, proporcionan una base sólida y consistente sobre la cual se pueden construir múltiples contenedores, asegurando que las aplicaciones tengan una base común y confiable.*
 
 - **Persistencia de Datos:**

@@ -280,9 +280,9 @@ Alternatively, run a command inside the virtualenv with pipenv run.
 Installing dependencies from Pipfile.lock (81f117)...
 ```
 
-**Como podemos observar, la instalación de Flask se realizó correctamente, y se generaron algunos archivos clave:**
+**Como podemos observar, la instalación de Flask se realizó correctamente, y se generaron algunos ficheros clave:**
 
-- **Pipfile:** *Este archivo está en formato TOML (**Tom's Obvious, Minimal Language**), un lenguaje de serialización simple y legible. Sirve para especificar las dependencias del proyecto, tanto para producción como para desarrollo.*
+- **Pipfile:** *Este fichero está en formato TOML (**Tom's Obvious, Minimal Language**), un lenguaje de serialización simple y legible. Sirve para especificar las dependencias del proyecto, tanto para producción como para desarrollo.*
 
   ```toml
   [[source]]
@@ -299,7 +299,7 @@ Installing dependencies from Pipfile.lock (81f117)...
   python_version = "3.10"
   ```
 
-- **Pipfile.lock:** *Este archivo en formato JSON asegura que todas las dependencias se instalen exactamente en las versiones especificadas, garantizando un entorno reproducible.*
+- **Pipfile.lock:** *Este fichero en formato JSON asegura que todas las dependencias se instalen exactamente en las versiones especificadas, garantizando un entorno reproducible.*
 
 ```json
 {
@@ -444,13 +444,13 @@ Installing dependencies from Pipfile.lock (81f117)...
 
 ## ***Comparación con NPM***
 
-- *Los archivos generados por Pipenv (`Pipfile` y `Pipfile.lock`) cumplen funciones similares a los archivos `package.json` y `package-lock.json` de npm, pero están diseñados para el entorno Python.*
+- *Los ficheros generados por Pipenv (`Pipfile` y `Pipfile.lock`) cumplen funciones similares a los ficheros `package.json` y `package-lock.json` de npm, pero están diseñados para el entorno Python.*
 
 - **Pipfile:** *Es similar al `package.json` de npm. Define las dependencias del proyecto, tanto para producción como para desarrollo, y especifica la versión de Python a utilizar.*
 
-- **Pipfile.lock:** *Equivale al `package-lock.json` de npm. Este archivo asegura que todas las dependencias se instalen en las versiones exactas especificadas, garantizando un entorno reproducible.*
+- **Pipfile.lock:** *Equivale al `package-lock.json` de npm. Este fichero asegura que todas las dependencias se instalen en las versiones exactas especificadas, garantizando un entorno reproducible.*
 
-*Ambos archivos permiten a Pipenv gestionar las dependencias de tu proyecto y mantener la consistencia entre diferentes entornos de desarrollo.*
+*Ambos ficheros permiten a Pipenv gestionar las dependencias de tu proyecto y mantener la consistencia entre diferentes entornos de desarrollo.*
 
 ---
 
@@ -474,9 +474,9 @@ export PIPENV_VENV_IN_PROJECT=1
 
 ## ***Reinstalación del Entorno Virtual***
 
-*Para aplicar esta configuración, primero debemos eliminar el entorno virtual actual y los archivos generados, y luego reinstalar las dependencias con Pipenv.*
+*Para aplicar esta configuración, primero debemos eliminar el entorno virtual actual y los ficheros generados, y luego reinstalar las dependencias con Pipenv.*
 
-1. **Eliminar el Entorno Virtual y Archivos Relacionados:**
+1. **Eliminar el Entorno Virtual y Ficheros Relacionados:**
 
    ```bash
    rm -r /root/.local/share/virtualenvs/App-LKE3ViPB/
@@ -924,15 +924,15 @@ Press CTRL+C to quit
 
 ---
 
-### ***Renombrar el Archivo Existente***
+### ***Renombrar el Fichero Existente***
 
-**Para cambiar el nombre del archivo `Dockerfile` a `Dockerfile.pip`, usa el siguiente comando:**
+**Para cambiar el nombre del fichero `Dockerfile` a `Dockerfile.pip`, usa el siguiente comando:**
 
 ```bash
 mv Dockerfile Dockerfile.pip
 ```
 
-**El archivo `.dockerignore` actual es el siguiente:**
+**El fichero `.dockerignore` actual es el siguiente:**
 
 ```bash
 # Autor: Daniel Benjamin Perez Morales
@@ -946,7 +946,7 @@ Dockerfile
 __pycache__
 ```
 
-- *Modificamos el archivo para incluir un comodín (`*`) en el nombre del Dockerfile, de manera que también se ignore cualquier archivo que comience con `Dockerfile`, como `Dockerfile.pip`. El nuevo contenido del archivo `.dockerignore` es:*
+- *Modificamos el fichero para incluir un comodín (`*`) en el nombre del Dockerfile, de manera que también se ignore cualquier fichero que comience con `Dockerfile`, como `Dockerfile.pip`. El nuevo contenido del fichero `.dockerignore` es:*
 
 ```bash
 # Autor: Daniel Benjamin Perez Morales
@@ -960,13 +960,13 @@ Dockerfile*
 __pycache__
 ```
 
-**Esto asegura que cualquier archivo cuyo nombre comience con `Dockerfile` será ignorado durante el proceso de construcción de la imagen Docker.**
+**Esto asegura que cualquier fichero cuyo nombre comience con `Dockerfile` será ignorado durante el proceso de construcción de la imagen Docker.**
 
 ---
 
 ### ***Crear un Nuevo Dockerfile***
 
-**Crea un nuevo archivo `Dockerfile` con el siguiente contenido:**
+**Crea un nuevo fichero `Dockerfile` con el siguiente contenido:**
 
 ```bash
 nano Dockerfile
@@ -990,7 +990,7 @@ FROM python:3.10
 # Instalamos Pipenv, una herramienta de gestión de entornos virtuales y dependencias para Python
 RUN pip install pipenv
 
-# Definimos la variable de entorno FLASK_APP para apuntar al archivo principal de la aplicación Flask
+# Definimos la variable de entorno FLASK_APP para apuntar al fichero principal de la aplicación Flask
 # Esto indica a Flask dónde encontrar la aplicación cuando se ejecute
 ENV FLASK_APP=./src.app
 
@@ -998,15 +998,15 @@ ENV FLASK_APP=./src.app
 # Todos los comandos subsiguientes se ejecutarán desde este directorio
 WORKDIR /App
 
-# Copiamos los archivos Pipfile y Pipfile.lock al directorio de trabajo del contenedor
-# Estos archivos contienen las dependencias necesarias para la aplicación
+# Copiamos los ficheros Pipfile y Pipfile.lock al directorio de trabajo del contenedor
+# Estos ficheros contienen las dependencias necesarias para la aplicación
 COPY ./Pipfile* ./
 
 # Instalamos las dependencias especificadas en Pipfile usando Pipenv
 # Esto configura el entorno virtual con todas las bibliotecas necesarias
 RUN pipenv install
 
-# Copiamos todos los archivos del proyecto desde el host al contenedor
+# Copiamos todos los ficheros del proyecto desde el host al contenedor
 # Esto incluye el código fuente de la aplicación y cualquier otro recurso necesario
 COPY ./ ./
 
@@ -1026,11 +1026,11 @@ CMD pipenv run flask run --host 0.0.0.0
 - **Autor y Contacto:** *Información de autor, GitHub y correo electrónico.*
 - **Imagen Base:** *`python:3.10` es la imagen oficial de Python 3.10, que incluye Python y herramientas asociadas.*
 - **Instalación de Pipenv:** *Se instala Pipenv para gestionar entornos virtuales y dependencias.*
-- **Variable de Entorno FLASK_APP:** *Se configura para apuntar al archivo principal de la aplicación Flask.*
+- **Variable de Entorno FLASK_APP:** *Se configura para apuntar al fichero principal de la aplicación Flask.*
 - **Directorio de Trabajo:** *Se crea y establece `/App` como el directorio de trabajo del contenedor.*
-- **Copia de Archivos:** *Se copian `Pipfile` y `Pipfile.lock` para instalar las dependencias.*
+- **Copia de Ficheros:** *Se copian `Pipfile` y `Pipfile.lock` para instalar las dependencias.*
 - **Instalación de Dependencias:** *`pipenv install` instala las dependencias en el entorno virtual.*
-- **Copia del Proyecto:** *Se copian todos los archivos del proyecto al contenedor.*
+- **Copia del Proyecto:** *Se copian todos los ficheros del proyecto al contenedor.*
 - **Exposición de Puerto:** *Se expone el puerto 5000, que es el puerto por defecto de Flask.*
 - **Comando de Ejecución:** *Se inicia el servidor Flask con `pipenv run flask run --host 0.0.0.0`, permitiendo el acceso desde cualquier dirección IP.*
 
@@ -1040,13 +1040,13 @@ CMD pipenv run flask run --host 0.0.0.0
 
 ### ***Explicación del Comando `COPY Pipfile* ./`***
 
-**En el comando `COPY Pipfile* ./` del Dockerfile, el asterisco (`*`) se utiliza como un carácter comodín en el contexto de la copia de archivos. Aquí está lo que significa:**
+**En el comando `COPY Pipfile* ./` del Dockerfile, el asterisco (`*`) se utiliza como un carácter comodín en el contexto de la copia de ficheros. Aquí está lo que significa:**
 
 ```Dockerfile
 COPY Pipfile* ./
 ```
 
-- **`Pipfile*`:** *El asterisco (`*`) es un comodín que coincide con cualquier archivo que comience con `Pipfile`. Esto incluye `Pipfile` y cualquier archivo que tenga un nombre que empiece con `Pipfile`, como `Pipfile.lock`. En otras palabras, `Pipfile*` selecciona todos los archivos que inician con `Pipfile`.*
+- **`Pipfile*`:** *El asterisco (`*`) es un comodín que coincide con cualquier fichero que comience con `Pipfile`. Esto incluye `Pipfile` y cualquier fichero que tenga un nombre que empiece con `Pipfile`, como `Pipfile.lock`. En otras palabras, `Pipfile*` selecciona todos los ficheros que inician con `Pipfile`.*
 
 - **`./`:** *Especifica el destino dentro del contenedor Docker. En este caso, `./` se refiere al directorio de trabajo actual en el contenedor, que ha sido configurado previamente con `WORKDIR /App`.*
 
@@ -1054,13 +1054,13 @@ COPY Pipfile* ./
 
 ### ***Propósito***
 
-- *El propósito de usar `Pipfile*` es copiar tanto `Pipfile` como `Pipfile.lock` (si está presente) al contenedor. `Pipfile` y `Pipfile.lock` son archivos generados por Pipenv que especifican las dependencias del proyecto Python.*
+- *El propósito de usar `Pipfile*` es copiar tanto `Pipfile` como `Pipfile.lock` (si está presente) al contenedor. `Pipfile` y `Pipfile.lock` son ficheros generados por Pipenv que especifican las dependencias del proyecto Python.*
 
 ---
 
 ### ***Ejemplo de Cómo Funciona***
 
-**Si tienes los siguientes archivos en tu directorio de proyecto:**
+**Si tienes los siguientes ficheros en tu directorio de proyecto:**
 
 - *`Pipfile`*
 - *`Pipfile.lock`*
@@ -1072,9 +1072,9 @@ COPY Pipfile* ./
 
 ### ***Consideraciones***
 
-- *Si solo deseas copiar `Pipfile` y `Pipfile.lock`, asegúrate de que no haya otros archivos inesperados que coincidan con el patrón `Pipfile*`. Si solo te interesan `Pipfile` y `Pipfile.lock`, podrías ser más específico con los comandos `COPY` para evitar incluir archivos no deseados.*
+- *Si solo deseas copiar `Pipfile` y `Pipfile.lock`, asegúrate de que no haya otros ficheros inesperados que coincidan con el patrón `Pipfile*`. Si solo te interesan `Pipfile` y `Pipfile.lock`, podrías ser más específico con los comandos `COPY` para evitar incluir ficheros no deseados.*
 
-- *Usar un patrón de comodín puede ser útil para mantener tu Dockerfile flexible y compatible con posibles cambios en los archivos de configuración del proyecto.*
+- *Usar un patrón de comodín puede ser útil para mantener tu Dockerfile flexible y compatible con posibles cambios en los ficheros de configuración del proyecto.*
 
 ---
 
@@ -1124,7 +1124,7 @@ options edns0 trust-ad
 search .
 ```
 
-- **Propósito:** *`resolv.conf` es un archivo de configuración en sistemas Unix y Linux que especifica los servidores DNS que tu máquina debe utilizar para la resolución de nombres de dominio.*
+- **Propósito:** *`resolv.conf` es un fichero de configuración en sistemas Unix y Linux que especifica los servidores DNS que tu máquina debe utilizar para la resolución de nombres de dominio.*
 - **Uso:** *Al agregar la línea `nameserver 8.8.8.8`, estás configurando tu máquina para que utilice el servidor DNS público de Google. Esto es útil si el servidor DNS predeterminado está fallando.*
 - **Ejemplo de edición:**
 
@@ -1182,10 +1182,10 @@ search .
 
 ---
 
-### ***7. Archivo `/etc/resolv.conf`***
+### ***7. Fichero `/etc/resolv.conf`***
 
-- **Propósito:** *Este archivo contiene la configuración de los servidores DNS que el sistema debe utilizar para resolver nombres de dominio.*
-- **Uso:** *Editar este archivo es una forma de cambiar manualmente los servidores DNS, lo que puede ser necesario si los servidores predeterminados no funcionan correctamente.*
+- **Propósito:** *Este fichero contiene la configuración de los servidores DNS que el sistema debe utilizar para resolver nombres de dominio.*
+- **Uso:** *Editar este fichero es una forma de cambiar manualmente los servidores DNS, lo que puede ser necesario si los servidores predeterminados no funcionan correctamente.*
 - **Ejemplo de edición:**
 
   ```bash
@@ -1198,9 +1198,9 @@ search .
 
 - **Propósito:** *Cuando trabajas en una red que requiere un proxy para acceder a Internet, Docker debe estar configurado para usar ese proxy para acceder a recursos externos como Docker Hub.*
 - **Uso:** *Configurar Docker para que utilice un proxy garantiza que pueda conectarse a Internet y descargar imágenes, incluso cuando está detrás de un firewall o proxy corporativo.*
-- **Ejemplo de configuración:** *Puedes configurar Docker para usar un proxy editando el archivo de configuración de Docker o estableciendo las variables de entorno `HTTP_PROXY` y `HTTPS_PROXY`.*
+- **Ejemplo de configuración:** *Puedes configurar Docker para usar un proxy editando el fichero de configuración de Docker o estableciendo las variables de entorno `HTTP_PROXY` y `HTTPS_PROXY`.*
 
-*Estas explicaciones proporcionan un contexto claro de cómo cada comando y archivo de configuración se relaciona con la resolución de problemas de conectividad y DNS, especialmente cuando trabajas con Docker en un entorno Linux.*
+*Estas explicaciones proporcionan un contexto claro de cómo cada comando y fichero de configuración se relaciona con la resolución de problemas de conectividad y DNS, especialmente cuando trabajas con Docker en un entorno Linux.*
 
 ---
 
@@ -1297,7 +1297,7 @@ Press CTRL+C to quit
 docker exec -it $(docker ps -q) ls -lA
 ```
 
-**La salida mostrará los archivos y directorios en el contenedor:**
+**La salida mostrará los ficheros y directorios en el contenedor:**
 
 ```bash
 total 24
@@ -1331,7 +1331,7 @@ FROM python:3.10
 # Instalamos Pipenv, una herramienta de gestión de entornos virtuales y dependencias para Python
 RUN pip install pipenv
 
-# Definimos la variable de entorno FLASK_APP para apuntar al archivo principal de la aplicación Flask
+# Definimos la variable de entorno FLASK_APP para apuntar al fichero principal de la aplicación Flask
 # Esto indica a Flask dónde encontrar la aplicación cuando se ejecute
 ENV FLASK_APP=./src.app
 
@@ -1343,15 +1343,15 @@ ENV PIPENV_VENV_IN_PROJECT=1
 # Todos los comandos subsiguientes se ejecutarán desde este directorio
 WORKDIR /App
 
-# Copiamos los archivos Pipfile y Pipfile.lock al directorio de trabajo del contenedor
-# Estos archivos contienen las dependencias necesarias para la aplicación
+# Copiamos los ficheros Pipfile y Pipfile.lock al directorio de trabajo del contenedor
+# Estos ficheros contienen las dependencias necesarias para la aplicación
 COPY ./Pipfile* ./
 
 # Instalamos las dependencias especificadas en Pipfile usando Pipenv
 # Esto configura el entorno virtual con todas las bibliotecas necesarias
 RUN pipenv install
 
-# Copiamos todos los archivos del proyecto desde el host al contenedor
+# Copiamos todos los ficheros del proyecto desde el host al contenedor
 # Esto incluye el código fuente de la aplicación y cualquier otro recurso necesario
 COPY ./ ./
 

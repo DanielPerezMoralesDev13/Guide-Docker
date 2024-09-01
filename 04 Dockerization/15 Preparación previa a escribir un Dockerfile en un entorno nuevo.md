@@ -112,7 +112,7 @@ python3 -m venv .venv || apt update && apt install -y python3 nano
 
 **Explicación Detallada:**
 
-- **`python3 -m venv .venv`:** *Este comando crea un entorno virtual en el directorio `.venv`. La razón por la cual el nombre del entorno virtual empieza con un punto (`.`) es para que sea un archivo oculto en sistemas Unix, siguiendo la convención de ocultar directorios y archivos de configuración. Esto es similar a cómo se maneja el directorio `node_modules` en proyectos Node.js, ayudando a mantener la estructura del proyecto limpia y organizada.*
+- **`python3 -m venv .venv`:** *Este comando crea un entorno virtual en el directorio `.venv`. La razón por la cual el nombre del entorno virtual empieza con un punto (`.`) es para que sea un fichero oculto en sistemas Unix, siguiendo la convención de ocultar directorios y ficheros de configuración. Esto es similar a cómo se maneja el directorio `node_modules` en proyectos Node.js, ayudando a mantener la estructura del proyecto limpia y organizada.*
 
 - **Binarios en `.venv`:** *El entorno virtual `.venv` contiene copias de los binarios de `python3` y `pip3`, que son enlaces simbólicos (symlinks) a los binarios instalados en el contenedor. Esto permite que el entorno virtual funcione como un entorno aislado, pero eficiente, utilizando los recursos existentes del contenedor.*
 
@@ -122,7 +122,7 @@ python3 -m venv .venv || apt update && apt install -y python3 nano
 
   - **`apt install -y python3 nano`:** *Aquí, `apt install` se utiliza para instalar los paquetes `python3` y `nano`. El flag `-y` se utiliza para aceptar automáticamente todas las preguntas durante la instalación, lo que es útil en un entorno automatizado como un contenedor.*
 
-  - **`nano`:** `nano` *es un editor de texto de terminal simple y fácil de usar, que puedes instalar para editar archivos directamente dentro del contenedor.*
+  - **`nano`:** `nano` *es un editor de texto de terminal simple y fácil de usar, que puedes instalar para editar ficheros directamente dentro del contenedor.*
 
 - *Este comando asegura que si `python3` no está disponible, se instale junto con un editor de texto (`nano`) para que puedas continuar con tu trabajo dentro del contenedor.*
 
@@ -196,7 +196,7 @@ tree -C .venv/
 
 **Explicación Detallada:**
 
-- **Estructura del Directorio `.venv`:** *El directorio `.venv` contiene subdirectorios `bin`, `include`, `lib`, y archivos como `pyvenv.cfg`. El subdirectorio `bin` incluye enlaces simbólicos a los ejecutables de Python. Aunque el entorno virtual se creó parcialmente, la falta del módulo `ensurepip` impide que se configure correctamente.*
+- **Estructura del Directorio `.venv`:** *El directorio `.venv` contiene subdirectorios `bin`, `include`, `lib`, y ficheros como `pyvenv.cfg`. El subdirectorio `bin` incluye enlaces simbólicos a los ejecutables de Python. Aunque el entorno virtual se creó parcialmente, la falta del módulo `ensurepip` impide que se configure correctamente.*
 
 ---
 
@@ -252,7 +252,7 @@ tree -C .venv/
 
 **Explicación Detallada:**
 
-- *Este comando muestra la estructura del directorio `.venv` y confirma que el entorno virtual se ha creado correctamente con todos los directorios y archivos necesarios.*
+- *Este comando muestra la estructura del directorio `.venv` y confirma que el entorno virtual se ha creado correctamente con todos los directorios y ficheros necesarios.*
 
 ```bash
 [01;34m.venv/[0m
@@ -1784,7 +1784,7 @@ source ./.venv/bin/activate
 
 **Explicación Detallada:**
 
-- **`source`:** *Es un comando de shell utilizado para leer y ejecutar el contenido de un archivo en el contexto del shell actual. Cuando se usa `source ./.venv/bin/activate`, el comando ejecuta el script `activate` en el entorno actual, cambiando las variables de entorno para usar el entorno virtual.*
+- **`source`:** *Es un comando de shell utilizado para leer y ejecutar el contenido de un fichero en el contexto del shell actual. Cuando se usa `source ./.venv/bin/activate`, el comando ejecuta el script `activate` en el entorno actual, cambiando las variables de entorno para usar el entorno virtual.*
 
 - **`.` (punto):** *Es un atajo para el comando `source` en algunos shells como `bash`. Así que `. ./.venv/bin/activate` hace exactamente lo mismo que `source ./.venv/bin/activate`, es decir, ejecuta el script `activate` en el contexto del shell actual.*
 
@@ -1835,7 +1835,7 @@ cat ./.venv/bin/activate
 
 **Explicación Detallada:**
 
-- **`cat`:** *Este comando muestra el contenido de un archivo en la terminal. Al usar `cat ./.venv/bin/activate`, se visualiza el contenido del script `activate`, permitiendo inspeccionar cómo se configuran las variables de entorno y qué configuraciones se realizan para activar el entorno virtual.*
+- **`cat`:** *Este comando muestra el contenido de un fichero en la terminal. Al usar `cat ./.venv/bin/activate`, se visualiza el contenido del script `activate`, permitiendo inspeccionar cómo se configuran las variables de entorno y qué configuraciones se realizan para activar el entorno virtual.*
 
 ```bash
 # This file must be used with "source bin/activate" *from bash*
@@ -2065,9 +2065,9 @@ lrwxrwxrwx 1 d4nitrix13 d4nitrix13    7 Aug 29 00:06 python3.10 -> python3
 
 **Explicación Detallada:**
 
-- **`flask`:** *Este archivo es un script en Python que se ha creado como parte de la instalación del paquete Flask en el entorno virtual. El archivo tiene permisos de ejecución (`-rwxrwxr-x`), lo que permite que se ejecute como un programa.*
+- **`flask`:** *Este fichero es un script en Python que se ha creado como parte de la instalación del paquete Flask en el entorno virtual. El fichero tiene permisos de ejecución (`-rwxrwxr-x`), lo que permite que se ejecute como un programa.*
 
-- **Otros Archivos en `.venv/bin`:**
+- **Otros Ficheros en `.venv/bin`:**
   - **`activate`, `activate.csh`, `activate.fish`:** *Estos son scripts para activar el entorno virtual en diferentes shells (Bash, CSH, Fish).*
   - **`pip`, `pip3`, `pip3.10`:** *Son ejecutables de `pip` para gestionar paquetes Python dentro del entorno virtual.*
   - **`python`, `python3`, `python3.10`:** *Son enlaces simbólicos a la versión de Python utilizada en el contenedor.*
@@ -2076,7 +2076,7 @@ lrwxrwxrwx 1 d4nitrix13 d4nitrix13    7 Aug 29 00:06 python3.10 -> python3
 
 ### ***2. Contenido del Script `flask`***
 
-- *El archivo `flask` en el directorio `.venv/bin/` es un script en Python que permite ejecutar el CLI de Flask. Aquí está el contenido del script:*
+- *El fichero `flask` en el directorio `.venv/bin/` es un script en Python que permite ejecutar el CLI de Flask. Aquí está el contenido del script:*
 
 ```bash
 #!/App/.venv/bin/python3
@@ -2099,7 +2099,7 @@ if __name__ == '__main__':
 
 - **`if __name__ == '__main__':`:** *Este bloque asegura que el script solo se ejecute si se llama directamente desde la línea de comandos, no si se importa como un módulo.*
 
-- **`sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])`:** *Limpia el nombre del script de posibles sufijos como `-script.pyw` o `.exe`, adaptando el nombre del archivo para ser compatible con diferentes plataformas.*
+- **`sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])`:** *Limpia el nombre del script de posibles sufijos como `-script.pyw` o `.exe`, adaptando el nombre del fichero para ser compatible con diferentes plataformas.*
 
 - **`sys.exit(main())`:** *Ejecuta la función `main()` del módulo Flask y termina el script con el código de salida proporcionado por `main()`. Esto permite que los comandos de Flask sean ejecutados desde la línea de comandos.*
 
@@ -4004,15 +4004,15 @@ drwxrwxr-x 2 d4nitrix13 d4nitrix13 4096 Aug 29 00:27 werkzeug-3.0.4.dist-info
 
 ---
 
-### ***1. Crear el Directorio y el Archivo para la Aplicación***
+### ***1. Crear el Directorio y el Fichero para la Aplicación***
 
-- *Primero, creamos el directorio `src` dentro del entorno virtual para almacenar el archivo de la aplicación Flask.*
+- *Primero, creamos el directorio `src` dentro del entorno virtual para almacenar el fichero de la aplicación Flask.*
 
 ```bash
 mkdir ./.venv/src
 ```
 
-- *Luego, creamos el archivo `app.py` dentro del directorio `src`.*
+- *Luego, creamos el fichero `app.py` dentro del directorio `src`.*
 
 ```bash
 touch ./src/app.py
@@ -4022,13 +4022,13 @@ touch ./src/app.py
 
 ### ***2. Escribir el Código de la Aplicación***
 
-- *A continuación, editamos el archivo `app.py` con el siguiente código usando `nano` u otro editor de texto de tu preferencia.*
+- *A continuación, editamos el fichero `app.py` con el siguiente código usando `nano` u otro editor de texto de tu preferencia.*
 
 ```bash
 nano ./src/app.py
 ```
 
-- *Contenido del archivo `app.py`:*
+- *Contenido del fichero `app.py`:*
 
 ```python
 # Autor: Daniel Benjamin Perez Morales
@@ -4064,7 +4064,7 @@ def hello_world():
 . ./venv/bin/activate
 ```
 
-- *Luego, ejecuta el servidor Flask usando el siguiente comando. Asegúrate de que la variable de entorno `FLASK_APP` apunte al archivo `app.py`.*
+- *Luego, ejecuta el servidor Flask usando el siguiente comando. Asegúrate de que la variable de entorno `FLASK_APP` apunte al fichero `app.py`.*
 
 ```bash
 flask --app ./src/app.py run
@@ -4230,15 +4230,15 @@ hostname -I | awk '{print $1}'
 
 ---
 
-### ***1. Usar un Archivo `__init__.py`***
+### ***1. Usar un Fichero `__init__.py`***
 
-**Para simplificar el inicio del servidor Flask, puedes crear un archivo `__init__.py` en el directorio `./src`:**
+**Para simplificar el inicio del servidor Flask, puedes crear un fichero `__init__.py` en el directorio `./src`:**
 
 ```bash
 touch ./src/__init__.py
 ```
 
-**Opcionalmente, puedes agregar un comentario al archivo:**
+**Opcionalmente, puedes agregar un comentario al fichero:**
 
 ```bash
 nano ./src/__init__.py
@@ -4272,7 +4272,7 @@ WARNING: This is a development server. Do not use it in a production deployment.
 
 ### ***2. Configurar una Variable de Entorno `FLASK_APP`***
 
-**Otra manera sencilla de iniciar el servidor es configurar una variable de entorno `FLASK_APP` que almacene la ruta del archivo `app.py`:**
+**Otra manera sencilla de iniciar el servidor es configurar una variable de entorno `FLASK_APP` que almacene la ruta del fichero `app.py`:**
 
 ```bash
 export FLASK_APP=./src/app.py
@@ -4280,9 +4280,9 @@ export FLASK_APP=./src/app.py
 
 **Explicación:**
 
-- **`export FLASK_APP=./src/app.py`:** *Esto define la variable de entorno `FLASK_APP`, que Flask usará para localizar el archivo de la aplicación.*
+- **`export FLASK_APP=./src/app.py`:** *Esto define la variable de entorno `FLASK_APP`, que Flask usará para localizar el fichero de la aplicación.*
 
-**Luego, puedes iniciar el servidor Flask sin especificar la ruta del archivo cada vez:**
+**Luego, puedes iniciar el servidor Flask sin especificar la ruta del fichero cada vez:**
 
 ```bash
 flask run --host 0.0.0.0
@@ -4306,13 +4306,13 @@ Press CTRL+C to quit
 
 ---
 
-## ***Crear un Archivo `requirements.txt` para Gestionar Dependencias en Python***
+## ***Crear un Fichero `requirements.txt` para Gestionar Dependencias en Python***
 
 ---
 
-### ***1. Crear el Archivo `requirements.txt`***
+### ***1. Crear el Fichero `requirements.txt`***
 
-**Para gestionar las dependencias de tu proyecto Python, debes crear un archivo llamado `requirements.txt`. La sintaxis básica para el archivo es simple:**
+**Para gestionar las dependencias de tu proyecto Python, debes crear un fichero llamado `requirements.txt`. La sintaxis básica para el fichero es simple:**
 
 ```bash
 # Autor: Daniel Benjamin Perez Morales
@@ -4330,7 +4330,7 @@ pkg3==3.0.1
 - **`pkg2>=1.0,<=2.0`:** *Especifica una dependencia con un rango de versiones. Pip instalará cualquier versión de `pkg2` entre 1.0 y 2.0, inclusive.*
 - **`pkg3==3.0.1`:** *Especifica una dependencia con una versión exacta. Pip instalará exactamente la versión 3.0.1 de `pkg3`.*
 
-**Para tu proyecto, si solo necesitas Flask, el archivo `requirements.txt` debería contener:**
+**Para tu proyecto, si solo necesitas Flask, el fichero `requirements.txt` debería contener:**
 
 ```bash
 # Autor: Daniel Benjamin Perez Morales
@@ -4340,7 +4340,7 @@ pkg3==3.0.1
 flask
 ```
 
-*Para más información sobre archivos de requisitos, puedes consultar la [documentación oficial de pip](https://pip.pypa.io/en/stable/user_guide/#requirements-files "https://pip.pypa.io/en/stable/user_guide/#requirements-files").*
+*Para más información sobre ficheros de requisitos, puedes consultar la [documentación oficial de pip](https://pip.pypa.io/en/stable/user_guide/#requirements-files "https://pip.pypa.io/en/stable/user_guide/#requirements-files").*
 
 ---
 
@@ -4380,14 +4380,14 @@ pip install -r requirements.txt
 
 **Explicación:**
 
-- **`-r`:** *La flag `-r` indica a `pip` que lea las dependencias desde un archivo de requisitos. En este caso, `requirements.txt` contiene la lista de paquetes que `pip` debe instalar.*
+- **`-r`:** *La flag `-r` indica a `pip` que lea las dependencias desde un fichero de requisitos. En este caso, `requirements.txt` contiene la lista de paquetes que `pip` debe instalar.*
 
 ---
 
 **Con estos pasos, habrás configurado tu entorno de desarrollo con Flask y cualquier otra dependencia que necesites.**
 
 > [!IMPORTANT]
-> *Asegúrate de mantener el archivo `requirements.txt` actualizado con cualquier nueva dependencia que añadas a tu proyecto para garantizar que todos los entornos de desarrollo y producción sean consistentes.*
+> *Asegúrate de mantener el fichero `requirements.txt` actualizado con cualquier nueva dependencia que añadas a tu proyecto para garantizar que todos los entornos de desarrollo y producción sean consistentes.*
 
 ```bash
 (.venv) d4nitrix13@08b7c877e9f3:/App$ pip install -r requirements.txt
@@ -4428,15 +4428,15 @@ Press CTRL+C to quit
 
 **Esto confirma que Flask está escuchando en todas las direcciones del contenedor y en las direcciones `localhost` y la IP pública del contenedor. Puedes acceder a la aplicación en la dirección `http://172.17.0.2:5000` desde tu navegador.**
 
-### ***5. Configurar el Archivo `.dockerignore`***
+### ***5. Configurar el Fichero `.dockerignore`***
 
-**Antes de crear el `Dockerfile`, es importante configurar el archivo `.dockerignore` para excluir archivos y directorios que no son necesarios para la construcción de la imagen Docker. Esto optimiza la construcción y evita la inclusión de archivos innecesarios. Crea y edita el archivo `.dockerignore` de la siguiente manera:**
+**Antes de crear el `Dockerfile`, es importante configurar el fichero `.dockerignore` para excluir ficheros y directorios que no son necesarios para la construcción de la imagen Docker. Esto optimiza la construcción y evita la inclusión de ficheros innecesarios. Crea y edita el fichero `.dockerignore` de la siguiente manera:**
 
 ```bash
 nano ./.dockerignore
 ```
 
-**Contenido del archivo `.dockerignore`:**
+**Contenido del fichero `.dockerignore`:**
 
 ```bash
 # Autor: Daniel Benjamin Perez Morales
@@ -4450,20 +4450,20 @@ Dockerfile
 __pycache__
 ```
 
-- **`Dockerfile`:** *El archivo Dockerfile en sí mismo no es necesario en la imagen.*
+- **`Dockerfile`:** *El fichero Dockerfile en sí mismo no es necesario en la imagen.*
 - **`.venv`:** *El directorio del entorno virtual que no debe ser incluido en la imagen.*
-- **`.gitignore` y `.dockerignore`:** *Estos archivos son útiles para el control de versiones y la construcción, pero no deben ser incluidos en la imagen.*
+- **`.gitignore` y `.dockerignore`:** *Estos ficheros son útiles para el control de versiones y la construcción, pero no deben ser incluidos en la imagen.*
 - **`__pycache__`:** *Directorio generado automáticamente para acelerar la ejecución de módulos Python.*
 
-### ***6. Configurar el Archivo `.gitignore`***
+### ***6. Configurar el Fichero `.gitignore`***
 
-**Si estás usando Git, también debes configurar el archivo `.gitignore` para excluir archivos y directorios innecesarios del repositorio. Esto evita que archivos generados automáticamente y dependencias se incluyan en el control de versiones. Crea y edita el archivo `.gitignore` de la siguiente manera:**
+**Si estás usando Git, también debes configurar el fichero `.gitignore` para excluir ficheros y directorios innecesarios del repositorio. Esto evita que ficheros generados automáticamente y dependencias se incluyan en el control de versiones. Crea y edita el fichero `.gitignore` de la siguiente manera:**
 
 ```bash
 nano ./.gitignore
 ```
 
-**Contenido del archivo `.gitignore`:**
+**Contenido del fichero `.gitignore`:**
 
 ```bash
 # Autor: Daniel Benjamin Perez Morales
@@ -4476,10 +4476,10 @@ __pycache__
 ```
 
 - **`.venv`:** *El directorio del entorno virtual que no debe ser incluido en el repositorio.*
-- **`.gitignore`:** *El propio archivo `.gitignore` no necesita ser incluido en el repositorio.*
+- **`.gitignore`:** *El propio fichero `.gitignore` no necesita ser incluido en el repositorio.*
 - **`__pycache__`:** *Directorios de caché generados automáticamente que no deben ser versionados.*
 
 ---
 
 > [!NOTE]
-> *Recuerda revisar y ajustar el contenido de los archivos `.dockerignore` y `.gitignore` según las necesidades específicas de tu proyecto. Esto garantizará que tu imagen Docker y tu repositorio Git se mantengan limpios y eficientes.*
+> *Recuerda revisar y ajustar el contenido de los ficheros `.dockerignore` y `.gitignore` según las necesidades específicas de tu proyecto. Esto garantizará que tu imagen Docker y tu repositorio Git se mantengan limpios y eficientes.*

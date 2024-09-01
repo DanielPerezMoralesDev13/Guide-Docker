@@ -273,8 +273,6 @@ Server running at http://0.0.0.0:3000/
 
 *En resumen, `ENTRYPOINT` se utiliza para configurar un contenedor como un ejecutable. Es más rígido que `CMD` y no se sobrescribe fácilmente, aunque se pueden pasar argumentos adicionales al contenedor al iniciarlo.*
 
-He mejorado el texto para corregir errores ortográficos y de redacción. Además, he clarificado algunas partes para que sean más comprensibles. Aquí tienes el texto revisado:
-
 ---
 
 ### ***Detener el contenedor si solo hay un contenedor corriendo***

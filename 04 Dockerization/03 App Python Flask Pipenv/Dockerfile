@@ -9,7 +9,7 @@ FROM python:3.10
 # Instalamos Pipenv, una herramienta de gestión de entornos virtuales y dependencias para Python
 RUN pip install pipenv
 
-# Definimos la variable de entorno FLASK_APP para apuntar al archivo principal de la aplicación Flask
+# Definimos la variable de entorno FLASK_APP para apuntar al fichero principal de la aplicación Flask
 # Esto indica a Flask dónde encontrar la aplicación cuando se ejecute
 ENV FLASK_APP=./src.app
 
@@ -22,15 +22,15 @@ ENV PIPENV_VENV_IN_PROJECT=1
 # Todos los comandos subsiguientes se ejecutarán desde este directorio
 WORKDIR /App
 
-# Copiamos los archivos Pipfile y Pipfile.lock al directorio de trabajo del contenedor
-# Estos archivos contienen las dependencias necesarias para la aplicación
+# Copiamos los ficheros Pipfile y Pipfile.lock al directorio de trabajo del contenedor
+# Estos ficheros contienen las dependencias necesarias para la aplicación
 COPY ./Pipfile* ./
 
 # Instalamos las dependencias especificadas en Pipfile usando Pipenv
 # Esto configura el entorno virtual con todas las bibliotecas necesarias
 RUN pipenv install
 
-# Copiamos todos los archivos del proyecto desde el host al contenedor
+# Copiamos todos los ficheros del proyecto desde el host al contenedor
 # Esto incluye el código fuente de la aplicación y cualquier otro recurso necesario
 COPY ./ ./
 

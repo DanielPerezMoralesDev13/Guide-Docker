@@ -8,13 +8,13 @@
 
 ## ***Creación y Configuración del Dockerfile***
 
-**Para empaquetar nuestra aplicación Python en un contenedor Docker, necesitamos crear un archivo `Dockerfile` que describa cómo construir la imagen del contenedor. A continuación, se detalla el proceso de creación y configuración del `Dockerfile`:**
+**Para empaquetar nuestra aplicación Python en un contenedor Docker, necesitamos crear un fichero `Dockerfile` que describa cómo construir la imagen del contenedor. A continuación, se detalla el proceso de creación y configuración del `Dockerfile`:**
 
 ---
 
 ## ***1. Creación del Dockerfile***
 
-**Primero, crea el archivo `Dockerfile` en el directorio raíz de tu proyecto:**
+**Primero, crea el fichero `Dockerfile` en el directorio raíz de tu proyecto:**
 
 ```bash
 nano Dockerfile
@@ -44,7 +44,7 @@ WORKDIR /App
 # Creamos un entorno virtual de Python en el directorio de trabajo
 RUN python3 -m venv ./.venv
 
-# Copiamos el archivo requirements.txt desde el host al contenedor
+# Copiamos el fichero requirements.txt desde el host al contenedor
 COPY ./requirements.txt ./
 
 # Instalamos las dependencias listadas en requirements.txt utilizando pip
@@ -82,13 +82,13 @@ bash: pip: command not found
 
 - *Como se puede ver, `pip` no está instalado globalmente en el contenedor. En su lugar, sólo está disponible en el entorno virtual en `./.venv`.*
 
-**Para confirmar, visualiza el contenido del archivo `pip` dentro del entorno virtual:**
+**Para confirmar, visualiza el contenido del fichero `pip` dentro del entorno virtual:**
 
 ```bash
 root@08b7c877e9f3:/App# cat ./.venv/bin/pip
 ```
 
-- *El archivo `pip` apunta a la versión de Python dentro del entorno virtual, lo que significa que `pip` sólo está disponible cuando el entorno virtual está activado.*
+- *El fichero `pip` apunta a la versión de Python dentro del entorno virtual, lo que significa que `pip` sólo está disponible cuando el entorno virtual está activado.*
 
 ```python
 #!/App/.venv/bin/python3
@@ -185,7 +185,7 @@ RUN ./.venv/bin/pip install -r ./requirements.txt
 
 ### ***Dockerfile Corregido***
 
-**El `Dockerfile` corregido que sigue esta práctica y garantiza que se usen las herramientas del entorno virtual es el siguiente. Además, incluye la copia de todos los archivos desde el host al contenedor, la directiva `EXPOSE` para el puerto 5000, y la ejecución de la aplicación Flask.**
+**El `Dockerfile` corregido que sigue esta práctica y garantiza que se usen las herramientas del entorno virtual es el siguiente. Además, incluye la copia de todos los ficheros desde el host al contenedor, la directiva `EXPOSE` para el puerto 5000, y la ejecución de la aplicación Flask.**
 
 ```Dockerfile
 # Autor: Daniel Benjamin Perez Morales
@@ -205,7 +205,7 @@ WORKDIR /App
 # Creamos un entorno virtual de Python en el directorio de trabajo
 RUN python3 -m venv ./.venv
 
-# Copiamos el archivo requirements.txt desde el host al contenedor
+# Copiamos el fichero requirements.txt desde el host al contenedor
 COPY ./requirements.txt ./
 
 # Instalamos las dependencias listadas en requirements.txt utilizando pip
@@ -214,7 +214,7 @@ RUN ./.venv/bin/pip install -r ./requirements.txt
 # Publicamos el puerto 5000 para la documentación
 EXPOSE 5000
 
-# Copiamos todos los archivos del host al contenedor
+# Copiamos todos los ficheros del host al contenedor
 COPY ./ ./
 
 # Ejecutamos el servidor Flask utilizando el entorno virtual
@@ -388,7 +388,7 @@ WORKDIR /App
 # Creamos un entorno virtual de Python en el directorio de trabajo
 RUN python3 -m venv ./.venv
 
-# Copiamos el archivo requirements.txt desde el host al contenedor
+# Copiamos el fichero requirements.txt desde el host al contenedor
 COPY ./requirements.txt ./
 
 # Instalamos las dependencias listadas en requirements.txt utilizando pip
@@ -566,7 +566,7 @@ ENV VIRTUAL_ENV_BIN=/App/.venv/bin
 # Creamos un entorno virtual de Python en el directorio de trabajo
 RUN python3 -m venv ./.venv
 
-# Copiamos el archivo requirements.txt desde el host al contenedor
+# Copiamos el fichero requirements.txt desde el host al contenedor
 COPY ./requirements.txt ./
 
 # Instalamos las dependencias listadas en requirements.txt utilizando pip
@@ -575,7 +575,7 @@ RUN ${VIRTUAL_ENV_BIN}/pip install -r ./requirements.txt
 # Publicamos el puerto 5000 para la documentación
 EXPOSE 5000
 
-# Copiamos todos los archivos del host al contenedor
+# Copiamos todos los ficheros del host al contenedor
 COPY ./ ./
 
 # Ejecutamos el servidor Flask utilizando el entorno virtual
@@ -1052,7 +1052,7 @@ ENV FLASK_APP=./src.app
 **Instalación de Dependencias:**
 
 ```Dockerfile
-# Copiamos el archivo requirements.txt desde el host al contenedor
+# Copiamos el fichero requirements.txt desde el host al contenedor
 COPY ./requirements.txt ./
 
 # Instalamos las dependencias listadas en requirements.txt usando pip
@@ -1061,7 +1061,7 @@ RUN pip install -r ./requirements.txt
 
 **Explicación:**
 
-- *`COPY ./requirements.txt ./` copia el archivo `requirements.txt` del host al contenedor.*
+- *`COPY ./requirements.txt ./` copia el fichero `requirements.txt` del host al contenedor.*
 - *`RUN pip install -r ./requirements.txt` instala las dependencias de Python especificadas en `requirements.txt`. `pip` está disponible en el `PATH` modificado anteriormente.*
 
 **Exposición del Puerto:**
@@ -1078,13 +1078,13 @@ EXPOSE 5000
 **Copia del Código Fuente:**
 
 ```Dockerfile
-# Copiamos todos los archivos del host al contenedor
+# Copiamos todos los ficheros del host al contenedor
 COPY ./ ./
 ```
 
 **Explicación:**
 
-- *`COPY ./ ./` copia todos los archivos del directorio del host al directorio de trabajo en el contenedor.*
+- *`COPY ./ ./` copia todos los ficheros del directorio del host al directorio de trabajo en el contenedor.*
 
 **Ejecución del Servidor Flask:**
 
@@ -1178,8 +1178,8 @@ ENV PATH="${VIRTUAL_ENV}/bin:$PATH"
 # Esto es necesario para que Flask pueda encontrar la aplicación a ejecutar
 ENV FLASK_APP=./src.app
 
-# Copiamos el archivo requirements.txt desde el host al contenedor
-# Este archivo contiene la lista de dependencias de Python necesarias
+# Copiamos el fichero requirements.txt desde el host al contenedor
+# Este fichero contiene la lista de dependencias de Python necesarias
 COPY ./requirements.txt ./
 
 # Instalamos las dependencias listadas en requirements.txt usando pip
@@ -1190,8 +1190,8 @@ RUN pip install -r ./requirements.txt
 # Esto es necesario para la comunicación con la aplicación desde fuera del contenedor
 EXPOSE 5000
 
-# Copiamos todos los archivos del host al contenedor
-# Esto incluye el código fuente y cualquier otro archivo necesario para la aplicación
+# Copiamos todos los ficheros del host al contenedor
+# Esto incluye el código fuente y cualquier otro fichero necesario para la aplicación
 COPY ./ ./
 
 # Ejecutamos el servidor Flask usando el entorno virtual
@@ -1219,7 +1219,7 @@ CMD flask run --host 0.0.0.0
 4. **Orden de los Comandos:**
 
    - **Creación del Entorno Virtual:** *`RUN python3 -m venv ./.venv` debe ejecutarse antes de definir las variables de entorno que dependen de él.*
-   - **Instalación de Dependencias y Configuración:** *Después de crear el entorno virtual y configurar las variables de entorno, se copian los archivos necesarios y se instalan las dependencias usando `pip`.*
+   - **Instalación de Dependencias y Configuración:** *Después de crear el entorno virtual y configurar las variables de entorno, se copian los ficheros necesarios y se instalan las dependencias usando `pip`.*
 
 - **Resumen:**
 
@@ -1427,10 +1427,10 @@ ENV VIRTUAL_ENV=/App/.venv/
 # Actualizamos la variable de entorno PATH para que el contenedor utilice los binarios del entorno virtual
 ENV PATH="${VIRTUAL_ENV}/bin:$PATH"
 
-# Definimos la variable de entorno FLASK_APP para indicar la ubicación del archivo de aplicación Flask
+# Definimos la variable de entorno FLASK_APP para indicar la ubicación del fichero de aplicación Flask
 ENV FLASK_APP=./src.app
 
-# Copiamos el archivo requirements.txt desde el host al contenedor
+# Copiamos el fichero requirements.txt desde el host al contenedor
 COPY ./requirements.txt ./
 
 # Instalamos las dependencias listadas en requirements.txt usando pip dentro del entorno virtual
@@ -1439,7 +1439,7 @@ RUN pip install -r ./requirements.txt
 # Exponemos el puerto 5000 para que la aplicación Flask sea accesible desde fuera del contenedor
 EXPOSE 5000
 
-# Copiamos todos los archivos desde el host al contenedor
+# Copiamos todos los ficheros desde el host al contenedor
 COPY ./ ./
 
 # Ejecutamos el servidor Flask usando el entorno virtual
@@ -1450,7 +1450,7 @@ CMD flask run --host 0.0.0.0
 - **Imagen Base:** *Utilizamos `python:3.10`, que incluye Python 3.10 y pip preinstalados.*
 - **Entorno Virtual:** *Creamos y configuramos un entorno virtual para aislar las dependencias.*
 - **Configuración de Entorno:** *Ajustamos las variables de entorno para el entorno virtual y Flask.*
-- **Copia y Instalación:** *Copiamos los archivos necesarios y instalamos las dependencias.*
+- **Copia y Instalación:** *Copiamos los ficheros necesarios y instalamos las dependencias.*
 - **Puerto Expuesto:** *Exponemos el puerto 5000 para acceder a la aplicación.*
 - **Ejecución del Servidor:** *Ejecutamos el servidor Flask con el entorno virtual.*
 

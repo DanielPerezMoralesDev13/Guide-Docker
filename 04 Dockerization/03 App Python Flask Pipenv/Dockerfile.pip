@@ -36,12 +36,12 @@ ENV VIRTUAL_ENV=/App/.venv/
 # Esto asegura que los ejecutables del entorno virtual (como pip y flask) sean utilizados en lugar de los del sistema
 ENV PATH="${VIRTUAL_ENV}/bin:$PATH"
 
-# Definimos la variable de entorno FLASK_APP para indicar la ubicación del archivo de aplicación Flask
+# Definimos la variable de entorno FLASK_APP para indicar la ubicación del fichero de aplicación Flask
 # Esto permite a Flask identificar y ejecutar la aplicación especificada
 ENV FLASK_APP=./src.app
 
-# Copiamos el archivo requirements.txt desde el host al contenedor
-# El archivo requirements.txt contiene la lista de paquetes de Python necesarios para la aplicación
+# Copiamos el fichero requirements.txt desde el host al contenedor
+# El fichero requirements.txt contiene la lista de paquetes de Python necesarios para la aplicación
 COPY ./requirements.txt ./
 
 # Instalamos las dependencias listadas en requirements.txt usando pip dentro del entorno virtual
@@ -52,8 +52,8 @@ RUN pip install -r ./requirements.txt
 # Esto permite que el contenedor reciba solicitudes HTTP en el puerto 5000
 EXPOSE 5000
 
-# Copiamos todos los archivos desde el host al contenedor
-# Esto incluye el código fuente de la aplicación y cualquier otro archivo necesario para su funcionamiento
+# Copiamos todos los ficheros desde el host al contenedor
+# Esto incluye el código fuente de la aplicación y cualquier otro fichero necesario para su funcionamiento
 COPY ./ ./
 
 # Ejecutamos el servidor Flask usando el entorno virtual
