@@ -1,0 +1,50 @@
+# Autor: Daniel Benjamin Perez Morales
+# GitHub: https://github.com/DanielPerezMoralesDev13
+# Correo electrónico: danielperezdev@proton.me
+
+# Utiliza la imagen base de Ubuntu 22.04
+FROM ubuntu:22.04
+
+# Configura el entorno de instalación para que no interactúe con el usuario,
+# evitando preguntas durante la instalación de paquetes.
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Establece la zona horaria a América/Managua
+ENV TZ=America/Managua
+
+# Actualiza los paquetes del sistema e instala las dependencias necesarias:
+# - curl: Herramienta de línea de comandos para transferir datos con URL
+# - unzip: Herramienta para descomprimir archivos zip
+# - php8.1: Interprete de PHP versión 8.1
+# - php8.1-curl: Extensión de PHP para trabajar con CURL
+# - php8.1-xml: Extensión de PHP para trabajar con XML
+RUN apt update && apt install -y \
+    curl \
+    unzip \
+    php8.1 \
+    php8.1-curl \
+    php8.1-xml
+
+# Descarga e instala Composer, una herramienta de gestión de dependencias para PHP
+RUN curl -sS https://getcomposer.org/installer \
+    | php -- --install-dir=/usr/bin --filename=composer
+
+# Establece el directorio de trabajo en el contenedor a /App
+WORKDIR /App
+
+# Copia los archivos composer.json y composer.lock al directorio de trabajo
+COPY ./composer.* ./
+
+# Instala las dependencias del proyecto PHP utilizando Composer
+RUN composer install --no-scripts
+
+# Copia el resto de los archivos del proyecto al directorio de trabajo
+COPY ./ ./
+
+# Expone el puerto 8000 para que el contenedor pueda aceptar conexiones externas
+EXPOSE 8000
+
+# Comando predeterminado que se ejecutará al iniciar el contenedor
+# Inicia el servidor PHP integrado y lo configura para escuchar en todas las interfaces
+CMD php artisan serve --host 0.0.0.0
+

@@ -183,6 +183,22 @@ pip 22.0.2 from /App/.venv/lib/python3.10/site-packages/pip (python 3.10)
 RUN ./.venv/bin/pip install -r ./requirements.txt
 ```
 
+### ***El comando `RUN ["source", ".venv/bin/activate"]` tampoco funcionará en un Dockerfile.***
+
+- *El formato que estás utilizando es la forma **exec de `RUN`**, que no invoca un shell. En este formato, Docker ejecuta el comando directamente, sin pasar por un intérprete de comandos como Bash. Por lo tanto, comandos como `source`, que son específicos de Bash, no funcionarán de esta manera.*
+
+**Además, como mencioné antes, incluso si `source` funcionara, cada comando `RUN` se ejecuta en un nuevo entorno, por lo que activar un entorno virtual en un comando `RUN` no tendría efecto en los comandos posteriores.**
+
+**En lugar de intentar activar el entorno virtual, es más efectivo invocar los binarios del entorno virtual directamente en el Dockerfile, como se muestra en este ejemplo:**
+
+```Dockerfile
+RUN python3 -m venv ./.venv
+RUN .venv/bin/pip install --upgrade pip
+RUN .venv/bin/pip install -r requirements.txt
+```
+
+*Esto asegura que se utilicen los binarios dentro del entorno virtual, sin necesidad de activarlo explícitamente.*
+
 ### ***Dockerfile Corregido***
 
 **El `Dockerfile` corregido que sigue esta práctica y garantiza que se usen las herramientas del entorno virtual es el siguiente. Además, incluye la copia de todos los ficheros desde el host al contenedor, la directiva `EXPOSE` para el puerto 5000, y la ejecución de la aplicación Flask.**
