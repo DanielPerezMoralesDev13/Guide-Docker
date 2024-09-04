@@ -1,0 +1,56 @@
+# Autor: Daniel Benjamin Perez Morales
+# GitHub: https://github.com/DanielPerezMoralesDev13
+# Correo electrónico: danielperezdev@proton.me
+
+# Usa la imagen base de Ubuntu 22.04 para crear el entorno del contenedor
+FROM ubuntu:22.04
+
+# Establece el directorio de trabajo dentro del contenedor
+WORKDIR /App
+
+# Define la variable de entorno HOME, necesaria para la instalación de rbenv
+ENV HOME=/root
+
+# Copia el archivo Gemfile y Gemfile.lock (si existe) al contenedor para instalar las dependencias de Ruby
+COPY ./Gemfile* ./
+
+# Actualiza la lista de paquetes y luego instala las dependencias necesarias para rbenv, Ruby y Bundler
+RUN apt update \
+    && apt install -y \
+    git \
+    curl \
+    libssl-dev \
+    libreadline-dev \
+    zlib1g-dev \
+    autoconf \
+    bison \
+    build-essential \
+    libyaml-dev \
+    libncurses5-dev \
+    libffi-dev \
+    libgdbm-dev \
+    # Instala rbenv para gestionar versiones de Ruby y agrega los binarios a PATH
+    && curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash \
+    && export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH" \
+    && eval "$(rbenv init -)" \
+    # Instala la versión específica de Ruby (3.0.2) y la establece como la versión global predeterminada
+    && rbenv install 3.0.2 \
+    && echo 3.0.2 > ./.ruby-version \
+    && rbenv global 3.0.2 \
+    # Configura gem para no instalar documentación, ahorrando espacio en el contenedor
+    && echo "gem: --no-document" > ~/.gemrc \
+    # Instala Bundler, una herramienta para gestionar gemas Ruby, e instala las gemas especificadas en Gemfile
+    && gem install bundler \
+    && bundle install
+
+# Copia todo el contenido del directorio actual del host al contenedor, incluyendo la aplicación y otros archivos necesarios
+COPY ./ ./
+
+# Expone el puerto 3000 para permitir el acceso externo a la aplicación web en desarrollo
+EXPOSE 3000
+
+# Asegura que rbenv y shims estén en el PATH para las operaciones subsiguientes
+ENV PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
+
+# Define el comando por defecto para iniciar el servidor Rails, escuchando en todas las interfaces de red
+CMD rails server -b 0.0.0.0
