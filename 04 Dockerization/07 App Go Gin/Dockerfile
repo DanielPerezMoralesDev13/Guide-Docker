@@ -1,0 +1,37 @@
+# Autor: Daniel Benjamin Perez Morales
+# GitHub: https://github.com/DanielPerezMoralesDev13
+# Correo electrónico: danielperezdev@proton.me
+
+# Se utiliza la imagen base de Ubuntu 22.04, ideal para ejecutar aplicaciones con Go.
+FROM ubuntu:22.04
+
+# Actualiza los paquetes disponibles y luego instala curl para realizar la descarga de Go.
+# Posteriormente, descarga e instala Go 1.23.1 directamente en /usr/local.
+RUN apt update \
+    && apt install -y curl \
+    && curl -L https://go.dev/dl/go1.23.1.linux-amd64.tar.gz --output - \
+    | tar -zxvC /usr/local/
+
+# Define el directorio de trabajo dentro del contenedor, que es donde se ejecutará la aplicación Go.
+WORKDIR /App
+
+# Añade la ruta de Go al PATH para permitir el acceso a los comandos de Go globalmente dentro del contenedor.
+ENV PATH="$PATH:/usr/local/go/bin"
+
+# Copia los archivos go.mod y go.sum al directorio de trabajo. Estos archivos contienen las dependencias del proyecto Go.
+COPY go.* ./
+
+# Ejecuta la descarga de todas las dependencias necesarias especificadas en go.mod.
+RUN go mod download
+
+# Copia todo el código fuente de la aplicación al directorio de trabajo del contenedor.
+COPY ./ ./
+
+# Expone el puerto 8080, que es el puerto en el que la aplicación Go estará escuchando.
+EXPOSE 8080
+
+# Compila el código fuente de Go, generando el binario de la aplicación.
+RUN go build
+
+# Define el comando por defecto que ejecutará la aplicación Go cuando se inicie el contenedor.
+CMD ./App-Go
