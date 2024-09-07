@@ -15609,3 +15609,41 @@ Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-
 [GIN-debug] Listening and serving HTTP on :8080
 [GIN] 2024/09/07 - 02:06:01 | 200 |      71.827µs |      172.17.0.1 | GET      "/ping"
 ```
+
+---
+
+### ***Verificación del Tamaño de la Imagen***
+
+*Una vez que hemos creado nuestra imagen de Docker, podemos verificar su tamaño utilizando el siguiente comando:*
+
+```bash
+docker image list --filter reference=d4nitrix13/gin
+```
+
+- **La opción `--filter reference` nos permite buscar imágenes específicas utilizando el nombre de referencia o parte del mismo. En este caso, estamos filtrando la imagen `d4nitrix13/gin`.**
+
+**Ejemplo del resultado:**
+
+```bash
+REPOSITORY       TAG       IMAGE ID       CREATED          SIZE
+d4nitrix13/gin   latest    00382cb81ccc   16 minutes ago   753MB
+```
+
+- *Podemos ver que la imagen tiene un tamaño de **753 MB**. Este tamaño es considerablemente grande, especialmente para una aplicación en producción, ya que contiene todas las capas y dependencias necesarias.*
+
+---
+
+### ***Reducción del Tamaño con Multi-Stage Builds***
+
+- *Para reducir el tamaño de la imagen, podemos aprovechar la técnica de **Multi-Stage Builds**. Esta técnica nos permite optimizar el proceso de creación de imágenes eliminando las dependencias y herramientas que solo son necesarias durante la etapa de compilación, dejando una imagen final más ligera con solo el binario de la aplicación.*
+
+- *Con **Multi-Stage Builds**, podemos reducir considerablemente el tamaño de la imagen, eliminando archivos y herramientas no necesarios en la etapa de ejecución.*
+
+---
+
+#### **Notas adicionales:**
+
+- *Implementar **Multi-Stage Builds** es altamente recomendado cuando se busca optimizar las imágenes de producción.*
+- *También puedes analizar imágenes de Docker usando la herramienta `dive`, la cual permite explorar capas y encontrar posibles áreas de optimización.*
+
+- *Si implementas un multi-stage build en tu `Dockerfile`, probablemente verás una reducción considerable en el tamaño de la imagen, lo que mejora la eficiencia y reduce el tiempo de despliegue.*
