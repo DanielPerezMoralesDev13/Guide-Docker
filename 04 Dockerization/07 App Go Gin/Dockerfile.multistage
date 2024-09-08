@@ -4,8 +4,15 @@
 
 # ------------------------------------Inicio Stage 0----------------------------------
 
-# Se utiliza la imagen base de golang, ideal para ejecutar aplicaciones con Go.
-FROM golang AS builder
+# Se utiliza la imagen base de Ubuntu 22.04, ideal para ejecutar aplicaciones con Go.
+FROM ubuntu:22.04
+
+# Actualiza los paquetes disponibles y luego instala curl para realizar la descarga de Go.
+# Posteriormente, descarga e instala Go 1.23.1 directamente en /usr/local.
+RUN apt update \
+    && apt install -y curl \
+    && curl -L https://go.dev/dl/go1.23.1.linux-amd64.tar.gz --output - \
+    | tar -zxvC /usr/local/
 
 # Define el directorio de trabajo dentro del contenedor, que es donde se ejecutará la aplicación Go.
 WORKDIR /App
@@ -22,16 +29,15 @@ RUN go mod download
 # Copia todo el código fuente de la aplicación al directorio de trabajo del contenedor.
 COPY ./ ./
 
-# Compila el código fuente de Go, generando un binario de la aplicación con las librerías enlazadas de forma estática, 
-# asegurando así que el ejecutable no dependa de bibliotecas externas en tiempo de ejecución.
-RUN CGO_ENABLED=0 go build -a -installsuffix cgo -o App-Go
+# Compila el código fuente de Go, generando el binario de la aplicación.
+RUN go build
 
 # ------------------------------------Final Stage 0-----------------------------------
 
 # ------------------------------------Inicio Stage 1----------------------------------
 
-# Usamos la imagen base de alpine:latest
-FROM alpine:latest
+# Usamos la imagen base de Ubuntu 22.04
+FROM ubuntu:22.04
 
 # Establecemos el directorio de trabajo en /App
 WORKDIR /App
@@ -39,7 +45,7 @@ WORKDIR /App
 # Copiamos los archivos desde la primera fase (etapa 0) al directorio actual
 # en el contenedor. Esto asume que en la primera etapa (multi-stage build),
 # los archivos de la aplicación Go se construyeron en /App/App-Go.
-COPY --from=builder /App/App-Go ./
+COPY --from=0 /App/App-Go ./
 
 # Expone el puerto 8080, que es el puerto en el que la aplicación Go estará escuchando.
 EXPOSE 8080
