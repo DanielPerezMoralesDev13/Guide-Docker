@@ -919,6 +919,10 @@ CMD pipenv run flask run --host 0.0.0.0
 #### ***Al construir la imagen, es posible que se produzca un error debido a la falta de librerías dinámicamente vinculadas que el cliente MySQL requiere durante la compilación, así como a la ausencia de extensiones nativas. Abordaremos estos problemas más adelante.***
 
 ```bash
+docker build -td4nitrix13/app-08:python-slim ./
+```
+
+```bash
   29 |     # Instalamos las dependencias especificadas en Pipfile usando Pipenv
   30 |     # Esto configura el entorno virtual con todas las bibliotecas necesarias
   31 | >>> RUN pipenv install
