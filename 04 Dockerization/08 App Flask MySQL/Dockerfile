@@ -56,7 +56,7 @@ ENV FLASK_APP=./todos.app
 
 # Copiamos el entorno virtual creado en el Stage 1 al contenedor de runtime.
 # Esto evita la reinstalación de dependencias y reduce el tamaño del contenedor final.
-COPY --from=builder /App/.venv /App/.venv
+COPY --from=builder /App/.venv ./.venv
 
 # Copiamos el código fuente de la aplicación y otros archivos necesarios para ejecutar el proyecto.
 # Esto incluye el código de Flask y cualquier recurso adicional requerido por la aplicación.

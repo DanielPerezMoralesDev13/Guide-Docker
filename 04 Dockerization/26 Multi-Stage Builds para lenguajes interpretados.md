@@ -915,16 +915,16 @@ curl 172.17.0.2:5000/todos
 
 **Imagen optimizada:**
 
-```plaintext
-d4nitrix13/app-08   python-slim-multi   4b21adfa8455   2 minutes ago       676MB
+```bash
+d4nitrix13/app-08   python-slim-multi   4b21adfa8455   2 minutes ago       399MB
 ```
 
 **Listado de imágenes:**
 
-```plaintext
+```bash
 docker images
 REPOSITORY          TAG                 IMAGE ID       CREATED             SIZE
-d4nitrix13/app-08   python-slim-multi   4b21adfa8455   2 minutes ago       676MB
+d4nitrix13/app-08   python-slim-multi   4b21adfa8455   2 minutes ago       399MB
 d4nitrix13/app-08   python-slim         787688c7800b   About an hour ago   720MB
 d4nitrix13/app-08   python              46fcb0135922   24 hours ago        1.21GB
 test/test           latest              5cdba1894d60   46 hours ago        16kB
