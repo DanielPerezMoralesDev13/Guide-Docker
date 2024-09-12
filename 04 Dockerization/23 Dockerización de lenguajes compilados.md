@@ -40,7 +40,7 @@ cd !$
 touch main.go
 ```
 
-**Dentro del archivo `main.go` agregamos el siguiente código:**
+**Dentro del fichero `main.go` agregamos el siguiente código:**
 
 ```go
 // Autor: Daniel Benjamin Perez Morales
@@ -111,7 +111,7 @@ apt update && apt install -y curl
 curl https://go.dev/dl/go1.23.1.linux-amd64.tar.gz
 ```
 
-**Esto nos redirige a la descarga del archivo, puedes verlo en el siguiente enlace:**
+**Esto nos redirige a la descarga del fichero, puedes verlo en el siguiente enlace:**
 
 ```html
 <a href="https://dl.google.com/go/go1.23.1.linux-amd64.tar.gz">Found</a>.
@@ -127,9 +127,9 @@ curl -L https://go.dev/dl/go1.23.1.linux-amd64.tar.gz
 
 ---
 
-### ***Guardar el Archivo Descargado***
+### ***Guardar el Fichero Descargado***
 
-**Si deseas **guardar** el archivo descargado, utiliza la opción `-O` para que **curl** guarde el fichero con su nombre original:**
+**Si deseas **guardar** el fichero descargado, utiliza la opción `-O` para que **curl** guarde el fichero con su nombre original:**
 
 ```bash
 curl -LO https://go.dev/dl/go1.23.1.linux-amd64.tar.gz
@@ -144,7 +144,7 @@ curl -LO https://go.dev/dl/go1.23.1.linux-amd64.tar.gz
 100 70.1M  100 70.1M    0     0  7162k      0  0:00:10  0:00:10 --:--:-- 6809k
 ```
 
-**Si no necesitas el archivo descargado y solo querías ver el contenido, puedes listar los archivos presentes con:**
+**Si no necesitas el fichero descargado y solo querías ver el contenido, puedes listar los ficheros presentes con:**
 
 ```bash
 ls -lA
@@ -158,7 +158,7 @@ total 71884
 -rw-rw-r-- 1 1000 1000      436 Sep  6 21:36 main.go
 ```
 
-- *Para **eliminar** el archivo descargado:*
+- *Para **eliminar** el fichero descargado:*
 
 ```bash
 rm go1.23.1.linux-amd64.tar.gz
@@ -168,12 +168,12 @@ rm go1.23.1.linux-amd64.tar.gz
 
 ## ***Descompresión y Instalación de Go***
 
-- *Para ver el **output** directamente en la terminal y descomprimir el archivo en `/usr/local`, usamos la flag `--output -` de **curl** y un **pipe** a **tar** para la descompresión. A continuación, explicamos las flags utilizadas:*
+- *Para ver el **output** directamente en la terminal y descomprimir el fichero en `/usr/local`, usamos la flag `--output -` de **curl** y un **pipe** a **tar** para la descompresión. A continuación, explicamos las flags utilizadas:*
 
-- **`-C`** *indica el directorio en el que se debe descomprimir el archivo, en este caso `/usr/local`.*
+- **`-C`** *indica el directorio en el que se debe descomprimir el fichero, en este caso `/usr/local`.*
 - **`-v`** *es la opción **verbose** para mostrar información detallada del proceso.*
-- **`-z`** *descomprime archivos en formato **gzip**.*
-- **`-x`** *extrae los archivos del archivo comprimido.*
+- **`-z`** *descomprime ficheros en formato **gzip**.*
+- **`-x`** *extrae los ficheros del fichero comprimido.*
 
 ```bash
 curl -L https://go.dev/dl/go1.23.1.linux-amd64.tar.gz --output - | tar -zxvC /usr/local/
@@ -15027,13 +15027,13 @@ go version go1.23.1 linux/amd64
 
 ## ***Inicialización del Proyecto Go***
 
-- *Para comenzar nuestro proyecto de Go, necesitaremos crear un archivo de módulo. Esto lo hacemos con el comando `go mod init`, especificando la ruta del módulo:*
+- *Para comenzar nuestro proyecto de Go, necesitaremos crear un fichero de módulo. Esto lo hacemos con el comando `go mod init`, especificando la ruta del módulo:*
 
 ```bash
 go mod init github.com/DanielPerezMoralesDev13/App-Go
 ```
 
-- *Este comando genera el archivo **go.mod** que define el módulo del proyecto y la versión de Go. La salida del comando será algo como:*
+- *Este comando genera el fichero **go.mod** que define el módulo del proyecto y la versión de Go. La salida del comando será algo como:*
 
 ```bash
 go: creating new go.mod: module github.com/DanielPerezMoralesDev13/App-Go
@@ -15043,15 +15043,15 @@ go: to add module requirements and sums:
 
 ---
 
-### ***Verificación de la Creación del Archivo `go.mod`***
+### ***Verificación de la Creación del Fichero `go.mod`***
 
-- **Para verificar que el archivo **go.mod** fue creado correctamente, usamos el comando `ls -lA`:**
+- **Para verificar que el fichero **go.mod** fue creado correctamente, usamos el comando `ls -lA`:**
 
 ```bash
 ls -lA
 ```
 
-- **Esto mostrará el contenido del directorio, incluyendo el archivo **go.mod**:**
+- **Esto mostrará el contenido del directorio, incluyendo el fichero **go.mod**:**
 
 ```bash
 total 8
@@ -15061,7 +15061,7 @@ total 8
 
 ---
 
-### ***Contenido del Archivo `go.mod`***
+### ***Contenido del Fichero `go.mod`***
 
 - *Podemos revisar el contenido de **go.mod** para confirmar que se haya configurado el módulo correctamente, así como la versión de Go utilizada:*
 
@@ -15081,7 +15081,7 @@ go 1.23.1
 
 ### ***Gestión de Dependencias***
 
-- *Para agregar automáticamente las dependencias necesarias y limpiar el archivo **go.mod**, usamos el comando `go mod tidy`. Este comando actualiza los requisitos y suma las dependencias utilizadas en el proyecto:*
+- *Para agregar automáticamente las dependencias necesarias y limpiar el fichero **go.mod**, usamos el comando `go mod tidy`. Este comando actualiza los requisitos y suma las dependencias utilizadas en el proyecto:*
 
 ```bash
 go mod tidy
@@ -15143,34 +15143,34 @@ total 16
 
 **Descripción de los ficheros:**
 
-- **go.mod:** *Archivo que define las dependencias del proyecto y el módulo de Go. Este archivo se genera automáticamente cuando inicializamos un proyecto de Go con módulos.*
+- **go.mod:** *Fichero que define las dependencias del proyecto y el módulo de Go. Este fichero se genera automáticamente cuando inicializamos un proyecto de Go con módulos.*
   - **Tamaño:** **1403 bytes.**
   - **Permisos:** *Lectura y escritura para el propietario (`rw-`), solo lectura para el grupo y otros (`r--`).*
   - **Propietario:** *`root`.*
 
-- **go.sum:** *Este archivo se genera automáticamente para almacenar los hashes de las dependencias, garantizando la integridad y seguridad de las versiones de las bibliotecas externas que usa el proyecto.*
+- **go.sum:** *Este fichero se genera automáticamente para almacenar los hashes de las dependencias, garantizando la integridad y seguridad de las versiones de las bibliotecas externas que usa el proyecto.*
   - **Tamaño:** *7948 bytes.*
   - **Permisos:** *Lectura y escritura para el propietario (`rw-`), solo lectura para el grupo y otros (`r--`).*
   - **Propietario:** *`root`.*
 
-- **main.go:** *Archivo principal que contiene el código fuente de la aplicación en Go.*
+- **main.go:** *Fichero principal que contiene el código fuente de la aplicación en Go.*
   - **Tamaño:** **436 bytes.**
   - **Permisos:** *Lectura y escritura tanto para el propietario como para el grupo (`rw-`), y solo lectura para otros (`r--`).*
   - **Propietario:** *El usuario con ID `1000` (generalmente el primer usuario creado en el sistema).*
 
 ---
 
-### ***Creación y modificación de los archivos `go.sum` y `go.mod`***
+### ***Creación y modificación de los ficheros `go.sum` y `go.mod`***
 
-- **go.sum:** *Este archivo almacena los hashes de las versiones exactas de las dependencias utilizadas en el proyecto. Se genera automáticamente cuando se añaden o actualizan dependencias, y asegura que siempre se descarguen las versiones correctas de las bibliotecas, evitando inconsistencias.*
+- **go.sum:** *Este fichero almacena los hashes de las versiones exactas de las dependencias utilizadas en el proyecto. Se genera automáticamente cuando se añaden o actualizan dependencias, y asegura que siempre se descarguen las versiones correctas de las bibliotecas, evitando inconsistencias.*
 
-- **Modificaciones en `go.mod`:** *Este archivo se actualiza cuando se añaden nuevas dependencias o se realizan cambios en las versiones de las dependencias actuales. Go gestiona automáticamente este archivo cuando utilizas comandos como `go get` para instalar bibliotecas.*
+- **Modificaciones en `go.mod`:** *Este fichero se actualiza cuando se añaden nuevas dependencias o se realizan cambios en las versiones de las dependencias actuales. Go gestiona automáticamente este fichero cuando utilizas comandos como `go get` para instalar bibliotecas.*
 
 ---
 
 ### ***Detalles sobre las dependencias***
 
-**Aunque el código solo incluye explícitamente una dependencia, `"github.com/gin-gonic/gin"`, esta a su vez tiene otras dependencias que se instalan automáticamente de manera recursiva. Esto ocurre porque cada biblioteca puede depender de otras para funcionar correctamente. Go gestiona esta cadena de dependencias a través de los archivos `go.mod` y `go.sum`, asegurando que todas las dependencias se resuelvan y estén disponibles durante la compilación y ejecución del proyecto.**
+**Aunque el código solo incluye explícitamente una dependencia, `"github.com/gin-gonic/gin"`, esta a su vez tiene otras dependencias que se instalan automáticamente de manera recursiva. Esto ocurre porque cada biblioteca puede depender de otras para funcionar correctamente. Go gestiona esta cadena de dependencias a través de los ficheros `go.mod` y `go.sum`, asegurando que todas las dependencias se resuelvan y estén disponibles durante la compilación y ejecución del proyecto.**
 
 ```bash
 cat go.sum
@@ -15307,7 +15307,7 @@ require (
 
 ### ***Instalación de dependencias***
 
-- **Para instalar las dependencias definidas en el archivo `go.mod`, utilizamos el siguiente comando:**
+- **Para instalar las dependencias definidas en el fichero `go.mod`, utilizamos el siguiente comando:**
 
 ```bash
 go mod download
@@ -15325,7 +15325,7 @@ go mod download
 go build
 ```
 
-- **Este comando genera un archivo binario a partir del código fuente de Go, listo para ser ejecutado. Si ejecutamos el comando `ls -lA` para ver los archivos en el directorio, podemos observar el binario generado:**
+- **Este comando genera un fichero binario a partir del código fuente de Go, listo para ser ejecutado. Si ejecutamos el comando `ls -lA` para ver los ficheros en el directorio, podemos observar el binario generado:**
 
 ```bash
 ls -lA
@@ -15448,7 +15448,7 @@ docker stop go-practicas
 
 ## ***Paso 2: Creación del Dockerfile y .dockerignore***
 
-- **Para comenzar, creamos el archivo `Dockerfile` y `.dockerignore`:**
+- **Para comenzar, creamos el fichero `Dockerfile` y `.dockerignore`:**
 
 ```bash
 touch Dockerfile .dockerignore
@@ -15456,7 +15456,7 @@ touch Dockerfile .dockerignore
 
 ### ***Contenido del `.dockerignore`***
 
-- **En este archivo excluimos del contexto de build los archivos que no queremos que se copien al contenedor:**
+- **En este fichero excluimos del contexto de build los ficheros que no queremos que se copien al contenedor:**
 
 ```bash
 # Autor: Daniel Benjamin Perez Morales
@@ -15473,7 +15473,7 @@ Dockerfile*
 
 ### ***Contenido del `Dockerfile`***
 
-- **Este es el archivo que define cómo se construirá la imagen Docker:**
+- **Este es el fichero que define cómo se construirá la imagen Docker:**
 
 ```Dockerfile
 # Autor: Daniel Benjamin Perez Morales
@@ -15495,7 +15495,7 @@ WORKDIR /App
 # Añade Go al PATH para que los binarios sean accesibles globalmente
 ENV PATH="$PATH:/usr/local/go/bin"
 
-# Copia los archivos go.mod y go.sum necesarios para la gestión de dependencias
+# Copia los ficheros go.mod y go.sum necesarios para la gestión de dependencias
 COPY go.* ./
 
 # Descarga las dependencias definidas en el go.mod
@@ -15637,7 +15637,7 @@ d4nitrix13/gin   latest    00382cb81ccc   16 minutes ago   753MB
 
 - *Para reducir el tamaño de la imagen, podemos aprovechar la técnica de **Multi-Stage Builds**. Esta técnica nos permite optimizar el proceso de creación de imágenes eliminando las dependencias y herramientas que solo son necesarias durante la etapa de compilación, dejando una imagen final más ligera con solo el binario de la aplicación.*
 
-- *Con **Multi-Stage Builds**, podemos reducir considerablemente el tamaño de la imagen, eliminando archivos y herramientas no necesarios en la etapa de ejecución.*
+- *Con **Multi-Stage Builds**, podemos reducir considerablemente el tamaño de la imagen, eliminando ficheros y herramientas no necesarios en la etapa de ejecución.*
 
 ---
 

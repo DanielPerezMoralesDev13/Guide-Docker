@@ -8,7 +8,7 @@
 
 ## ***Descripción del Reto***
 
-**El objetivo es Dockerizar una aplicación Ruby on Rails contenida en un archivo `.zip`. Se deben seguir dos enfoques:**
+**El objetivo es Dockerizar una aplicación Ruby on Rails contenida en un fichero `.zip`. Se deben seguir dos enfoques:**
 
 1. **Dockerización Manual:** *Partiendo de la imagen `ubuntu:22.04`, instalar todos los componentes necesarios para ejecutar la aplicación Rails.*
 2. **Dockerización Simplificada:** *Usando la imagen oficial `ruby:3.0.2` que coincide con la versión de Ruby utilizada para desarrollar la aplicación.*
@@ -29,7 +29,7 @@
 mkdir "./05 Reto App Dockerization Ruby On Rails"
 ```
 
-**Copia el archivo `.zip` llamado `Reto_Dockerization_Ruby.zip` al directorio creado.**
+**Copia el fichero `.zip` llamado `Reto_Dockerization_Ruby.zip` al directorio creado.**
 
 #### ***Crear y Ejecutar el Contenedor***
 
@@ -53,7 +53,7 @@ apt update && apt install -y unzip tree
 
 ### ***Verificar el Contenido del Contenedor***
 
-**Verifica el contenido del directorio de trabajo para confirmar que el archivo `Reto_Dockerization_Ruby.zip` está presente:**
+**Verifica el contenido del directorio de trabajo para confirmar que el fichero `Reto_Dockerization_Ruby.zip` está presente:**
 
 ```bash
 ls -l
@@ -70,9 +70,9 @@ useradd -m -s "/bin/bash" d4nitrix13
 
 ---
 
-### ***Descomprimir el Archivo***
+### ***Descomprimir el Fichero***
 
-**Descomprime el archivo `.zip` para obtener el contenido de la aplicación Rails:**
+**Descomprime el fichero `.zip` para obtener el contenido de la aplicación Rails:**
 
 ```bash
 unzip ./Reto_Dockerization_Ruby.zip
@@ -82,7 +82,7 @@ unzip ./Reto_Dockerization_Ruby.zip
 
 ### ***Verificar el Contenido Descomprimido***
 
-**Lista el contenido del directorio para asegurarte de que los archivos de la aplicación Rails estén correctamente descomprimidos:**
+**Lista el contenido del directorio para asegurarte de que los ficheros de la aplicación Rails estén correctamente descomprimidos:**
 
 ```bash
 ls -lA
@@ -217,7 +217,7 @@ tree -C .
 
 ### ***Cambiar los Permisos***
 
-**Cambia los permisos de los archivos y directorios descomprimidos para que sean propiedad del nuevo usuario creado:**
+**Cambia los permisos de los ficheros y directorios descomprimidos para que sean propiedad del nuevo usuario creado:**
 
 ```bash
 chown -R d4nitrix13:d4nitrix13 ./
@@ -227,7 +227,7 @@ chown -R d4nitrix13:d4nitrix13 ./
 
 ### ***Verificar los Permisos***
 
-**Verifica que los permisos hayan sido correctamente actualizados para los archivos y directorios descomprimidos:**
+**Verifica que los permisos hayan sido correctamente actualizados para los ficheros y directorios descomprimidos:**
 
 ```bash
 ls -lA
@@ -339,9 +339,9 @@ All done! After reloading your terminal window, rbenv should be good to go.
 
 ---
 
-### ***Actualizar el Archivo `.bashrc`***
+### ***Actualizar el Fichero `.bashrc`***
 
-**Añade `rbenv` al `PATH` y configura el entorno en el archivo `.bashrc`:**
+**Añade `rbenv` al `PATH` y configura el entorno en el fichero `.bashrc`:**
 
 ```bash
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
@@ -435,7 +435,7 @@ It no longer receives bug fixes or critical security updates.
 
 ### ***Instalar un Editor de Texto***
 
-**Instala `nano` para editar archivos de configuración:**
+**Instala `nano` para editar ficheros de configuración:**
 
 ```bash
 apt install -y nano
@@ -451,7 +451,7 @@ apt install -y nano
 nano .ruby-version
 ```
 
-**Reemplaza la versión actual `3.2.0` con `3.0.2` en el archivo `.ruby-version`:**
+**Reemplaza la versión actual `3.2.0` con `3.0.2` en el fichero `.ruby-version`:**
 
 ```bash
 rbenv global 3.0.2
@@ -465,7 +465,7 @@ ruby 3.0.2p107 (2021-07-07 revision 0db68f0233) [x86_64-linux]
 
 **Las gemas son la forma en que se distribuyen las librerías Ruby. Utiliza el comando `gem` para gestionar estas gemas, y este comando se emplea para instalar Rails.**
 
-**Cuando instalas una gema, el proceso de instalación genera documentación local. Esto puede añadir una cantidad significativa de tiempo al proceso de instalación de cada gema. Para desactivar la generación de documentación local, crea un archivo llamado `~/.gemrc` con el siguiente parámetro de configuración:**
+**Cuando instalas una gema, el proceso de instalación genera documentación local. Esto puede añadir una cantidad significativa de tiempo al proceso de instalación de cada gema. Para desactivar la generación de documentación local, crea un fichero llamado `~/.gemrc` con el siguiente parámetro de configuración:**
 
 ```bash
 echo "gem: --no-document" > ~/.gemrc
@@ -736,7 +736,7 @@ Exiting
 
 1. **Agregar la gema `tzinfo-data` al `Gemfile`:**
 
-   **Edite su archivo `Gemfile` y agregue la gema `tzinfo-data` en la sección de gems:**
+   **Edite su fichero `Gemfile` y agregue la gema `tzinfo-data` en la sección de gems:**
 
    ```bash
    echo "gem 'tzinfo-data'" >> Gemfile
@@ -831,7 +831,7 @@ Completed 200 OK in 80ms (Views: 68.0ms | ActiveRecord: 0.0ms | Allocations: 276
 
 ### ***Dockerización de una Aplicación Rails***
 
-**Primero, accedemos a la terminal como el usuario correspondiente y creamos los archivos necesarios para la configuración del contenedor Docker:**
+**Primero, accedemos a la terminal como el usuario correspondiente y creamos los ficheros necesarios para la configuración del contenedor Docker:**
 
 ```bash
 su d4nitrix13
@@ -842,7 +842,7 @@ touch Dockerfile .dockerignore
 
 ### ***Configuración de `.dockerignore`***
 
-**Es importante crear un archivo `.dockerignore` para excluir archivos innecesarios del contexto de construcción de la imagen Docker. Esto ayuda a reducir el tamaño de la imagen y mejora el tiempo de construcción. Ejecutamos:**
+**Es importante crear un fichero `.dockerignore` para excluir ficheros innecesarios del contexto de construcción de la imagen Docker. Esto ayuda a reducir el tamaño de la imagen y mejora el tiempo de construcción. Ejecutamos:**
 
 ```bash
 nano .dockerignore
@@ -856,7 +856,7 @@ Dockerfile*
 .dockerignoreDockerización de una Aplicación Rails
 ```
 
-**Este archivo se asegura de que no se incluyan archivos como el Dockerfile, el directorio `.git`, archivos `.dockerignore` y cualquier archivo `.zip` en la imagen del contenedor.**
+**Este fichero se asegura de que no se incluyan ficheros como el Dockerfile, el directorio `.git`, ficheros `.dockerignore` y cualquier fichero `.zip` en la imagen del contenedor.**
 
 ---
 
@@ -884,7 +884,7 @@ WORKDIR /App
 # Define la variable de entorno HOME, necesaria para la instalación de rbenv
 ENV HOME=/root
 
-# Copia los archivos Gemfile y Gemfile.lock (si existe)
+# Copia los ficheros Gemfile y Gemfile.lock (si existe)
 COPY ./Gemfile* ./
 
 # Instala las dependencias necesarias para rbenv y Ruby
@@ -930,7 +930,7 @@ CMD rails server -b 0.0.0.0
 1. **Imagen base:** *Se utiliza Ubuntu 22.04 como sistema operativo base del contenedor.*
 2. **Directorio de trabajo:** *Se define `/App` como el directorio de trabajo dentro del contenedor.*
 3. **Instalación de rbenv y Ruby:** *El contenedor se configura con las herramientas necesarias para instalar y gestionar Ruby (usando `rbenv`) y las gemas necesarias con Bundler.*
-4. **Copia de archivos:** *Se copian los archivos `Gemfile` y luego todo el proyecto al contenedor.*
+4. **Copia de ficheros:** *Se copian los ficheros `Gemfile` y luego todo el proyecto al contenedor.*
 5. **Puerto expuesto:** *Se expone el puerto 3000, que suele ser el puerto por defecto para aplicaciones Rails.*
 6. **Comando por defecto:** *El servidor Rails se inicia en todas las interfaces de red.*
 
@@ -938,7 +938,7 @@ CMD rails server -b 0.0.0.0
 
 ### ***Recordatorio Importante***
 
-**No uses los siguientes comandos para modificar el archivo `.bashrc`, ya que podría causar problemas al ejecutar los comandos dentro de Docker:**
+**No uses los siguientes comandos para modificar el fichero `.bashrc`, ya que podría causar problemas al ejecutar los comandos dentro de Docker:**
 
 - **Incorrecto:**
 
@@ -954,7 +954,7 @@ CMD rails server -b 0.0.0.0
   eval "$(rbenv init -)"
   ```
 
-**Esto asegura que los cambios se realicen temporalmente en la sesión actual sin modificar el archivo de configuración del shell.**
+**Esto asegura que los cambios se realicen temporalmente en la sesión actual sin modificar el fichero de configuración del shell.**
 
 ---
 
@@ -1082,7 +1082,7 @@ FROM ruby:3.0.2
 # Establece el directorio de trabajo dentro del contenedor en /App
 WORKDIR /App
 
-# Copia el archivo Gemfile y, si existe, el archivo Gemfile.lock al contenedor.
+# Copia el fichero Gemfile y, si existe, el fichero Gemfile.lock al contenedor.
 # Esto permite instalar las dependencias de Ruby especificadas en el Gemfile.
 COPY ./Gemfile* ./
 
@@ -1091,7 +1091,7 @@ COPY ./Gemfile* ./
 RUN gem install bundler && bundle install
 
 # Copia todo el contenido del directorio actual del host al contenedor.
-# Esto incluye la aplicación y cualquier otro archivo necesario para la ejecución.
+# Esto incluye la aplicación y cualquier otro fichero necesario para la ejecución.
 COPY ./ ./
 
 # Expone el puerto 3000 del contenedor para que la aplicación web en desarrollo

@@ -11,7 +11,7 @@
    cd "$!"
    ```
 
-2. **Descomprimir los archivos:**
+2. **Descomprimir los ficheros:**
 
 ```bash
 unzip Reto-App-Axum.zip -d ./
@@ -69,7 +69,7 @@ Archive:  Reto-App-Axum.zip
 
 ---
 
-## ***Listamos los archivos en el directorio:***
+## ***Listamos los ficheros en el directorio:***
 
 ```bash
 lsd -lA
@@ -242,7 +242,7 @@ source "$HOME/.cargo/env.fish"  # For fish
   ```
 
 - **echo "PATH='${HOME}/.cargo/bin:${PATH}'" >> ~/.bashrc:** *Este comando agrega la ruta de los binarios de **cargo** (ubicados en `~/.cargo/bin`) al **PATH** global del usuario, asegurando que los comandos de **cargo** puedan ser ejecutados desde cualquier directorio.*
-- **source ~/.bashrc:** *Recarga la configuración del archivo **.bashrc** para aplicar inmediatamente los cambios en el **PATH** sin necesidad de cerrar y abrir la terminal.*
+- **source ~/.bashrc:** *Recarga la configuración del fichero **.bashrc** para aplicar inmediatamente los cambios en el **PATH** sin necesidad de cerrar y abrir la terminal.*
 
 ---
 
@@ -488,7 +488,7 @@ curl 172.17.0.2:3000
 rm -rf ./.git
 ```
 
-**2. Creación de archivos necesarios:**
+**2. Creación de ficheros necesarios:**
 
 ```bash
 touch Dockerfile .dockerignore
@@ -512,12 +512,12 @@ WORKDIR /App
 # Definimos un argumento de construcción para el puerto de la aplicación.
 ARG APP_PORT=3000
 
-# Copiamos los archivos de configuración de Cargo al contenedor.
+# Copiamos los ficheros de configuración de Cargo al contenedor.
 # Esto incluye Cargo.toml y Cargo.lock necesarios para la compilación.
 COPY ./Cargo* ./
 
-# Copiamos el resto de los archivos del proyecto al contenedor.
-# Esto incluye el código fuente y otros archivos necesarios para la construcción.
+# Copiamos el resto de los ficheros del proyecto al contenedor.
+# Esto incluye el código fuente y otros ficheros necesarios para la construcción.
 COPY ./ ./
 
 # Construimos el proyecto Rust en modo release para optimizar el binario.
@@ -612,12 +612,12 @@ WORKDIR /App
 # Definimos un argumento de construcción para el puerto de la aplicación.
 ARG APP_PORT=3000
 
-# Copiamos los archivos de configuración de Cargo al contenedor.
+# Copiamos los ficheros de configuración de Cargo al contenedor.
 # Esto incluye Cargo.toml y Cargo.lock necesarios para la compilación.
 COPY ./Cargo* ./
 
-# Copiamos el resto de los archivos del proyecto al contenedor.
-# Esto incluye el código fuente y otros archivos necesarios para la construcción.
+# Copiamos el resto de los ficheros del proyecto al contenedor.
+# Esto incluye el código fuente y otros ficheros necesarios para la construcción.
 COPY ./ ./
 
 # Construimos el proyecto Rust en modo release para optimizar el binario.
@@ -704,12 +704,12 @@ WORKDIR /App
 # Definimos un argumento de construcción para el puerto de la aplicación.
 ARG APP_PORT=3000
 
-# Copiamos los archivos de configuración de Cargo al contenedor.
+# Copiamos los ficheros de configuración de Cargo al contenedor.
 # Esto incluye Cargo.toml y Cargo.lock necesarios para la compilación.
 COPY ./Cargo* ./
 
-# Copiamos el resto de los archivos del proyecto al contenedor.
-# Esto incluye el código fuente y otros archivos necesarios para la construcción.
+# Copiamos el resto de los ficheros del proyecto al contenedor.
+# Esto incluye el código fuente y otros ficheros necesarios para la construcción.
 COPY ./ ./
 
 # Construimos el proyecto Rust en modo release para optimizar el binario.

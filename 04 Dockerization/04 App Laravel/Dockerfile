@@ -20,13 +20,13 @@ RUN apt update && apt install -y unzip
 # con Composer instalado, como una imagen oficial de Composer.
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-# Copia los archivos composer.json y composer.lock al directorio de trabajo
+# Copia los ficheros composer.json y composer.lock al directorio de trabajo
 COPY ./composer.* ./
 
 # Instala las dependencias del proyecto PHP utilizando Composer
 RUN composer install --no-scripts
 
-# Copia el resto de los archivos del proyecto al directorio de trabajo
+# Copia el resto de los ficheros del proyecto al directorio de trabajo
 COPY ./ ./
 
 # Expone el puerto 8000 para que el contenedor pueda aceptar conexiones externas

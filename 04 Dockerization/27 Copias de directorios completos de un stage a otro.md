@@ -23,13 +23,13 @@ FROM python:3.10-slim AS base
 # Esto garantiza que obtengamos las últimas versiones de los paquetes y parches de seguridad.
 RUN apt update \
     # Instalamos las siguientes dependencias esenciales:
-    # - default-libmysqlclient-dev: Proporciona las bibliotecas y archivos de encabezado necesarios para compilar aplicaciones que interactúan con MySQL.
+    # - default-libmysqlclient-dev: Proporciona las bibliotecas y ficheros de encabezado necesarios para compilar aplicaciones que interactúan con MySQL.
     # También instalamos Pipenv, una herramienta para gestionar entornos virtuales y dependencias en proyectos Python.
     && apt install -y \
     default-libmysqlclient-dev \
     && pip install pipenv
 
-# Establecemos el directorio de trabajo en `/App` para organizar el código y archivos de la aplicación.
+# Establecemos el directorio de trabajo en `/App` para organizar el código y ficheros de la aplicación.
 # Todos los comandos que se ejecuten a partir de este punto se realizarán dentro de este directorio.
 WORKDIR /App
 
@@ -44,8 +44,8 @@ FROM base AS builder
 # Esto asegura que el entorno virtual esté contenido dentro del directorio `/App`, facilitando su gestión y evitando conflictos.
 ENV PIPENV_VENV_IN_PROJECT=1
 
-# Copiamos los archivos `Pipfile` y `Pipfile.lock` al directorio de trabajo del contenedor.
-# Estos archivos definen las dependencias del proyecto y permiten a Pipenv instalar las versiones exactas necesarias.
+# Copiamos los ficheros `Pipfile` y `Pipfile.lock` al directorio de trabajo del contenedor.
+# Estos ficheros definen las dependencias del proyecto y permiten a Pipenv instalar las versiones exactas necesarias.
 COPY ./Pipfile* ./
 
 # Instalamos las herramientas de compilación necesarias y luego usamos Pipenv para instalar las dependencias especificadas en el `Pipfile`.
@@ -61,7 +61,7 @@ RUN apt install -y build-essential && pipenv install
 # Esto garantiza que el contenedor final tenga la configuración y dependencias necesarias para ejecutar la aplicación.
 FROM base AS runtime
 
-# Definimos la variable de entorno `FLASK_APP` que indica a Flask el archivo principal de la aplicación.
+# Definimos la variable de entorno `FLASK_APP` que indica a Flask el fichero principal de la aplicación.
 # Esta variable es necesaria para que Flask pueda localizar y ejecutar la aplicación cuando el contenedor se inicie.
 ENV FLASK_APP=./todos.app
 
@@ -69,7 +69,7 @@ ENV FLASK_APP=./todos.app
 # Esto evita la reinstalación de dependencias y reduce el tamaño del contenedor final.
 COPY --from=builder /App/.venv /App/.venv
 
-# Copiamos el código fuente de la aplicación y otros archivos necesarios para ejecutar el proyecto.
+# Copiamos el código fuente de la aplicación y otros ficheros necesarios para ejecutar el proyecto.
 # Esto incluye el código de Flask y cualquier recurso adicional requerido por la aplicación.
 COPY ./ ./
 
@@ -152,13 +152,13 @@ FROM python:3.10-slim AS base
 # Esto garantiza que obtengamos las últimas versiones de los paquetes y parches de seguridad.
 RUN apt update \
     # Instalamos las siguientes dependencias esenciales:
-    # - default-libmysqlclient-dev: Proporciona las bibliotecas y archivos de encabezado necesarios para compilar aplicaciones que interactúan con MySQL.
+    # - default-libmysqlclient-dev: Proporciona las bibliotecas y ficheros de encabezado necesarios para compilar aplicaciones que interactúan con MySQL.
     # También instalamos Pipenv, una herramienta para gestionar entornos virtuales y dependencias en proyectos Python.
     && apt install -y \
     default-libmysqlclient-dev \
     && pip install pipenv
 
-# Establecemos el directorio de trabajo en `/App` para organizar el código y archivos de la aplicación.
+# Establecemos el directorio de trabajo en `/App` para organizar el código y ficheros de la aplicación.
 # Todos los comandos que se ejecuten a partir de este punto se realizarán dentro de este directorio.
 WORKDIR /App
 
@@ -173,8 +173,8 @@ FROM base AS builder
 # Esto asegura que el entorno virtual esté contenido dentro del directorio `/App`, facilitando su gestión y evitando conflictos.
 ENV PIPENV_VENV_IN_PROJECT=1
 
-# Copiamos los archivos `Pipfile` y `Pipfile.lock` al directorio de trabajo del contenedor.
-# Estos archivos definen las dependencias del proyecto y permiten a Pipenv instalar las versiones exactas necesarias.
+# Copiamos los ficheros `Pipfile` y `Pipfile.lock` al directorio de trabajo del contenedor.
+# Estos ficheros definen las dependencias del proyecto y permiten a Pipenv instalar las versiones exactas necesarias.
 COPY ./Pipfile* ./
 
 # Instalamos las herramientas de compilación necesarias y luego usamos Pipenv para instalar las dependencias especificadas en el `Pipfile`.
@@ -189,7 +189,7 @@ RUN apt install -y build-essential && pipenv install
 # Esto garantiza que el contenedor final tenga la configuración y dependencias necesarias para ejecutar la aplicación.
 FROM base AS runtime
 
-# Definimos la variable de entorno `FLASK_APP` que indica a Flask el archivo principal de la aplicación.
+# Definimos la variable de entorno `FLASK_APP` que indica a Flask el fichero principal de la aplicación.
 # Esta variable es necesaria para que Flask pueda localizar y ejecutar la aplicación cuando el contenedor se inicie.
 ENV FLASK_APP=./todos.app
 
@@ -197,7 +197,7 @@ ENV FLASK_APP=./todos.app
 # Esto evita la reinstalación de dependencias y reduce el tamaño del contenedor final.
 COPY --from=builder /App/.venv ./
 
-# Copiamos el código fuente de la aplicación y otros archivos necesarios para ejecutar el proyecto.
+# Copiamos el código fuente de la aplicación y otros ficheros necesarios para ejecutar el proyecto.
 # Esto incluye el código de Flask y cualquier recurso adicional requerido por la aplicación.
 COPY ./ ./
 
@@ -283,7 +283,7 @@ Error: the command flask could not be found within PATH or Pipfile's [scripts].
 
 #### ***Ejecución con Comando Alternativo para Listar Contenidos***
 
-- **Para comprobar la estructura del directorio y los archivos presentes, puedes usar el siguiente comando:**
+- **Para comprobar la estructura del directorio y los ficheros presentes, puedes usar el siguiente comando:**
 
 ```bash
 docker run -itp5000:5000 --rm d4nitrix13/app-08:fail ls -lA
@@ -335,13 +335,13 @@ FROM python:3.10-slim AS base
 # Esto garantiza que obtengamos las últimas versiones de los paquetes y parches de seguridad.
 RUN apt update \
     # Instalamos las siguientes dependencias esenciales:
-    # - default-libmysqlclient-dev: Proporciona las bibliotecas y archivos de encabezado necesarios para compilar aplicaciones que interactúan con MySQL.
+    # - default-libmysqlclient-dev: Proporciona las bibliotecas y ficheros de encabezado necesarios para compilar aplicaciones que interactúan con MySQL.
     # También instalamos Pipenv, una herramienta para gestionar entornos virtuales y dependencias en proyectos Python.
     && apt install -y \
     default-libmysqlclient-dev \
     && pip install pipenv
 
-# Establecemos el directorio de trabajo en `/App` para organizar el código y archivos de la aplicación.
+# Establecemos el directorio de trabajo en `/App` para organizar el código y ficheros de la aplicación.
 # Todos los comandos que se ejecuten a partir de este punto se realizarán dentro de este directorio.
 WORKDIR /App
 
@@ -356,8 +356,8 @@ FROM base AS builder
 # Esto asegura que el entorno virtual esté contenido dentro del directorio `/App`, facilitando su gestión y evitando conflictos.
 ENV PIPENV_VENV_IN_PROJECT=1
 
-# Copiamos los archivos `Pipfile` y `Pipfile.lock` al directorio de trabajo del contenedor.
-# Estos archivos definen las dependencias del proyecto y permiten a Pipenv instalar las versiones exactas necesarias.
+# Copiamos los ficheros `Pipfile` y `Pipfile.lock` al directorio de trabajo del contenedor.
+# Estos ficheros definen las dependencias del proyecto y permiten a Pipenv instalar las versiones exactas necesarias.
 COPY ./Pipfile* ./
 
 # Instalamos las herramientas de compilación necesarias y luego usamos Pipenv para instalar las dependencias especificadas en el `Pipfile`.
@@ -373,7 +373,7 @@ RUN apt install -y build-essential && pipenv install
 # Esto garantiza que el contenedor final tenga la configuración y dependencias necesarias para ejecutar la aplicación.
 FROM base AS runtime
 
-# Definimos la variable de entorno `FLASK_APP` que indica a Flask el archivo principal de la aplicación.
+# Definimos la variable de entorno `FLASK_APP` que indica a Flask el fichero principal de la aplicación.
 # Esta variable es necesaria para que Flask pueda localizar y ejecutar la aplicación cuando el contenedor se inicie.
 ENV FLASK_APP=./todos.app
 
@@ -381,7 +381,7 @@ ENV FLASK_APP=./todos.app
 # Esto evita la reinstalación de dependencias y reduce el tamaño del contenedor final.
 COPY --from=builder /App/.venv ./.venv
 
-# Copiamos el código fuente de la aplicación y otros archivos necesarios para ejecutar el proyecto.
+# Copiamos el código fuente de la aplicación y otros ficheros necesarios para ejecutar el proyecto.
 # Esto incluye el código de Flask y cualquier recurso adicional requerido por la aplicación.
 COPY ./ ./
 

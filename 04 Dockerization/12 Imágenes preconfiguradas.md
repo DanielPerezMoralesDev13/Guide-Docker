@@ -171,7 +171,7 @@ docker build -t d4nitrix13/node:preconfigurado .
 
 ## ***Desglose del Dockerfile***
 
-```dockerfile
+```Dockerfile
 # Las imágenes ya vienen actualizadas normalmente por eso no es necesario poner `apt upgrade`
 FROM node:lts
 
@@ -205,13 +205,13 @@ CMD node ./index.js
 > [!WARNING]
 > *La advertencia `JSONArgsRecommended: JSON arguments recommended for CMD to prevent unintended behavior related to OS signals (line 18)` sugiere que es mejor usar una forma JSON para el comando `CMD` en lugar de una cadena simple. Esto se recomienda para evitar comportamientos no deseados relacionados con las señales del sistema operativo. Para corregir esto, puedes cambiar:*
 
-```dockerfile
+```Dockerfile
 CMD node ./index.js
 ```
 
 **a:**
 
-```dockerfile
+```Dockerfile
 CMD ["node", "./index.js"]
 ```
 

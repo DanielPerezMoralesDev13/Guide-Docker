@@ -11,7 +11,7 @@ WORKDIR /App
 # Define la variable de entorno HOME, necesaria para la instalación de rbenv
 ENV HOME=/root
 
-# Copia el archivo Gemfile y Gemfile.lock (si existe) al contenedor para instalar las dependencias de Ruby
+# Copia el fichero Gemfile y Gemfile.lock (si existe) al contenedor para instalar las dependencias de Ruby
 COPY ./Gemfile* ./
 
 # Actualiza la lista de paquetes y luego instala las dependencias necesarias para rbenv, Ruby y Bundler
@@ -43,7 +43,7 @@ RUN apt update \
     && gem install bundler \
     && bundle install
 
-# Copia todo el contenido del directorio actual del host al contenedor, incluyendo la aplicación y otros archivos necesarios
+# Copia todo el contenido del directorio actual del host al contenedor, incluyendo la aplicación y otros ficheros necesarios
 COPY ./ ./
 
 # Expone el puerto 3000 para permitir el acceso externo a la aplicación web en desarrollo

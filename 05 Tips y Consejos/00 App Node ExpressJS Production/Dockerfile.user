@@ -1,0 +1,32 @@
+# Autor: Daniel Benjamin Perez Morales
+# GitHub: https://github.com/DanielPerezMoralesDev13
+# Correo electrónico: danielperezdev@proton.me
+
+# Base de la imagen que utilizaremos (Node.js en su versión LTS)
+FROM node:lts
+
+# Creación de un nuevo usuario llamado "d4nitrix13"
+RUN useradd -m d4nitrix13
+
+# Establecemos al usuario "d4nitrix13" para ejecutar los comandos siguientes
+USER d4nitrix13
+
+# Definimos el directorio de trabajo dentro del contenedor como "/App"
+WORKDIR /App
+
+# Copiamos los ficheros package*.json al directorio de trabajo en el contenedor,
+# asegurándonos de que el propietario y grupo sean "d4nitrix13"
+COPY --chown=d4nitrix13:d4nitrix13 ./package*.json ./
+
+# Instalamos las dependencias necesarias para que la aplicación web funcione correctamente
+RUN npm install
+
+# Copiamos todo el contenido del directorio actual al directorio de trabajo "/App" del contenedor
+# Manteniendo la propiedad del usuario "d4nitrix13"
+COPY --chown=d4nitrix13:d4nitrix13 ./ ./
+
+# Exponemos el puerto 3000 para acceder a la aplicación desde fuera del contenedor
+EXPOSE 3000
+
+# Usamos la forma shell para ejecutar "npm start" y levantar la aplicación
+CMD npm start

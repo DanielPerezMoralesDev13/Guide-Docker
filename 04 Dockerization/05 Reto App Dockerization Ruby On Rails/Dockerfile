@@ -8,7 +8,7 @@ FROM ruby:3.0.2
 # Establece el directorio de trabajo dentro del contenedor en /App
 WORKDIR /App
 
-# Copia el archivo Gemfile y, si existe, el archivo Gemfile.lock al contenedor.
+# Copia el fichero Gemfile y, si existe, el fichero Gemfile.lock al contenedor.
 # Esto permite instalar las dependencias de Ruby especificadas en el Gemfile.
 COPY ./Gemfile* ./
 
@@ -17,7 +17,7 @@ COPY ./Gemfile* ./
 RUN gem install bundler && bundle install
 
 # Copia todo el contenido del directorio actual del host al contenedor.
-# Esto incluye la aplicación y cualquier otro archivo necesario para la ejecución.
+# Esto incluye la aplicación y cualquier otro fichero necesario para la ejecución.
 COPY ./ ./
 
 # Expone el puerto 3000 del contenedor para que la aplicación web en desarrollo

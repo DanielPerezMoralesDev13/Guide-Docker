@@ -8,7 +8,7 @@ FROM ruby:3.0.2
 # Establece el directorio de trabajo donde se ejecutarán las siguientes instrucciones
 WORKDIR /App
 
-# Copia los archivos de Gemfile al contenedor.
+# Copia los ficheros de Gemfile al contenedor.
 # Esto asegura que solo se vuelvan a instalar las dependencias si el Gemfile cambia.
 COPY ./Gemfile* ./
 
@@ -16,7 +16,7 @@ COPY ./Gemfile* ./
 # y procede con la instalación de las dependencias del proyecto.
 RUN bundle config set --local path ./vendor/bundle && bundle install
 
-# Copia el resto de los archivos de la aplicación al contenedor.
+# Copia el resto de los ficheros de la aplicación al contenedor.
 COPY ./ ./
 
 # Expone el puerto 3000, que es donde la aplicación Ruby on Rails escuchará.

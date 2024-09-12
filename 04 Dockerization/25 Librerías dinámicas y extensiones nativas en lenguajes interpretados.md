@@ -19,9 +19,9 @@ cd !$  # El comando !$ reutiliza el último argumento del comando anterior, en e
 
 ---
 
-## ***Descompresión de Archivos***
+## ***Descompresión de Ficheros***
 
-**Descomprimimos el archivo ZIP que contiene nuestra aplicación:**
+**Descomprimimos el fichero ZIP que contiene nuestra aplicación:**
 
 ```bash
 unzip App-Flask-Mysql.zip
@@ -29,7 +29,7 @@ unzip App-Flask-Mysql.zip
 
 ---
 
-## ***Listar Archivos***
+## ***Listar Ficheros***
 
 - **Para asegurarnos de que todo esté en su lugar, listamos el contenido del directorio de la siguiente forma:**
 
@@ -59,7 +59,7 @@ tree -C ./
     ├── __init__.py
     └── models.py
 
-4 directorios, 14 archivos.
+4 directorios, 14 ficheros.
 ```
 
 ---
@@ -142,7 +142,7 @@ pip install pipenv
 ### ***¿Por qué usar `pipenv`?***
 
 - ***Pipenv** es una herramienta que combina la gestión de dependencias y la creación de entornos virtuales, todo en uno.*
-- *Usa un archivo `Pipfile` para definir las dependencias y un archivo `Pipfile.lock` para asegurar que las versiones de las dependencias sean reproducibles.*
+- *Usa un fichero `Pipfile` para definir las dependencias y un fichero `Pipfile.lock` para asegurar que las versiones de las dependencias sean reproducibles.*
 
 **Una vez instalado, puedes instalar las dependencias del proyecto que están listadas en el `Pipfile` con:**
 
@@ -230,13 +230,13 @@ Installing dependencies from Pipfile.lock (051d81)...
 
 ### ***Estructura después de la instalación***
 
-- **Al ejecutar este comando, `pipenv` creará un directorio `.venv` dentro del proyecto, donde almacenará el entorno virtual. La estructura de archivos será algo similar a esto:**
+- **Al ejecutar este comando, `pipenv` creará un directorio `.venv` dentro del proyecto, donde almacenará el entorno virtual. La estructura de ficheros será algo similar a esto:**
 
 ```bash
 .
 ├── .venv/                  # Directorio donde se aloja el entorno virtual
-├── Pipfile                 # Archivo de configuración de dependencias
-├── Pipfile.lock            # Archivo que bloquea las versiones de dependencias
+├── Pipfile                 # Fichero de configuración de dependencias
+├── Pipfile.lock            # Fichero que bloquea las versiones de dependencias
 ├── migrations/             # Migraciones de la base de datos
 ├── todos/                  # Código fuente de la aplicación
 └── README.md
@@ -299,7 +299,7 @@ BUG_REPORT_URL="https://bugs.debian.org/"
 
 ### ***Crear un Contenedor de MySQL***
 
-**En lugar de instalar MySQL dentro del contenedor actual, vamos a crear un contenedor separado que servirá como base de datos MySQL. Los detalles de conexión a la base de datos estarán definidos en el archivo `.env` de la aplicación. Este archivo `.env` contiene variables de entorno esenciales como las credenciales y el puerto de MySQL:**
+**En lugar de instalar MySQL dentro del contenedor actual, vamos a crear un contenedor separado que servirá como base de datos MySQL. Los detalles de conexión a la base de datos estarán definidos en el fichero `.env` de la aplicación. Este fichero `.env` contiene variables de entorno esenciales como las credenciales y el puerto de MySQL:**
 
 ```bash
 DB_USER=root
@@ -313,7 +313,7 @@ DB_PORT=3306
 
 ### ***Creación del Contenedor MySQL***
 
-- **Para crear el contenedor de MySQL, usaremos la opción `-e` o `--env` que permite pasar variables de entorno, como la contraseña del usuario root, definida en el archivo `.env`. Aquí tienes tres formas de crear el contenedor de MySQL:**
+- **Para crear el contenedor de MySQL, usaremos la opción `-e` o `--env` que permite pasar variables de entorno, como la contraseña del usuario root, definida en el fichero `.env`. Aquí tienes tres formas de crear el contenedor de MySQL:**
 
 ---
 
@@ -483,9 +483,9 @@ docker inspect --format "{{.NetworkSettings.IPAddress}}" db-app-08
 
 ---
 
-### ***Modificación del Archivo `.env`***
+### ***Modificación del Fichero `.env`***
 
-- **Para que la aplicación Flask pueda conectarse al contenedor de MySQL, debemos actualizar el archivo `.env` con la dirección IP del contenedor de MySQL:**
+- **Para que la aplicación Flask pueda conectarse al contenedor de MySQL, debemos actualizar el fichero `.env` con la dirección IP del contenedor de MySQL:**
 
 ```bash
 DB_USER=root
@@ -654,9 +654,9 @@ Press CTRL+C to quit
 
 ### ***Creación del Dockerfile y .dockerignore***
 
-1. **Creación de los Archivos:**
+1. **Creación de los Ficheros:**
 
-   **Primero, creamos los archivos necesarios:**
+   **Primero, creamos los ficheros necesarios:**
 
    ```bash
    touch Dockerfile .dockerignore
@@ -678,7 +678,7 @@ Press CTRL+C to quit
    # Instalamos Pipenv, una herramienta de gestión de entornos virtuales y dependencias para Python
    RUN pip install pipenv
 
-   # Definimos la variable de entorno FLASK_APP para apuntar al archivo principal de la aplicación Flask
+   # Definimos la variable de entorno FLASK_APP para apuntar al fichero principal de la aplicación Flask
    # Esto indica a Flask dónde encontrar la aplicación cuando se ejecute
    ENV FLASK_APP=./todos.app
 
@@ -690,15 +690,15 @@ Press CTRL+C to quit
    # Todos los comandos subsiguientes se ejecutarán desde este directorio
    WORKDIR /App
 
-   # Copiamos los archivos Pipfile y Pipfile.lock al directorio de trabajo del contenedor
-   # Estos archivos contienen las dependencias necesarias para la aplicación
+   # Copiamos los ficheros Pipfile y Pipfile.lock al directorio de trabajo del contenedor
+   # Estos ficheros contienen las dependencias necesarias para la aplicación
    COPY ./Pipfile* ./
 
    # Instalamos las dependencias especificadas en Pipfile usando Pipenv
    # Esto configura el entorno virtual con todas las bibliotecas necesarias
    RUN pipenv install
 
-   # Copiamos todos los archivos del proyecto desde el host al contenedor
+   # Copiamos todos los ficheros del proyecto desde el host al contenedor
    # Esto incluye el código fuente de la aplicación y cualquier otro recurso necesario
    COPY ./ ./
 
@@ -713,7 +713,7 @@ Press CTRL+C to quit
 
 3. **Contenido del .dockerignore:**
 
-   - **El archivo `.dockerignore` ayuda a excluir archivos y directorios que no se deben copiar al contenedor. Su contenido es:**
+   - **El fichero `.dockerignore` ayuda a excluir ficheros y directorios que no se deben copiar al contenedor. Su contenido es:**
 
    ```bash
    # Autor: Daniel Benjamin Perez Morales
@@ -727,7 +727,7 @@ Press CTRL+C to quit
    __pycache__
    ```
 
-   **Esto evita que se copien archivos innecesarios y que aumenten el tamaño de la imagen.**
+   **Esto evita que se copien ficheros innecesarios y que aumenten el tamaño de la imagen.**
 
 ---
 

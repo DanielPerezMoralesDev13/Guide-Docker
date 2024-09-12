@@ -18,7 +18,7 @@ WORKDIR /App
 # Añade la ruta de Go al PATH para permitir el acceso a los comandos de Go globalmente dentro del contenedor.
 ENV PATH="$PATH:/usr/local/go/bin"
 
-# Copia los archivos go.mod y go.sum al directorio de trabajo. Estos archivos contienen las dependencias del proyecto Go.
+# Copia los ficheros go.mod y go.sum al directorio de trabajo. Estos ficheros contienen las dependencias del proyecto Go.
 COPY go.* ./
 
 # Ejecuta la descarga de todas las dependencias necesarias especificadas en go.mod.

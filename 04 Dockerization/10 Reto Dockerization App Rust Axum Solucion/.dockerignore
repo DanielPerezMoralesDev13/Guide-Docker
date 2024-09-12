@@ -2,14 +2,14 @@
 # GitHub: https://github.com/DanielPerezMoralesDev13
 # Correo electrónico: danielperezdev@proton.me
 
-# Excluimos la carpeta target que contiene los archivos de construcción.
+# Excluimos la carpeta target que contiene los ficheros de construcción.
 target/
 
-# Excluimos el Dockerfile y archivos relacionados.
+# Excluimos el Dockerfile y ficheros relacionados.
 Dockerfile*
 
-# Excluimos la carpeta .git y archivos de configuración de git.
+# Excluimos la carpeta .git y ficheros de configuración de git.
 .git*
 
-# Excluimos archivos comprimidos para evitar incluirlos en la imagen.
+# Excluimos ficheros comprimidos para evitar incluirlos en la imagen.
 *.zip

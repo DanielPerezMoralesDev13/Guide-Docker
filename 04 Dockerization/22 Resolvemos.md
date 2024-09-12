@@ -6,9 +6,9 @@
 
 ---
 
-## ***Descomprimir archivo***
+## ***Descomprimir fichero***
 
-**Comenzamos descomprimiendo el archivo `Reto_Dockerization_Ruby.zip` en el directorio indicado:**
+**Comenzamos descomprimiendo el fichero `Reto_Dockerization_Ruby.zip` en el directorio indicado:**
 
 ```bash
 unzip Reto_Dockerization_Ruby.zip -d "./06 App Ruby On Rails"
@@ -18,19 +18,19 @@ unzip Reto_Dockerization_Ruby.zip -d "./06 App Ruby On Rails"
 
 ### ***Estructura de Carpetas***
 
-- **Al descomprimir, encontrarás la estructura de carpetas del proyecto Ruby on Rails. Es importante mencionar que la estructura de carpetas y archivos de Rails es similar a la de Laravel, ya que este último se inspiró en Rails para su diseño.**
+- **Al descomprimir, encontrarás la estructura de directorios del proyecto Ruby on Rails. Es importante mencionar que la estructura de directorios y ficheros de Rails es similar a la de Laravel, ya que este último se inspiró en Rails para su diseño.**
 
 ---
 
-### ***Archivos para las Dependencias***
+### ***Ficheros para las Dependencias***
 
-- **Dentro del directorio descomprimido, verás dos archivos importantes para la gestión de dependencias: `Gemfile` y `Gemfile.lock`. Estos archivos contienen la lista de gemas (bibliotecas) necesarias para el proyecto y son equivalentes al `composer.json` y `composer.lock` en Laravel.**
+- **Dentro del directorio descomprimido, verás dos ficheros importantes para la gestión de dependencias: `Gemfile` y `Gemfile.lock`. Estos ficheros contienen la lista de gemas (bibliotecas) necesarias para el proyecto y son equivalentes al `composer.json` y `composer.lock` en Laravel.**
 
 ---
 
 #### ***Gemfile***
 
-**El archivo `Gemfile` especifica las dependencias de gemas que necesita tu aplicación. Aquí tienes un ejemplo típico de este archivo:**
+**El fichero `Gemfile` especifica las dependencias de gemas que necesita tu aplicación. Aquí tienes un ejemplo típico de este fichero:**
 
 ```ruby
 source "https://rubygems.org"
@@ -64,13 +64,13 @@ group :test do
 end
 ```
 
-**Este archivo define varias gemas esenciales para tu aplicación, como `rails` (el marco de trabajo principal), `sqlite3` (la base de datos utilizada en desarrollo) y `puma` (el servidor web predeterminado).**
+**Este fichero define varias gemas esenciales para tu aplicación, como `rails` (el marco de trabajo principal), `sqlite3` (la base de datos utilizada en desarrollo) y `puma` (el servidor web predeterminado).**
 
 ---
 
-### ***Archivo `Gemfile.lock`***
+### ***Fichero `Gemfile.lock`***
 
-**El archivo `Gemfile.lock` garantiza que las versiones exactas de las gemas utilizadas en el proyecto se mantengan coherentes entre distintos entornos. Aquí tienes un extracto típico:**
+**El fichero `Gemfile.lock` garantiza que las versiones exactas de las gemas utilizadas en el proyecto se mantengan coherentes entre distintos entornos. Aquí tienes un extracto típico:**
 
 ```bash
 GEM
@@ -358,9 +358,9 @@ Status: Downloaded newer image for ubuntu:22.04
 
 ---
 
-### ***Listado de Archivos del Proyecto***
+### ***Listado de Ficheros del Proyecto***
 
-**Al listar los archivos del directorio del proyecto usando `ls -lA`, obtenemos algo similar a lo siguiente:**
+**Al listar los ficheros del directorio del proyecto usando `ls -lA`, obtenemos algo similar a lo siguiente:**
 
 ```bash
 ls -lA ./
@@ -510,7 +510,7 @@ ERROR:  Error installing rails:
 
 ### ***¿Por qué ocurre este error y cómo solucionarlo?***
 
-**El error ocurre principalmente porque `rails` es un *meta-paquete* que no solo instala Rails como tal, sino también un conjunto de dependencias (gems) que son necesarias para crear un proyecto Rails. Sin embargo, cuando ya tienes un proyecto Rails existente, **no necesitas instalar `rails` desde cero**, sino simplemente instalar las dependencias del proyecto que ya están definidas en el archivo `Gemfile` de tu proyecto.**
+**El error ocurre principalmente porque `rails` es un *meta-paquete* que no solo instala Rails como tal, sino también un conjunto de dependencias (gems) que son necesarias para crear un proyecto Rails. Sin embargo, cuando ya tienes un proyecto Rails existente, **no necesitas instalar `rails` desde cero**, sino simplemente instalar las dependencias del proyecto que ya están definidas en el fichero `Gemfile` de tu proyecto.**
 
 **Para resolver este problema, en lugar de usar `gem install rails`, es necesario utilizar **Bundler**, que es la herramienta para gestionar las dependencias de un proyecto Ruby.**
 
@@ -518,7 +518,7 @@ ERROR:  Error installing rails:
 
 ### ***¿Qué es Bundler y cómo se usa?***
 
-- *[**Bundler**](https://bundler.io/ "https://bundler.io/") es una herramienta que permite gestionar las gemas necesarias para un proyecto Ruby, asegurando que todas las dependencias estén alineadas correctamente y evitando conflictos entre versiones. En un proyecto Rails, Bundler instala todas las gemas especificadas en el archivo `Gemfile`.*
+- *[**Bundler**](https://bundler.io/ "https://bundler.io/") es una herramienta que permite gestionar las gemas necesarias para un proyecto Ruby, asegurando que todas las dependencias estén alineadas correctamente y evitando conflictos entre versiones. En un proyecto Rails, Bundler instala todas las gemas especificadas en el fichero `Gemfile`.*
 
 **Para instalar Bundler,** *ejecuta el siguiente comando:*
 
@@ -536,7 +536,7 @@ Done installing documentation for bundle after 0 seconds
 1 gem installed
 ```
 
-*Esto instalará Bundler, la herramienta que se usará para instalar las dependencias del proyecto Rails que ya está definido en el archivo `Gemfile`.*
+*Esto instalará Bundler, la herramienta que se usará para instalar las dependencias del proyecto Rails que ya está definido en el fichero `Gemfile`.*
 
 **Una vez que tengas Bundler instalado, puedes ejecutar:**
 
@@ -544,7 +544,7 @@ Done installing documentation for bundle after 0 seconds
 bundle3.0 install
 ```
 
-**Esto leerá el archivo `Gemfile`, descargará e instalará todas las dependencias especificadas, y configurará tu entorno de desarrollo correctamente.**
+**Esto leerá el fichero `Gemfile`, descargará e instalará todas las dependencias especificadas, y configurará tu entorno de desarrollo correctamente.**
 
 ---
 
@@ -1155,7 +1155,7 @@ Use `bundle info [gemname]` to see where a bundled gem is installed.
 
 **Este comando hace lo siguiente:**
 
-- **`bundle3.0 install`:** *Lee el archivo `Gemfile`, descarga todas las gemas necesarias y las instala en tu entorno, asegurando que las versiones sean compatibles.*
+- **`bundle3.0 install`:** *Lee el fichero `Gemfile`, descarga todas las gemas necesarias y las instala en tu entorno, asegurando que las versiones sean compatibles.*
 
 **Resultado esperado:**
 
@@ -7163,7 +7163,7 @@ tree -C .
 
 ### ***Configuración Actualizada para Bundler:***
 
-- **La opción recomendada ahora es configurar el directorio de instalación de las gemas a través del archivo de configuración de Bundler.**
+- **La opción recomendada ahora es configurar el directorio de instalación de las gemas a través del fichero de configuración de Bundler.**
 
 **Comando para Configurar el Directorio de Instalación:**
 
@@ -13417,7 +13417,7 @@ Options:
                                                # Predeterminado: config.ru
   -d, [--daemon], [--no-daemon]                # Ejecuta el servidor como un Daemon.
   -u, [--using=name]                           # Especifica el servidor Rack utilizado para ejecutar la aplicación (thin/puma/webrick).
-  -P, [--pid=PID]                              # Especifica el archivo PID - por defecto es tmp/pids/server.pid.
+  -P, [--pid=PID]                              # Especifica el fichero PID - por defecto es tmp/pids/server.pid.
   -C, [--dev-caching], [--no-dev-caching]      # Especifica si se debe realizar caché en desarrollo.
       [--early-hints], [--no-early-hints]      # Habilita sugerencias tempranas de HTTP/2.
       [--log-to-stdout], [--no-log-to-stdout]  # Si se debe registrar en stdout. Activado por defecto en desarrollo cuando no está en modo daemon.
@@ -13497,7 +13497,7 @@ Completed 200 OK in 87ms (Views: 73.2ms | ActiveRecord: 0.0ms | Allocations: 282
 rm -rf ./.git
 ```
 
-**Luego, creamos los archivos necesarios para la configuración de Docker:**
+**Luego, creamos los ficheros necesarios para la configuración de Docker:**
 
 ```bash
 touch Dockerfile .dockerignore
@@ -13531,7 +13531,7 @@ RUN apt update \
 # Establece el directorio de trabajo donde se ejecutarán las siguientes instrucciones
 WORKDIR /App
 
-# Copia los archivos de Gemfile al contenedor.
+# Copia los ficheros de Gemfile al contenedor.
 # Esto asegura que solo se vuelvan a instalar las dependencias si el Gemfile cambia.
 COPY ./Gemfile* ./
 
@@ -13539,7 +13539,7 @@ COPY ./Gemfile* ./
 # y procede con la instalación de las dependencias del proyecto.
 RUN bundle config set --local path ./vendor/bundle && bundle install
 
-# Copia el resto de los archivos de la aplicación al contenedor.
+# Copia el resto de los ficheros de la aplicación al contenedor.
 COPY ./ ./
 
 # Expone el puerto 3000, que es donde la aplicación Ruby on Rails escuchará.
@@ -13554,7 +13554,7 @@ CMD ./bin/rails server --binding 0.0.0.0
 
 ### ***Configuración del `.dockerignore`***
 
-**El archivo `.dockerignore` se configura con el siguiente contenido para excluir archivos innecesarios:**
+**El fichero `.dockerignore` se configura con el siguiente contenido para excluir ficheros innecesarios:**
 
 ```bash
 # Autor: Daniel Benjamin Perez Morales
@@ -13693,7 +13693,7 @@ FROM ruby:3.0.2
 # Establece el directorio de trabajo donde se ejecutarán las siguientes instrucciones
 WORKDIR /App
 
-# Copia los archivos de Gemfile al contenedor.
+# Copia los ficheros de Gemfile al contenedor.
 # Esto asegura que solo se vuelvan a instalar las dependencias si el Gemfile cambia.
 COPY ./Gemfile* ./
 
@@ -13701,7 +13701,7 @@ COPY ./Gemfile* ./
 # y procede con la instalación de las dependencias del proyecto.
 RUN bundle config set --local path ./vendor/bundle && bundle install
 
-# Copia el resto de los archivos de la aplicación al contenedor.
+# Copia el resto de los ficheros de la aplicación al contenedor.
 COPY ./ ./
 
 # Expone el puerto 3000, que es donde la aplicación Ruby on Rails escuchará.

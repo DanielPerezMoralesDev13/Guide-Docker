@@ -8,7 +8,7 @@ FROM golang
 # Define el directorio de trabajo dentro del contenedor, que es donde se ejecutará la aplicación Go.
 WORKDIR /App
 
-# Copia los archivos go.mod y go.sum al directorio de trabajo. Estos archivos contienen las dependencias del proyecto Go.
+# Copia los ficheros go.mod y go.sum al directorio de trabajo. Estos ficheros contienen las dependencias del proyecto Go.
 COPY go.* ./
 
 # Ejecuta la descarga de todas las dependencias necesarias especificadas en go.mod.

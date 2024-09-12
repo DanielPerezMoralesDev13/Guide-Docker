@@ -14,9 +14,9 @@ docker run -it --rm ubuntu:22.04
 
 ---
 
-## ***Contenido del archivo `.env`***
+## ***Contenido del fichero `.env`***
 
-- **Configura el archivo `.env` con las credenciales y la IP que se asignará al contenedor de la base de datos. Este archivo es crucial para conectar la aplicación con la base de datos MySQL.**
+- **Configura el fichero `.env` con las credenciales y la IP que se asignará al contenedor de la base de datos. Este fichero es crucial para conectar la aplicación con la base de datos MySQL.**
 
 ```bash
 DB_USER=root
@@ -560,7 +560,7 @@ curl 172.17.0.2:5000/todos
 
 ## ***Modificación del Dockerfile para Utilizar Múltiples Etapas***
 
-- *Primero, hemos copiado el `Dockerfile` a un nuevo archivo `Dockerfile.manual` para mantener una referencia de la configuración original. Luego, modificamos el archivo `Dockerfile` principal para utilizar la técnica de "multi-stage builds". A continuación, explicamos el proceso y la razón detrás de la elección de múltiples etapas.*
+- *Primero, hemos copiado el `Dockerfile` a un nuevo fichero `Dockerfile.manual` para mantener una referencia de la configuración original. Luego, modificamos el fichero `Dockerfile` principal para utilizar la técnica de "multi-stage builds". A continuación, explicamos el proceso y la razón detrás de la elección de múltiples etapas.*
 
 ---
 
@@ -582,7 +582,7 @@ FROM python:3.10-slim AS builder
 # Actualizamos la lista de paquetes del sistema para asegurarnos de que tenemos acceso a las últimas versiones.
 RUN apt update \
     # Instalamos las siguientes dependencias de compilación:
-    # - default-libmysqlclient-dev: Bibliotecas y archivos de encabezado necesarios para compilar aplicaciones que utilizan MySQL.
+    # - default-libmysqlclient-dev: Bibliotecas y ficheros de encabezado necesarios para compilar aplicaciones que utilizan MySQL.
     # - build-essential: Incluye herramientas fundamentales de compilación como gcc, make, y bibliotecas estándar de desarrollo.
     && apt install -y \
     default-libmysqlclient-dev \
@@ -592,19 +592,19 @@ RUN apt update \
 RUN pip install pipenv
 
 # Establecemos la variable de entorno FLASK_APP para que Flask sepa dónde encontrar la aplicación principal.
-# Este archivo indicará a Flask qué aplicación ejecutar cuando el contenedor inicie.
+# Este fichero indicará a Flask qué aplicación ejecutar cuando el contenedor inicie.
 ENV FLASK_APP=./todos.app
 
 # Configuramos Pipenv para que el entorno virtual se cree dentro del directorio del proyecto.
 # Esta configuración permite tener el entorno virtual en el mismo directorio que el código, facilitando su administración.
 ENV PIPENV_VENV_IN_PROJECT=1
 
-# Creamos el directorio de trabajo `/App` donde se colocará todo el código y archivos de la aplicación.
+# Creamos el directorio de trabajo `/App` donde se colocará todo el código y ficheros de la aplicación.
 # Todos los comandos a partir de este punto se ejecutarán dentro de este directorio.
 WORKDIR /App
 
 # Copiamos los ficheros `Pipfile` y `Pipfile.lock` que especifican las dependencias del proyecto.
-# Estos archivos permiten que Pipenv instale las versiones exactas de las dependencias requeridas.
+# Estos ficheros permiten que Pipenv instale las versiones exactas de las dependencias requeridas.
 COPY ./Pipfile* ./
 
 # Instalamos todas las dependencias especificadas en el Pipfile mediante Pipenv.
@@ -637,7 +637,7 @@ WORKDIR /App
 # Esto incluye todas las dependencias ya instaladas para evitar la reinstalación en esta etapa.
 COPY --from=builder /App/.venv ./
 
-# Copiamos todo el código fuente de la aplicación y otros archivos del proyecto al contenedor.
+# Copiamos todo el código fuente de la aplicación y otros ficheros del proyecto al contenedor.
 # Esto incluye el código de Flask y otros recursos necesarios para ejecutar la aplicación.
 COPY ./ ./
 
@@ -660,7 +660,7 @@ CMD pipenv run flask run --host 0.0.0.0
 
 #### ***Ventajas***
 
-1. **Optimización del Tamaño de la Imagen Final:** *La imagen final (`python:3.10-slim`) es mucho más ligera porque no incluye las herramientas de compilación ni los archivos temporales utilizados solo para construir el entorno.*
+1. **Optimización del Tamaño de la Imagen Final:** *La imagen final (`python:3.10-slim`) es mucho más ligera porque no incluye las herramientas de compilación ni los ficheros temporales utilizados solo para construir el entorno.*
 2. **Entorno de Producción Limpio:** *Al separar las etapas de construcción y ejecución, garantizamos que la imagen de producción solo contenga lo necesario para ejecutar la aplicación.*
 
 ---
@@ -737,13 +737,13 @@ FROM python:3.10-slim AS base
 # Esto garantiza que obtengamos las últimas versiones de los paquetes y parches de seguridad.
 RUN apt update \
     # Instalamos las siguientes dependencias esenciales:
-    # - default-libmysqlclient-dev: Proporciona las bibliotecas y archivos de encabezado necesarios para compilar aplicaciones que interactúan con MySQL.
+    # - default-libmysqlclient-dev: Proporciona las bibliotecas y ficheros de encabezado necesarios para compilar aplicaciones que interactúan con MySQL.
     # También instalamos Pipenv, una herramienta para gestionar entornos virtuales y dependencias en proyectos Python.
     && apt install -y \
     default-libmysqlclient-dev \
     && pip install pipenv
 
-# Establecemos el directorio de trabajo en `/App` para organizar el código y archivos de la aplicación.
+# Establecemos el directorio de trabajo en `/App` para organizar el código y ficheros de la aplicación.
 # Todos los comandos que se ejecuten a partir de este punto se realizarán dentro de este directorio.
 WORKDIR /App
 
@@ -758,8 +758,8 @@ FROM base AS builder
 # Esto asegura que el entorno virtual esté contenido dentro del directorio `/App`, facilitando su gestión y evitando conflictos.
 ENV PIPENV_VENV_IN_PROJECT=1
 
-# Copiamos los archivos `Pipfile` y `Pipfile.lock` al directorio de trabajo del contenedor.
-# Estos archivos definen las dependencias del proyecto y permiten a Pipenv instalar las versiones exactas necesarias.
+# Copiamos los ficheros `Pipfile` y `Pipfile.lock` al directorio de trabajo del contenedor.
+# Estos ficheros definen las dependencias del proyecto y permiten a Pipenv instalar las versiones exactas necesarias.
 COPY ./Pipfile* ./
 
 # Instalamos las herramientas de compilación necesarias y luego usamos Pipenv para instalar las dependencias especificadas en el `Pipfile`.
@@ -775,7 +775,7 @@ RUN apt install -y build-essential && pipenv install
 # Esto garantiza que el contenedor final tenga la configuración y dependencias necesarias para ejecutar la aplicación.
 FROM base AS runtime
 
-# Definimos la variable de entorno `FLASK_APP` que indica a Flask el archivo principal de la aplicación.
+# Definimos la variable de entorno `FLASK_APP` que indica a Flask el fichero principal de la aplicación.
 # Esta variable es necesaria para que Flask pueda localizar y ejecutar la aplicación cuando el contenedor se inicie.
 ENV FLASK_APP=./todos.app
 
@@ -783,7 +783,7 @@ ENV FLASK_APP=./todos.app
 # Esto evita la reinstalación de dependencias y reduce el tamaño del contenedor final.
 COPY --from=builder /App/.venv /App/.venv
 
-# Copiamos el código fuente de la aplicación y otros archivos necesarios para ejecutar el proyecto.
+# Copiamos el código fuente de la aplicación y otros ficheros necesarios para ejecutar el proyecto.
 # Esto incluye el código de Flask y cualquier recurso adicional requerido por la aplicación.
 COPY ./ ./
 
@@ -822,14 +822,14 @@ CMD pipenv run flask run --host 0.0.0.0
 #### ***Reutilización del Directorio de Trabajo***
 
 - **Directorio de Trabajo (`/App`):**
-  - *Definir el directorio de trabajo en la etapa `base` asegura que todas las etapas posteriores utilicen el mismo directorio para copiar archivos y ejecutar comandos.*
-  - *Esto proporciona una estructura organizada y evita problemas de ruta al copiar archivos y ejecutar la aplicación.*
+  - *Definir el directorio de trabajo en la etapa `base` asegura que todas las etapas posteriores utilicen el mismo directorio para copiar ficheros y ejecutar comandos.*
+  - *Esto proporciona una estructura organizada y evita problemas de ruta al copiar ficheros y ejecutar la aplicación.*
 
 ---
 
 ### ***Beneficios del Enfoque de Múltiples Etapas***
 
-- **Optimización del Tamaño de la Imagen:** *La imagen final es significativamente más pequeña porque no incluye herramientas de compilación innecesarias ni archivos temporales.*
+- **Optimización del Tamaño de la Imagen:** *La imagen final es significativamente más pequeña porque no incluye herramientas de compilación innecesarias ni ficheros temporales.*
 - **Eficiencia en el Proceso de Construcción:** *Reduciendo el tamaño de la imagen final y evitando la reinstalación de dependencias, se mejora la eficiencia en el despliegue y el tiempo de construcción.*
 - **Organización y Claridad:** *Dividir el Dockerfile en etapas claras y reutilizables facilita la gestión y mantenimiento del Dockerfile.*
 

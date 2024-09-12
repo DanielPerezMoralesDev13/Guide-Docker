@@ -13,12 +13,12 @@ WORKDIR /App
 # Definimos un argumento de construcción para el puerto de la aplicación.
 ARG APP_PORT=3000
 
-# Copiamos los archivos de configuración de Cargo al contenedor.
+# Copiamos los ficheros de configuración de Cargo al contenedor.
 # Esto incluye Cargo.toml y Cargo.lock necesarios para la compilación.
 COPY ./Cargo* ./
 
-# Copiamos el resto de los archivos del proyecto al contenedor.
-# Esto incluye el código fuente y otros archivos necesarios para la construcción.
+# Copiamos el resto de los ficheros del proyecto al contenedor.
+# Esto incluye el código fuente y otros ficheros necesarios para la construcción.
 COPY ./ ./
 
 # Construimos el proyecto Rust en modo release para optimizar el binario.

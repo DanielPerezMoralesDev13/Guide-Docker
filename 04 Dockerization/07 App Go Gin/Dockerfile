@@ -13,7 +13,7 @@ WORKDIR /App
 # Añade la ruta de Go al PATH para permitir el acceso a los comandos de Go globalmente dentro del contenedor.
 ENV PATH="$PATH:/usr/local/go/bin"
 
-# Copia los archivos go.mod y go.sum al directorio de trabajo. Estos archivos contienen las dependencias del proyecto Go.
+# Copia los ficheros go.mod y go.sum al directorio de trabajo. Estos ficheros contienen las dependencias del proyecto Go.
 COPY go.* ./
 
 # Ejecuta la descarga de todas las dependencias necesarias especificadas en go.mod.
@@ -36,9 +36,9 @@ FROM alpine:latest
 # Establecemos el directorio de trabajo en /App
 WORKDIR /App
 
-# Copiamos los archivos desde la primera fase (etapa 0) al directorio actual
+# Copiamos los ficheros desde la primera fase (etapa 0) al directorio actual
 # en el contenedor. Esto asume que en la primera etapa (multi-stage build),
-# los archivos de la aplicación Go se construyeron en /App/App-Go.
+# los ficheros de la aplicación Go se construyeron en /App/App-Go.
 COPY --from=builder /App/App-Go ./
 
 # Expone el puerto 8080, que es el puerto en el que la aplicación Go estará escuchando.

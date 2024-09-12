@@ -4,7 +4,7 @@
 
 # ***Dockerización de un Entorno PHP***
 
-**Para comenzar, crearemos un archivo llamado `Dockerfile` y le agregaremos el siguiente contenido:**
+**Para comenzar, crearemos un fichero llamado `Dockerfile` y le agregaremos el siguiente contenido:**
 
 ```Dockerfile
 # Autor: Daniel Benjamin Perez Morales
@@ -16,7 +16,7 @@ FROM ubuntu:22.04
 
 # Actualiza los paquetes del sistema e instala dependencias necesarias
 # Herramienta de línea de comandos para transferir datos con URL
-# Herramienta para descomprimir archivos zip
+# Herramienta para descomprimir ficheros zip
 # Interprete de PHP versión 8.1
 # Extensión de PHP para trabajar con CURL
 # Extensión de PHP para trabajar con XML
@@ -119,7 +119,7 @@ ENV TZ=America/Managua
 
 # Actualiza los paquetes del sistema e instala las dependencias necesarias
 # Herramienta de línea de comandos para transferir datos con URL
-# Herramienta para descomprimir archivos zip
+# Herramienta para descomprimir ficheros zip
 # Interprete de PHP versión 8.1
 # Extensión de PHP para trabajar con CURL
 # Extensión de PHP para trabajar con XML
@@ -221,7 +221,7 @@ Mon Sep  2 14:40:07 CST 2024
 
 ## ***Añadir `.dockerignore`***
 
-**Para evitar copiar archivos innecesarios al construir la imagen Docker, creamos un archivo `.dockerignore` en el directorio del proyecto. Este archivo especifica qué archivos y directorios deben ser excluidos del contexto de construcción. Un archivo `.dockerignore` típico podría incluir:**
+**Para evitar copiar ficheros innecesarios al construir la imagen Docker, creamos un fichero `.dockerignore` en el directorio del proyecto. Este fichero especifica qué ficheros y directorios deben ser excluidos del contexto de construcción. Un fichero `.dockerignore` típico podría incluir:**
 
 ```bash
 # Autor: Daniel Benjamin Perez Morales
@@ -234,7 +234,7 @@ Dockerfile*
 vendor/
 ```
 
-- *Esto asegura que los archivos de configuración de Docker y directorios que no son necesarios para la construcción de la imagen (como `vendor/`) no se incluyan en la imagen final.*
+- *Esto asegura que los ficheros de configuración de Docker y directorios que no son necesarios para la construcción de la imagen (como `vendor/`) no se incluyan en la imagen final.*
 
 ---
 
@@ -259,7 +259,7 @@ ENV TZ=America/Managua
 
 # Actualiza los paquetes del sistema e instala las dependencias necesarias:
 # - curl: Herramienta de línea de comandos para transferir datos con URL
-# - unzip: Herramienta para descomprimir archivos zip
+# - unzip: Herramienta para descomprimir ficheros zip
 # - php8.1: Interprete de PHP versión 8.1
 # - php8.1-curl: Extensión de PHP para trabajar con CURL
 # - php8.1-xml: Extensión de PHP para trabajar con XML
@@ -277,13 +277,13 @@ RUN curl -sS https://getcomposer.org/installer \
 # Establece el directorio de trabajo en el contenedor a /App
 WORKDIR /App
 
-# Copia los archivos composer.json y composer.lock al directorio de trabajo
+# Copia los ficheros composer.json y composer.lock al directorio de trabajo
 COPY ./composer.* ./
 
 # Instala las dependencias del proyecto PHP utilizando Composer
 RUN composer install
 
-# Copia el resto de los archivos del proyecto al directorio de trabajo
+# Copia el resto de los ficheros del proyecto al directorio de trabajo
 COPY ./ ./
 
 # Expone el puerto 8000 para que el contenedor pueda aceptar conexiones externas
@@ -304,7 +304,7 @@ CMD php artisan serve --host 0.0.0.0
 docker build -t d4nitrix13/laravel:latest ./
 ```
 
-*Sin embargo, este proceso puede la construcción puede fallar si hay problemas con las dependencias. Específicamente, el proceso de construcción puede fallar debido a que el comando `composer install` intenta ejecutar `artisan`, pero no encuentra el archivo `artisan` en el contexto de construcción.*
+*Sin embargo, este proceso puede la construcción puede fallar si hay problemas con las dependencias. Específicamente, el proceso de construcción puede fallar debido a que el comando `composer install` intenta ejecutar `artisan`, pero no encuentra el fichero `artisan` en el contexto de construcción.*
 
 ---
 
@@ -596,7 +596,7 @@ Dockerfile:39
   38 |     # Instala las dependencias del proyecto PHP utilizando Composer
   39 | >>> RUN composer install
   40 |
-  41 |     # Copia el resto de los archivos del proyecto al directorio de trabajo
+  41 |     # Copia el resto de los ficheros del proyecto al directorio de trabajo
 --------------------
 ERROR: failed to solve: process "/bin/sh -c composer install" did not complete successfully: exit code: 1
 ```
@@ -607,22 +607,22 @@ ERROR: failed to solve: process "/bin/sh -c composer install" did not complete s
 
 ### ***Contexto Adicional***
 
-- **Al instalar dependencias con Composer, algunas de ellas pueden ejecutar scripts automáticamente que buscan el archivo `artisan`. Estos scripts se definen en la sección `"scripts"` del archivo `composer.json` y se ejecutan en momentos específicos durante el proceso de instalación.**
+- **Al instalar dependencias con Composer, algunas de ellas pueden ejecutar scripts automáticamente que buscan el fichero `artisan`. Estos scripts se definen en la sección `"scripts"` del fichero `composer.json` y se ejecutan en momentos específicos durante el proceso de instalación.**
 
 **Por ejemplo, los scripts definidos en `composer.json` incluyen:**
 
-- **`post-autoload-dump`:** *Se ejecuta después de que Composer genera el archivo autoload.*
+- **`post-autoload-dump`:** *Se ejecuta después de que Composer genera el fichero autoload.*
 - **`post-update-cmd`:** *Se ejecuta después de que Composer actualiza las dependencias.*
 - **`post-root-package-install`:** *Se ejecuta después de la instalación del paquete raíz.*
 - **`post-create-project-cmd`:** *Se ejecuta después de la creación del proyecto.*
 
-*Estos scripts pueden intentar ejecutar comandos de Artisan, como `artisan key:generate`, que requieren que el archivo `artisan` esté presente en el contenedor. Si el archivo `artisan` no está disponible, los scripts fallarán, lo que puede causar errores durante la instalación de dependencias.*
+*Estos scripts pueden intentar ejecutar comandos de Artisan, como `artisan key:generate`, que requieren que el fichero `artisan` esté presente en el contenedor. Si el fichero `artisan` no está disponible, los scripts fallarán, lo que puede causar errores durante la instalación de dependencias.*
 
 ---
 
 ## ***Componente `composer.json`***
 
-- **El archivo `composer.json` contiene información sobre las dependencias del proyecto PHP y los scripts a ejecutar. A continuación se muestra un ejemplo de este archivo:**
+- **El fichero `composer.json` contiene información sobre las dependencias del proyecto PHP y los scripts a ejecutar. A continuación se muestra un ejemplo de este fichero:**
 
 ```json
 {
@@ -697,7 +697,7 @@ ERROR: failed to solve: process "/bin/sh -c composer install" did not complete s
 
 ## ***Scripts de Composer***
 
-**El archivo `composer.json` incluye una sección de scripts que se ejecutan durante varias fases del ciclo de vida de Composer. Los scripts definidos son:**
+**El fichero `composer.json` incluye una sección de scripts que se ejecutan durante varias fases del ciclo de vida de Composer. Los scripts definidos son:**
 
 ```json
 "scripts": {
@@ -717,13 +717,13 @@ ERROR: failed to solve: process "/bin/sh -c composer install" did not complete s
 }
 ```
 
-- *Estos scripts intentan ejecutar comandos de Artisan, lo cual puede fallar si el archivo `artisan` no está disponible en el momento de la instalación.*
+- *Estos scripts intentan ejecutar comandos de Artisan, lo cual puede fallar si el fichero `artisan` no está disponible en el momento de la instalación.*
 
 ---
 
 ## ***Solución Propuesta***
 
-- *Para evitar que los scripts definidos en `composer.json` se ejecuten durante la construcción de la imagen Docker, puedes agregar la opción `--no-scripts` al comando `composer install` en el `Dockerfile`. Esto previene la ejecución de scripts que podrían depender de archivos o configuraciones que aún no están presentes en el contenedor.*
+- *Para evitar que los scripts definidos en `composer.json` se ejecuten durante la construcción de la imagen Docker, puedes agregar la opción `--no-scripts` al comando `composer install` en el `Dockerfile`. Esto previene la ejecución de scripts que podrían depender de ficheros o configuraciones que aún no están presentes en el contenedor.*
 
 - **Modifica el `Dockerfile` para incluir la opción `--no-scripts` en el comando `composer install`:**
 
@@ -750,7 +750,7 @@ ENV TZ=America/Managua
 
 # Actualiza los paquetes del sistema e instala las dependencias necesarias:
 # - curl: Herramienta de línea de comandos para transferir datos con URL
-# - unzip: Herramienta para descomprimir archivos zip
+# - unzip: Herramienta para descomprimir ficheros zip
 # - php8.1: Interprete de PHP versión 8.1
 # - php8.1-curl: Extensión de PHP para trabajar con CURL
 # - php8.1-xml: Extensión de PHP para trabajar con XML
@@ -768,13 +768,13 @@ RUN curl -sS https://getcomposer.org/installer \
 # Establece el directorio de trabajo en el contenedor a /App
 WORKDIR /App
 
-# Copia los archivos composer.json y composer.lock al directorio de trabajo
+# Copia los ficheros composer.json y composer.lock al directorio de trabajo
 COPY ./composer.* ./
 
 # Instala las dependencias del proyecto PHP utilizando Composer
 RUN composer install --no-scripts
 
-# Copia el resto de los archivos del proyecto al directorio de trabajo
+# Copia el resto de los ficheros del proyecto al directorio de trabajo
 COPY ./ ./
 
 # Expone el puerto 8000 para que el contenedor pueda aceptar conexiones externas
@@ -832,7 +832,7 @@ docker run -itp8000:8000 --rm d4nitrix13/laravel:latest
 
 ---
 
-### ***Para optimizar el Dockerfile, modificaremos el archivo para utilizar una imagen oficial de PHP. Puedes encontrar más información sobre la imagen oficial de PHP aquí: [PHP Official Docker Image](https://hub.docker.com/_/php/ "https://hub.docker.com/_/php/").***
+### ***Para optimizar el Dockerfile, modificaremos el fichero para utilizar una imagen oficial de PHP. Puedes encontrar más información sobre la imagen oficial de PHP aquí: [PHP Official Docker Image](https://hub.docker.com/_/php/ "https://hub.docker.com/_/php/").***
 
 - *La imagen oficial de PHP incluye varias extensiones preinstaladas y proporciona herramientas útiles como `docker-php-ext-install` para instalar extensiones adicionales. Esto es especialmente útil porque las imágenes oficiales de lenguajes suelen basarse en distribuciones como Debian o Ubuntu, donde los nombres de los paquetes binarios pueden variar. Por lo tanto, las herramientas proporcionadas por la imagen oficial ayudan a simplificar la instalación de extensiones.*
 
@@ -850,7 +850,7 @@ RUN apt-get update && apt-get install -y \
  && docker-php-ext-install -j$(nproc) gd
 ```
 
-**A continuación, copiaremos el contenido del Dockerfile a un archivo llamado `Dockerfile.manual` para mantener una copia del archivo original:**
+**A continuación, copiaremos el contenido del Dockerfile a un fichero llamado `Dockerfile.manual` para mantener una copia del fichero original:**
 
 ```bash
 cp Dockerfile Dockerfile.manual
@@ -899,13 +899,13 @@ RUN apt update && apt install -y unzip
 # con Composer instalado, como una imagen oficial de Composer.
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-# Copia los archivos composer.json y composer.lock al directorio de trabajo
+# Copia los ficheros composer.json y composer.lock al directorio de trabajo
 COPY ./composer.* ./
 
 # Instala las dependencias del proyecto PHP utilizando Composer
 RUN composer install --no-scripts
 
-# Copia el resto de los archivos del proyecto al directorio de trabajo
+# Copia el resto de los ficheros del proyecto al directorio de trabajo
 COPY ./ ./
 
 # Expone el puerto 8000 para que el contenedor pueda aceptar conexiones externas
@@ -999,7 +999,7 @@ docker build -t d4nitrix13/laravel:preconfig ./
 
 **La opción `--no-scripts` en el comando `composer install` impide que se ejecuten scripts definidos en el `composer.json`, lo que puede ser útil en algunos entornos de construcción.**
 
-**Para construir la imagen, asegurémonos de estar en la misma carpeta que el Dockerfile y el archivo `.dockerignore`. Ejecuta:**
+**Para construir la imagen, asegurémonos de estar en la misma carpeta que el Dockerfile y el fichero `.dockerignore`. Ejecuta:**
 
 ```bash
 docker build -t d4nitrix13/laravel:preconfig ./

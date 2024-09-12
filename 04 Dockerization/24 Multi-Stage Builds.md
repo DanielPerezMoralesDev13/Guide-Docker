@@ -8,7 +8,7 @@
 
 ## ***Paso 1: Copia del Dockerfile***
 
-- *Primero, haremos una copia de nuestro `Dockerfile` actual para que podamos editarlo sin perder la versión original. Ejecutamos el siguiente comando para copiar el archivo:*
+- *Primero, haremos una copia de nuestro `Dockerfile` actual para que podamos editarlo sin perder la versión original. Ejecutamos el siguiente comando para copiar el fichero:*
 
 ```bash
 cp Dockerfile Dockerfile.ubuntu
@@ -31,7 +31,7 @@ FROM golang
 # Definir el directorio de trabajo dentro del contenedor.
 WORKDIR /App
 
-# Copiar los archivos de dependencias go.mod y go.sum.
+# Copiar los ficheros de dependencias go.mod y go.sum.
 COPY go.* ./
 
 # Descargar las dependencias del proyecto Go.
@@ -116,7 +116,7 @@ d4nitrix13/gin   latest    00382cb81ccc   17 hours ago    753MB
 
 ### ***Paso 5: Verificación del Sistema Operativo Base***
 
-**La mayoría de las imágenes oficiales de lenguajes de programación, como `golang`, utilizan **Debian** como sistema base. Podemos verificar esto ejecutando un contenedor y revisando el archivo `/etc/os-release`:**
+**La mayoría de las imágenes oficiales de lenguajes de programación, como `golang`, utilizan **Debian** como sistema base. Podemos verificar esto ejecutando un contenedor y revisando el fichero `/etc/os-release`:**
 
 ```bash
 docker container run --interactive --tty --publish 8080:8080 --rm d4nitrix13/gin:golang cat /etc/os-release
@@ -223,13 +223,13 @@ FROM golang:alpine
 
 ### ***Copiar y Modificar el `Dockerfile`***
 
-- **Primero, copiamos el archivo `Dockerfile` actual para preservarlo como referencia:**
+- **Primero, copiamos el fichero `Dockerfile` actual para preservarlo como referencia:**
 
 ```bash
 cp Dockerfile Dockerfile.golang
 ```
 
-- *Dejamos **intacto** el archivo `Dockerfile.golang` como respaldo y procedemos a modificar el nuevo `Dockerfile` para implementar una **construcción multi-stage**. El objetivo es que la primera etapa compile el binario de Go, y la segunda etapa utilice una imagen base más ligera para ejecutar dicho binario.*
+- *Dejamos **intacto** el fichero `Dockerfile.golang` como respaldo y procedemos a modificar el nuevo `Dockerfile` para implementar una **construcción multi-stage**. El objetivo es que la primera etapa compile el binario de Go, y la segunda etapa utilice una imagen base más ligera para ejecutar dicho binario.*
 
 ---
 
@@ -258,7 +258,7 @@ WORKDIR /App
 # Añadimos la ruta de Go al PATH.
 ENV PATH="$PATH:/usr/local/go/bin"
 
-# Copiamos los archivos go.mod y go.sum, que contienen las dependencias de Go.
+# Copiamos los ficheros go.mod y go.sum, que contienen las dependencias de Go.
 COPY go.* ./
 
 # Descargamos las dependencias del proyecto Go.
@@ -322,7 +322,7 @@ CMD ./App-Go
 
 #### ***Comando `COPY --from=0`***
 
-- *El comando `COPY --from=0` o `COPY --from=builder` se utiliza para copiar archivos generados en un **stage** anterior. En este caso, se copia el binario `App-Go` desde el **stage 0** (builder) al **stage 1** para ser ejecutado.*
+- *El comando `COPY --from=0` o `COPY --from=builder` se utiliza para copiar ficheros generados en un **stage** anterior. En este caso, se copia el binario `App-Go` desde el **stage 0** (builder) al **stage 1** para ser ejecutado.*
 
 ---
 
@@ -353,7 +353,7 @@ CMD ./App-Go
   # Añade la ruta de Go al PATH para permitir el acceso a los comandos de Go globalmente dentro del contenedor.
   ENV PATH="$PATH:/usr/local/go/bin"
   
-  # Copia los archivos go.mod y go.sum al directorio de trabajo. Estos archivos contienen las dependencias del proyecto Go.
+  # Copia los ficheros go.mod y go.sum al directorio de trabajo. Estos ficheros contienen las dependencias del proyecto Go.
   COPY go.* ./
   
   # Ejecuta la descarga de todas las dependencias necesarias especificadas en go.mod.
@@ -379,9 +379,9 @@ CMD ./App-Go
   # Establecemos el directorio de trabajo en /App
   WORKDIR /App
   
-  # Copiamos los archivos desde la primera fase (etapa 0) al directorio actual
+  # Copiamos los ficheros desde la primera fase (etapa 0) al directorio actual
   # en el contenedor. Esto asume que en la primera etapa (multi-stage build),
-  # los archivos de la aplicación Go se construyeron en /App/App-Go.
+  # los ficheros de la aplicación Go se construyeron en /App/App-Go.
   COPY --from=0 /App/App-Go ./
   
   # Expone el puerto 8080, que es el puerto en el que la aplicación Go estará escuchando.
@@ -554,19 +554,19 @@ d4nitrix13/gin     multi       185a00984a0e   6 minutes ago    89MB
 
 #### ***Copia del Dockerfile***
 
-- **Para mantener una copia del Dockerfile original mientras trabajas en la versión multistage, puedes copiar el Dockerfile actual a un nuevo archivo:**
+- **Para mantener una copia del Dockerfile original mientras trabajas en la versión multistage, puedes copiar el Dockerfile actual a un nuevo fichero:**
 
 ```bash
 cp Dockerfile Dockerfile.multistages
 ```
 
-- *Esto preserva el Dockerfile original y permite modificar el nuevo archivo sin perder la versión anterior.*
+- *Esto preserva el Dockerfile original y permite modificar el nuevo fichero sin perder la versión anterior.*
 
 ---
 
 #### ***1. Entendiendo los Stages en Docker***
 
-- *En un **Dockerfile** con múltiples etapas, el stage final es el que marca el tamaño de la imagen resultante. Las etapas intermedias son temporales y se eliminan después de construir la imagen final. Este enfoque permite reducir el tamaño de la imagen final al incluir solo los archivos y herramientas necesarias para ejecutar la aplicación, y eliminar las herramientas y archivos de construcción.*
+- *En un **Dockerfile** con múltiples etapas, el stage final es el que marca el tamaño de la imagen resultante. Las etapas intermedias son temporales y se eliminan después de construir la imagen final. Este enfoque permite reducir el tamaño de la imagen final al incluir solo los ficheros y herramientas necesarias para ejecutar la aplicación, y eliminar las herramientas y ficheros de construcción.*
 
 ---
 
@@ -597,7 +597,7 @@ WORKDIR /App
 # Añade la ruta de Go al PATH para usar los comandos de Go.
 ENV PATH="$PATH:/usr/local/go/bin"
 
-# Copia los archivos de dependencias del proyecto Go.
+# Copia los ficheros de dependencias del proyecto Go.
 COPY go.* ./
 
 # Descarga las dependencias necesarias.
@@ -728,7 +728,7 @@ Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-
 2. **Carga dinámica:** *El **dynamic linker/loader** carga las librerías compartidas en memoria cuando el programa se inicia y enlaza sus funciones al binario en ejecución.*
 
 > [!TIP]
-> *Estas librerías dinámicas suelen ser archivos como `.so` (en sistemas Linux) o `.dll` (en Windows).*
+> *Estas librerías dinámicas suelen ser ficheros como `.so` (en sistemas Linux) o `.dll` (en Windows).*
 
 ---
 
@@ -740,17 +740,17 @@ Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-
 
 ### ***Creación de un Dockerfile multi-stage con Alpine***
 
-- *Primero, duplicamos el archivo `Dockerfile` para crear una nueva versión llamada `Dockerfile.stages`, pero no lo editaremos. En su lugar, modificaremos el Dockerfile original para implementar un enfoque de compilación multi-stage, utilizando imágenes ligeras como Alpine para optimizar el tamaño final de la imagen.*
+- *Primero, duplicamos el fichero `Dockerfile` para crear una nueva versión llamada `Dockerfile.stages`, pero no lo editaremos. En su lugar, modificaremos el Dockerfile original para implementar un enfoque de compilación multi-stage, utilizando imágenes ligeras como Alpine para optimizar el tamaño final de la imagen.*
 
 ---
 
-#### ***Paso 1: Copiar el archivo `Dockerfile`***
+#### ***Paso 1: Copiar el fichero `Dockerfile`***
 
 ```bash
 cp Dockerfile Dockerfile.stages
 ```
 
-**Ahora, editamos el archivo `Dockerfile` para configurar las etapas de construcción.**
+**Ahora, editamos el fichero `Dockerfile` para configurar las etapas de construcción.**
 
 ---
 
@@ -774,7 +774,7 @@ WORKDIR /App
 # Añade la ruta de Go al PATH.
 ENV PATH="$PATH:/usr/local/go/bin"
 
-# Copia los archivos go.mod y go.sum al directorio de trabajo.
+# Copia los ficheros go.mod y go.sum al directorio de trabajo.
 COPY go.* ./
 
 # Ejecuta la descarga de todas las dependencias necesarias especificadas en go.mod.
@@ -796,7 +796,7 @@ FROM alpine:latest
 # Establecemos el directorio de trabajo en /App.
 WORKDIR /App
 
-# Copiamos los archivos desde la primera fase (etapa 0) al directorio actual.
+# Copiamos los ficheros desde la primera fase (etapa 0) al directorio actual.
 COPY --from=builder /App/App-Go ./
 
 # Exponemos el puerto 8080, donde la aplicación Go estará escuchando.
@@ -869,7 +869,7 @@ docker image build -td4nitrix13/gin:multi-alpine ./
 
 #### ***Enlazado dinámico***
 
-- *Un binario enlazado dinámicamente no incluye todo el código de las librerías que necesita. En su lugar, establece referencias a las **librerías dinámicas** o **compartidas** (generalmente archivos `.so` en Linux), que serán cargadas en **tiempo de ejecución** por el **dynamic linker** del sistema operativo. Esto significa que el binario necesita esas librerías presentes en el entorno de ejecución para funcionar.*
+- *Un binario enlazado dinámicamente no incluye todo el código de las librerías que necesita. En su lugar, establece referencias a las **librerías dinámicas** o **compartidas** (generalmente ficheros `.so` en Linux), que serán cargadas en **tiempo de ejecución** por el **dynamic linker** del sistema operativo. Esto significa que el binario necesita esas librerías presentes en el entorno de ejecución para funcionar.*
 
 - **Ventaja:** *Disminuye el tamaño del binario.*
 - **Desventaja:** *Si faltan librerías en el entorno de ejecución (por ejemplo, en **Alpine**), el binario no funcionará.*
@@ -911,7 +911,7 @@ docker container run -itp8080:8080 --rm d4nitrix13/gin:multi-alpine
 /bin/sh: ./App-Go: not found
 ```
 
-- *Este mensaje indica que el binario `App-Go` no puede ser encontrado o ejecutado. Para investigar más, sobrescribimos el comando por defecto y listamos los archivos en el directorio de trabajo:*
+- *Este mensaje indica que el binario `App-Go` no puede ser encontrado o ejecutado. Para investigar más, sobrescribimos el comando por defecto y listamos los ficheros en el directorio de trabajo:*
 
 ```bash
 docker container run -itp8080:8080 d4nitrix13/gin:multi-alpine ls -lA
@@ -957,7 +957,7 @@ RUN CGO_ENABLED=0 go build -a -installsuffix cgo -o App-Go
 - **`CGO_ENABLED=0`:** *Deshabilita el uso de CGO, forzando a Go a compilar sin soporte para código C, lo que permite generar un binario completamente estático.*
 - **`-a`:** *Fuerza la recompilación de todos los paquetes, incluso si ya están actualizados.*
 - **`-installsuffix cgo`:** *Cambia el sufijo de instalación para diferenciar las compilaciones que tienen CGO deshabilitado.*
-- **`-o App-Go`:** *Especifica el nombre del archivo binario de salida.*
+- **`-o App-Go`:** *Especifica el nombre del fichero binario de salida.*
 
 ---
 
@@ -978,7 +978,7 @@ FROM golang AS builder
 # Define el directorio de trabajo.
 WORKDIR /App
 
-# Copia los archivos de dependencias.
+# Copia los ficheros de dependencias.
 COPY go.* ./
 
 # Descarga las dependencias.
@@ -1144,7 +1144,7 @@ Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-
 
 - *Una solución es asegurarte de que el binario tenga todas las librerías enlazadas de forma estática. Esto se logra configurando la compilación de Go para que no dependa de las bibliotecas C dinámicas. Se recomienda agregar la línea de compilación siguiente en el Dockerfile para habilitar esta opción:*
 
-```dockerfile
+```Dockerfile
 RUN CGO_ENABLED=0 go build -a -installsuffix cgo -o App-Go
 ```
 
@@ -1212,17 +1212,17 @@ ubuntu             22.04          53a843653cbc   3 weeks ago         77.9MB
 
 ### ***Enlazadores y su Uso***
 
-- **Los enlazadores (linkers) son herramientas esenciales en el proceso de compilación de software. En C y otros lenguajes, su propósito principal es combinar varios archivos de objeto en un único archivo ejecutable. Este proceso incluye:**
+- **Los enlazadores (linkers) son herramientas esenciales en el proceso de compilación de software. En C y otros lenguajes, su propósito principal es combinar varios ficheros de objeto en un único fichero ejecutable. Este proceso incluye:**
 
-1. **Resolución de Símbolos:** *El enlazador resuelve las referencias entre diferentes partes del código y las bibliotecas. Por ejemplo, si un archivo de objeto usa una función definida en otro archivo de objeto, el enlazador se asegura de que la referencia sea correcta.*
+1. **Resolución de Símbolos:** *El enlazador resuelve las referencias entre diferentes partes del código y las bibliotecas. Por ejemplo, si un fichero de objeto usa una función definida en otro fichero de objeto, el enlazador se asegura de que la referencia sea correcta.*
 
 2. **Asignación de Direcciones de Memoria:** *El enlazador asigna direcciones de memoria a cada módulo y a las funciones y variables dentro de ellos.*
 
-3. **Creación del Ejecutable Final:** *Finalmente, el enlazador genera el archivo ejecutable que se puede ejecutar en un sistema operativo.*
+3. **Creación del Ejecutable Final:** *Finalmente, el enlazador genera el fichero ejecutable que se puede ejecutar en un sistema operativo.*
 
 - **En el contexto de Docker y las imágenes base:**
 
-- **Alpine:** *Al usar Alpine, que es una distribución mínima, los archivos binarios generados pueden requerir menos espacio. Sin embargo, Alpine usa la biblioteca `musl` en lugar de `glibc`, lo que puede llevar a incompatibilidades con algunas aplicaciones.*
+- **Alpine:** *Al usar Alpine, que es una distribución mínima, los ficheros binarios generados pueden requerir menos espacio. Sin embargo, Alpine usa la biblioteca `musl` en lugar de `glibc`, lo que puede llevar a incompatibilidades con algunas aplicaciones.*
 
 - **Scratch:** *La imagen `scratch` es la imagen base más ligera posible, pero no incluye un sistema operativo ni bibliotecas básicas, por lo que es más difícil de usar a menos que se tenga un control total sobre las dependencias del programa.*
 

@@ -6,7 +6,7 @@
 
 ---
 
-## ***Descomprimimos el archivo***
+## ***Descomprimimos el fichero***
 
 ```bash
 unzip Reto-App-Axum.zip -d "./10 Reto Dockerization App Rust Axum Solucion"
@@ -66,8 +66,8 @@ FROM rust:latest AS builder
 # Establecemos el directorio de trabajo en el contenedor para la etapa de construcción.
 WORKDIR /App
 
-# Copiamos todos los archivos del proyecto al directorio de trabajo en el contenedor.
-# Esto incluye el código fuente y archivos de configuración.
+# Copiamos todos los ficheros del proyecto al directorio de trabajo en el contenedor.
+# Esto incluye el código fuente y ficheros de configuración.
 COPY ./ ./
 
 # Construimos el proyecto Rust en modo release para optimizar el binario.
@@ -117,16 +117,16 @@ CMD ./hello
 # GitHub: https://github.com/DanielPerezMoralesDev13
 # Correo electrónico: danielperezdev@proton.me
 
-# Excluimos la carpeta target que contiene los archivos de construcción.
+# Excluimos la carpeta target que contiene los ficheros de construcción.
 target/
 
-# Excluimos el Dockerfile y archivos relacionados.
+# Excluimos el Dockerfile y ficheros relacionados.
 Dockerfile*
 
-# Excluimos la carpeta .git y archivos de configuración de git.
+# Excluimos la carpeta .git y ficheros de configuración de git.
 .git*
 
-# Excluimos archivos comprimidos para evitar incluirlos en la imagen.
+# Excluimos ficheros comprimidos para evitar incluirlos en la imagen.
 *.zip
 ```
 

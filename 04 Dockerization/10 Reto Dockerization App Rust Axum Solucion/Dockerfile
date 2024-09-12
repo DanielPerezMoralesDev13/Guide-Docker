@@ -10,8 +10,8 @@ FROM rust AS builder
 # Establecemos el directorio de trabajo en el contenedor para la etapa de construcción.
 WORKDIR /App
 
-# Copiamos todos los archivos del proyecto al directorio de trabajo en el contenedor.
-# Esto incluye el código fuente y archivos de configuración.
+# Copiamos todos los ficheros del proyecto al directorio de trabajo en el contenedor.
+# Esto incluye el código fuente y ficheros de configuración.
 COPY ./ ./
 
 # Construimos el proyecto Rust en modo release para optimizar el binario.
