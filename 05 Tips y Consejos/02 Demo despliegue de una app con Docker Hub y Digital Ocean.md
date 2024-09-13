@@ -1,3 +1,7 @@
+<!-- Autor: Daniel Benjamin Perez Morales -->
+<!-- GitHub: https://github.com/DanielPerezMoralesDev13 -->
+<!-- Correo electrónico: danielperezdev@proton.me -->
+
 # ***Demo de Despliegue de una App con Docker Hub y Digital Ocean***
 
 *Para desplegar en la nube, puedes utilizar DigitalOcean. Más información en: [DigitalOcean](https://www.digitalocean.com/?utm_medium=affiliates&utm_source=impact&utm_campaign=5625023&utm_content=&irgwc=1&irclickid=3wswPzw8BxyKWcuQ6azW3wwdUkC25B3DHSclWk0&gad_source=1&gclid=CjwKCAjwooq3BhB3EiwAYqYoEvankrUYNcNAYMEptYUEbUh0VX1A7gWqDRPsu1I5EBaPUMpFW75HihoCH2UQAvD_BwE "https://www.digitalocean.com/?utm_medium=affiliates&utm_source=impact&utm_campaign=5625023&utm_content=&irgwc=1&irclickid=3wswPzw8BxyKWcuQ6azW3wwdUkC25B3DHSclWk0&gad_source=1&gclid=CjwKCAjwooq3BhB3EiwAYqYoEvankrUYNcNAYMEptYUEbUh0VX1A7gWqDRPsu1I5EBaPUMpFW75HihoCH2UQAvD_BwE").*
@@ -121,10 +125,6 @@ Login Succeeded
 **Nombre del repositorio:** `aplication-express`
 
 **Etiqueta recomendada para la imagen:** `latest`
-
----
-
-Sí, es recomendable hacer login mediante un token en lugar de usar una contraseña, especialmente por razones de seguridad. Aquí tienes la información mejorada sobre cómo hacer el login y bajar una imagen:
 
 ---
 
