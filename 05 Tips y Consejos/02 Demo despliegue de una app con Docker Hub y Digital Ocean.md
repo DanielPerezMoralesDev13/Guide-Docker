@@ -122,9 +122,9 @@ Login Succeeded
 - *[Accede a tus repositorios Tags](https://hub.docker.com/repository/docker/d4nitrix13/aplication-express/tags "https://hub.docker.com/repository/docker/d4nitrix13/aplication-express/tags")*
 - *[Crear un nuevo repositorio](https://hub.docker.com/repository/create?namespace=d4nitrix13 "https://hub.docker.com/repository/create?namespace=d4nitrix13")*
 
-**Nombre del repositorio:** `aplication-express`
+**Nombre del repositorio:** *`aplication-express`*
 
-**Etiqueta recomendada para la imagen:** `latest`
+**Etiqueta recomendada para la imagen:** *`latest`*
 
 ---
 
