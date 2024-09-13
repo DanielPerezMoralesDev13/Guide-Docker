@@ -3,5 +3,5 @@
 # Correo electrónico: danielperezdev@proton.me
 
 node_modules
-Dockerfile
+Dockerfile*
 .dockerignore

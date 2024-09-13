@@ -6,7 +6,7 @@
 
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 8080
 
 // Definimos una ruta GET en la raíz ("/") que responde con "Hello World!"
 app.get('/', (req, res) => {

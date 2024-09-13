@@ -6,7 +6,7 @@
 
 # Definimos argumentos para la versión de Node.js y el puerto de la aplicación
 ARG VERSION=18.15.0-alpine
-ARG APP_PORT=3000
+ARG APP_PORT=8080
 
 # Base de la imagen que utilizaremos: Node.js versión LTS en Alpine para menor tamaño de la imagen
 FROM node:${VERSION} AS builder
