@@ -20,9 +20,9 @@
 
 **Direcciones IP privadas:** *Son direcciones reservadas para su uso en redes privadas, como redes domésticas o empresariales internas. Estas direcciones no son ruteables a través de Internet público. Algunos rangos de direcciones IP privadas son:*
 
-- **Clase A privada:** `10.0.0.0` - `10.255.255.255`
-- **Clase B privada:** `172.16.0.0` - `172.31.255.255`
-- **Clase C privada:** `192.168.0.0` - `192.168.255.255`
+- **Clase A privada:** *`10.0.0.0` - `10.255.255.255`*
+- **Clase B privada:** *`172.16.0.0` - `172.31.255.255`*
+- **Clase C privada:** *`192.168.0.0` - `192.168.255.255`*
 
 **Direcciones IP públicas:** *Son direcciones asignadas a dispositivos o servidores que son accesibles a través de Internet. Estas direcciones son únicas y ruteables en Internet. Las direcciones IP públicas no están reservadas, pero algunas de ellas están designadas para uso especial, como las direcciones IP utilizadas para pruebas, multicast, etc.*
 
