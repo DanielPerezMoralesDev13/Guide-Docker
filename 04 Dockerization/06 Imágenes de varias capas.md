@@ -2,7 +2,7 @@
 <!-- GitHub: https://github.com/DanielPerezMoralesDev13 -->
 <!-- Correo electrónico: danielperezdev@proton.me -->
 
-# ***Imágenes de varias capas** a*
+# ***Imágenes de varias capas***
 
 - *Para entender cómo funcionan las imágenes de Docker con varias capas, es esencial analizar el Dockerfile proporcionado y el resultado obtenido al inspeccionar un contenedor específico.*
 
