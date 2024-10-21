@@ -872,10 +872,10 @@ docker inspect debian-3 > "./metadatos_del_nuevo_contenedor.json"
     #!/usr/bin/env bash
 
     # Variables
-    DIRECTORIO_ORIGEN="/home/d4nitrix13/Escritorio" # Cambia esto a tu directorio
-    PATRON="*.json"  # Cambia esto al patrón que necesites
-    CONTENEDOR="NameContainer"  # Cambia esto al nombre o ID de tu contenedor
-    DIRECTORIO_DESTINO="/Directory/Container"  # Cambia esto a tu destino en el contenedor
+    DIRECTORIO_ORIGEN="/home/d4nitrix13/Escritorio/Csv" # Cambia esto a tu directorio
+    PATRON="*.csv"  # Cambia esto al patrón que necesites
+    CONTENEDOR="DeveloperContainer"  # Cambia esto al nombre o ID de tu contenedor
+    DIRECTORIO_DESTINO="/home/vscode"  # Cambia esto a tu destino en el contenedor
 
     # Copiar files
     for file in $DIRECTORIO_ORIGEN/$PATRON; do
@@ -887,9 +887,57 @@ docker inspect debian-3 > "./metadatos_del_nuevo_contenedor.json"
     ```
 
 4. **Guarda y ejecuta el script:**
-   - *Guarda el script en un file, por ejemplo, `copiar_files.sh`.*
-   - *Asegúrate de darle permisos de ejecución: `chmod +x copiar_files.sh`.*
-   - *Luego, ejecuta el script: `./copiar_files.sh`.*
+   - *Guarda el script en un file, por ejemplo, `script.sh`.*
+   - *Asegúrate de darle permisos de ejecución: `chmod +x script.sh`.*
+   - *Luego, ejecuta el script: `./script.sh`.*
+
+```bash
+./script.sh
+Successfully copied 2.05kB to DeveloperContainer:/home/vscode
+Copiado: /home/d4nitrix13/Escritorio/Csv/Categories.csv a DeveloperContainer:/home/vscode
+Successfully copied 9.22kB to DeveloperContainer:/home/vscode
+Copiado: /home/d4nitrix13/Escritorio/Csv/Customers.csv a DeveloperContainer:/home/vscode
+Successfully copied 4.61kB to DeveloperContainer:/home/vscode
+Copiado: /home/d4nitrix13/Escritorio/Csv/Employees.csv a DeveloperContainer:/home/vscode
+Successfully copied 9.73kB to DeveloperContainer:/home/vscode
+Copiado: /home/d4nitrix13/Escritorio/Csv/OrderDetails.csv a DeveloperContainer:/home/vscode
+Successfully copied 6.66kB to DeveloperContainer:/home/vscode
+Copiado: /home/d4nitrix13/Escritorio/Csv/Orders.csv a DeveloperContainer:/home/vscode
+Successfully copied 5.63kB to DeveloperContainer:/home/vscode
+Copiado: /home/d4nitrix13/Escritorio/Csv/Products.csv a DeveloperContainer:/home/vscode
+Successfully copied 2.05kB to DeveloperContainer:/home/vscode
+Copiado: /home/d4nitrix13/Escritorio/Csv/Shippers.csv a DeveloperContainer:/home/vscode
+Successfully copied 4.61kB to DeveloperContainer:/home/vscode
+Copiado: /home/d4nitrix13/Escritorio/Csv/Suppliers.csv a DeveloperContainer:/home/vscode
+```
+
+---
+
+### ***Entrar al directorio `/home/vscode` dentro de tu contenedor***
+
+> [!TIP]
+> *Si deseas entrar al directorio `/home/vscode` dentro de tu contenedor `container-sqlite3-practicas`, puedes hacerlo con el siguiente comando:*
+
+```bash
+docker exec -it container-sqlite3-practicas bash -c "cd /home/vscode && exec bash"
+```
+
+*Este comando te coloca en el directorio `/home/vscode` dentro del contenedor. Aquí tienes un desglose:*
+
+- **`docker exec -it container-sqlite3-practicas`:** *Esto inicia un nuevo proceso en el contenedor.*
+- **`bash -c "cd /home/vscode && exec bash"`:** *Esto cambia al directorio deseado y luego inicia una nueva sesión de bash en ese directorio.*
+
+```bash
+root ➜ /home/vscode $ ls -l *.csv
+-rw-rw-r-- 1 vscode vscode  393 Oct 21 22:39 Categories.csv
+-rw-rw-r-- 1 vscode vscode 7418 Oct 21 22:39 Customers.csv
+-rw-rw-r-- 1 vscode vscode 2709 Oct 21 22:39 Employees.csv
+-rw-rw-r-- 1 vscode vscode 8098 Oct 21 22:39 OrderDetails.csv
+-rw-rw-r-- 1 vscode vscode 4739 Oct 21 22:39 Orders.csv
+-rw-rw-r-- 1 vscode vscode 3594 Oct 21 22:39 Products.csv
+-rw-rw-r-- 1 vscode vscode  126 Oct 21 22:39 Shippers.csv
+-rw-rw-r-- 1 vscode vscode 2831 Oct 21 22:39 Suppliers.csv
+```
 
 ---
 
