@@ -848,3 +848,52 @@ docker inspect debian-3 > "./metadatos_del_nuevo_contenedor.json"
 ```
 
 *La diferencia en los hashes de los directorios asegura que los cambios en un contenedor no se reflejen en otro, manteniendo así su aislamiento.*
+
+---
+
+#### ***`docker container cp`***
+
+> [!NOTE]
+> *El comando `docker container cp` no acepta expresiones regulares directamente. Este comando se utiliza para copiar files y directorios entre el sistema de files del host y un contenedor de Docker, pero los nombres de los files o directorios deben especificarse de manera exacta.*
+
+*Si deseas copiar varios files que coincidan con un patrón, una solución es usar un script o un comando que genere la lista de files que deseas copiar y luego ejecutar `docker container cp` para cada uno de ellos. Por ejemplo, podrías usar un comando como `find` en combinación con un bucle para copiar múltiples files que coincidan con un patrón específico.*
+
+---
+
+### ***Paso a Paso***
+
+1. **Identifica tu contenedor:** *Asegúrate de saber el nombre o ID del contenedor al que deseas copiar los files.*
+
+2. **Define el directorio y patrón:** *Define el directorio en el host desde el cual deseas copiar los files y el patrón de files (por ejemplo, `*.json`).*
+
+3. **Usa un script de bash:** *Puedes crear un script sencillo para hacer la copia. Aquí hay un ejemplo:*
+
+    ```bash
+    #!/usr/bin/env bash
+
+    # Variables
+    DIRECTORIO_ORIGEN="/home/d4nitrix13/Escritorio" # Cambia esto a tu directorio
+    PATRON="*.json"  # Cambia esto al patrón que necesites
+    CONTENEDOR="NameContainer"  # Cambia esto al nombre o ID de tu contenedor
+    DIRECTORIO_DESTINO="/Directory/Container"  # Cambia esto a tu destino en el contenedor
+
+    # Copiar files
+    for file in $DIRECTORIO_ORIGEN/$PATRON; do
+        if [ -e "$file" ]; then  # Verifica si el file existe
+            docker container cp "$file" "$CONTENEDOR:$DIRECTORIO_DESTINO"
+            echo "Copiado: $file a $CONTENEDOR:$DIRECTORIO_DESTINO"
+        fi
+    done
+    ```
+
+4. **Guarda y ejecuta el script:**
+   - *Guarda el script en un file, por ejemplo, `copiar_files.sh`.*
+   - *Asegúrate de darle permisos de ejecución: `chmod +x copiar_files.sh`.*
+   - *Luego, ejecuta el script: `./copiar_files.sh`.*
+
+---
+
+### ***Notas***
+
+- *Asegúrate de tener los permisos necesarios para acceder a los files en el directorio de origen y para realizar operaciones en el contenedor.*
+- *Modifica las variables al inicio del script según tus necesidades específicas.*
