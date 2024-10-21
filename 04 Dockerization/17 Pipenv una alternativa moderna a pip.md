@@ -1455,3 +1455,40 @@ drwxr-xr-x 5 root root 4096 Aug 31 17:48 .venv
 -rw-rw-r-- 1 root root  147 Aug 29 01:40 requirements.txt
 drwxrwxr-x 3 root root 4096 Aug 29 01:19 src
 ```
+
+---
+
+## *Cómo Cambiar el Intérprete de Python en Visual Studio Code*
+
+> *Visual Studio Code (VS Code) te permite elegir entre diferentes intérpretes de Python instalados en tu sistema. Aquí te explico cómo hacerlo paso a paso.*
+
+---
+
+### ***1. Abrir la Paleta de Comandos***
+
+*Primero, abre la **Paleta de Comandos** en VS Code. Puedes hacerlo presionando la combinación de teclas:*
+
+- **Windows/Linux:** *`Ctrl + Shift + P`*
+- **macOS:** *`Cmd + Shift + P`*
+
+### *2. Seleccionar la Opción para Cambiar el Intérprete*
+
+- *En la Paleta de Comandos, escribe `Python: Select Interpreter` y selecciona la opción correspondiente. Esto abrirá una lista de los intérpretes de Python disponibles en tu sistema.*
+
+*![Seleccionar intérprete en VS Code](/images/ImageSelectInterprete.png "/images/ImageSelectInterprete.png")*
+
+---
+
+### ***3. Elegir el Intérprete de Python***
+
+- *Se mostrará una lista de todos los intérpretes de Python instalados, tanto en ambientes virtuales como en ubicaciones globales. Elige el intérprete que deseas usar haciendo clic sobre él.*
+
+*![Ubicación del intérprete de Python](/images/ImageSelectInterpreteUbication.png "/images/ImageSelectInterpreteUbication.png")*
+
+---
+
+### ***4. Verificar la Ubicación del Intérprete***
+
+- *Si necesitas más información sobre la ubicación del intérprete, puedes revisar el detalle completo de la ruta del mismo, lo cual es útil cuando trabajas con entornos virtuales o múltiples versiones de Python.*
+
+*![Ruta absoluta del intérprete](/images/ImageSelectInterpreteUbicationAbsolute.png "/images/ImageSelectInterpreteUbicationAbsolute.png")*
